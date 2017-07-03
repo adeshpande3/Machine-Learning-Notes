@@ -16,3 +16,5 @@ Notes for several Machine Learning and Deep Learning courses and textbooks and t
 * **Scaled Machine Learning Conference Notes** - These were the notes I took at the Scaled ML conference at Stanford. Here is a link to [event page](http://scaledml.org/). 
 
 * **Machine Learning: A Probabilistic Perspective Notes** - ML textbook with an emphasis on describing concepts with relation to probability. 
+
+* **Elements of Statistical Learning Notes** - Another hard ML textbook with an emphasis on a lot of the math behind traditional ML models. 
