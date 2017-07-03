@@ -14,3 +14,5 @@ Notes for several Machine Learning and Deep Learning courses and textbooks and t
   - Deep Q networks
   
 * **Scaled Machine Learning Conference Notes** - These were the notes I took at the Scaled ML conference at Stanford. Here is a link to [event page](http://scaledml.org/). 
+
+* **Machine Learning: A Probabilistic Perspective Notes** - ML textbook with an emphasis on describing concepts with relation to probability. 
