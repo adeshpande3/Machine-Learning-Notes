@@ -18,3 +18,5 @@ Notes for several Machine Learning and Deep Learning courses and textbooks and t
 * **Machine Learning: A Probabilistic Perspective Notes** - ML textbook with an emphasis on describing concepts with relation to probability. 
 
 * **Elements of Statistical Learning Notes** - Another hard ML textbook with an emphasis on a lot of the math behind traditional ML models. 
+
+* **The AI Conference 2017 Notes** - These were the notes I took at The AI Conference sponsored by O'Reilly Media. Here is a link to [event page](https://conferences.oreilly.com/artificial-intelligence/ai-ca). 
