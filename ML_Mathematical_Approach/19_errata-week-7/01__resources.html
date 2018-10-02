@@ -1,0 +1,130 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Errata in video lectures
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    In 'Optimization Objective', starting at 9:25, the SVM regularization term should start from j=1, not j=0.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    In 'Optimization Objective', starting at 13:37, the SVM regularization term should be summing over j instead of i: $$\sum\limits_{j=1}^n\theta{_j}^2$$.
+   </p>
+  </li>
+  <li>
+   <p>
+    In 'Large Margin Intuition', starting from 1:04, should be labelled z≤−1, for graphic on the right. (It is drawn correctly).
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    In 'Mathematics Behind Large Margin Classification', starting from 11:22, second condition should be $$p^{(i)} \cdot |\theta| \leq -1$$ if $$y^{(i)} = 0$$ instead of $$y^{(i)} = 1$$. This persists also in the quiz.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    In 'Mathematics Behind Large Margin Classification', at 16:33, Dr. Ng writes towards the right of the slide that for a vertical decision boundary, $$p^{(1)} . ||\theta ||&gt; 0$$, while it should be $$p^{(1)} . ||\theta ||&gt; 1$$.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    In the 'Kernels I' video quiz, the notation surrounding $$x_1-l^{(1)}$$ inside the exp( ) function is the norm notation.
+   </p>
+  </li>
+  <li>
+   <p>
+    In 'Using An SVM', at 13:51, Dr. Ng writes θ = K instead of class y=K
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Errata in programming assignment ex6
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    In ex6.pdf, typo on page 1: "SVM rraining function" should be "SVM
+    <strong>
+     t
+    </strong>
+    raining function"
+   </p>
+  </li>
+  <li>
+   <p>
+    In ex6.m at line 69: Inside the fprintf() statement, the text "sigma = 0.5" should be "sigma = 2"
+   </p>
+  </li>
+  <li>
+   <p>
+    In ex6.pdf, typo in section 1.2.2 on page 6: "obserse" should be ‘observe’.
+   </p>
+  </li>
+  <li>
+   <p>
+    In ex6.pdf, in section 1.2.3 on page 7: The submit grader requires that you use exactly the eight values listed for both C and sigma.
+   </p>
+  </li>
+  <li>
+   <p>
+    In dataset3Params.m, at line 2 "EX6PARAMS" should be "DATASET3PARAMS".
+   </p>
+  </li>
+  <li>
+   <p>
+    In visualizeBoundary.m at line 21, the statement "contour(X1, X2, vals, [0 0], 'Color', 'b');" does not reliably display the contour plot on all platforms. The form "contour(X1, X2, vals, [0.5 0.5], 'linecolor', 'b');" seems to be a better choice.
+   </p>
+  </li>
+ </ul>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

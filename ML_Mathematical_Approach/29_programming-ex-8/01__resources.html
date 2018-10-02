@@ -1,0 +1,134 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  ML:Programming Exercise 8: Anomaly Detection and Recommender Systems
+ </h1>
+ <h3 level="3">
+  Debugging Tip
+ </h3>
+ <p>
+  The submit script, for all the programming assignments, does not report the line number and location of the error when it crashes. The follow method can be used to make it do so which makes debugging easier.
+ </p>
+ <p>
+  Open ex8/lib/submitWithConfiguration.m and replace line:
+ </p>
+ <pre> fprintf('!! Please try again later.\n');
+</pre>
+ <p>
+  (around 28) with:
+ </p>
+ <pre>fprintf('Error from file:%s\nFunction:%s\nOn line:%d\n', e.stack(1,1).file,e.stack(1,1).name, e.stack(1,1).line );
+</pre>
+ <p>
+  That top line says '!! Please try again later' on crash, instead of that, the bottom line will give the location and line number of the error. This change can be applied to all the programming assignments.
+ </p>
+ <h2 level="2">
+  error in ex8_cofi.m (reported by Charles Davis in session ML-005)
+ </h2>
+ <p>
+  line 199 in ex8_cofi.m reads
+ </p>
+ <p>
+  theta = fmincg (@(t)(cofiCostFunc(t, Y, R, num_users, num_movies, num_features, lambda)), initial_parameters, options);
+ </p>
+ <p>
+  but I believe it should be
+ </p>
+ <p>
+  theta = fmincg (@(t)(cofiCostFunc(t, Ynorm, R, num_users, num_movies, num_features, lambda)), initial_parameters, options);
+ </p>
+ <p>
+  ...to avoid creating ratings &gt; 5 at line 219. This doesn't affect the submissions of course, just the cosmetics of the recommendations.
+ </p>
+ <p>
+  Supporting analysis: Y is normalized in line 181, creating Ynorm, but then it is never used. The video lecture "Implementation Detail: Mean Normalization" at 5:34 makes it pretty clear that the normalized Y matrix should be used for calculating theta.
+ </p>
+ <p>
+  This errata also means that "ex8.pdf" Figure 4 is incorrect, since it shows movies with ratings greater than 5-stars.
+ </p>
+ <h2 level="2">
+  Item 2: The grader uses Y with non-zero values
+ </h2>
+ <p>
+  When using the R matrix (to ignore movies that have not been rated), do not rely on Y(i,j) to be 0 when a user has not rated a film. This expectation is true for the ex8_cofi.m script, but that is NOT true for the test case used by the submit grader for Part 3 through Part 6.
+ </p>
+ <p>
+  Note: This might no longer be true, the grader seems to be using Y(i,j) == 0 for when a user has not rated a film
+ </p>
+ <h2 level="2">
+  Item 3: Regularization
+ </h2>
+ <p>
+  Note: Unlike previous assignments when we performed regularization, for this exercise, we do NOT skip the 1st column of Theta or X when computing regularization. This is because we are not specifying bias units in the collaborative filtering algorithm (since the algorithm determines all of the theta values, it can set one to the '1' value if it leads to the optimum solution). Therefore, all values of Theta and X should be considered in regularization.
+ </p>
+ <h2 level="2">
+  1.2 Estimating parameters for a Gaussian
+ </h2>
+ <p>
+  the var function can actually return normalization with 1/m instead of 1/(m-1). Set the second argument 0 for 1/(m-1) and 1 for 1/m.
+ </p>
+ <h2 level="2">
+  errors in cofiCostFunc.m
+ </h2>
+ <p>
+  line 9 should read "% Unfold the
+  <strong>
+   X
+  </strong>
+  and
+  <strong>
+   Theta
+  </strong>
+  matrices from params"
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,190 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  ML:Programming Exercise 7:K-Means Clustering and PCA
+ </h1>
+ <h3 level="3">
+  Debugging Tip
+ </h3>
+ <p>
+  The submit script, for all the programming assignments, does not report the line number and location of the error when it crashes. The follow method can be used to make it do so which makes debugging easier.
+ </p>
+ <p>
+  Open ex7/lib/submitWithConfiguration.m and replace line:
+ </p>
+ <pre> fprintf('!! Please try again later.\n');
+</pre>
+ <p>
+  (around 28) with:
+ </p>
+ <pre>fprintf('Error from file:%s\nFunction:%s\nOn line:%d\n', e.stack(1,1).file,e.stack(1,1).name, e.stack(1,1).line );
+</pre>
+ <p>
+  That top line says '!! Please try again later' on crash, instead of that, the bottom line will give the location and line number of the error. This change can be applied to all the programming assignments.
+ </p>
+ <h2 level="2">
+  Workaround for problem in plotting routine
+ </h2>
+ <p>
+  {CTA Note: This problem only effects certain versions of Octave} after completion of the computecentroids.m function, i ran into the following problem:
+ </p>
+ <pre>    K-Means iteration 1/10...
+    error: __scatter__: A(I): index out of bounds; value 4 out of bound 3
+    error: called from:
+    error:   /Applications/Octave.app/Contents/Resources/share/octave/3.4.0/m/plot/private/__scatter__.m at line 199, column 13
+    error:   /Applications/Octave.app/Contents/Resources/share/octave/3.4.0/m/plot/scatter.m at line 71, column 11
+    error:  ?/ex7/mlclass-ex7/plotDataPoints.m at line 12, column 1
+    error:  ?/ex7/mlclass-ex7/plotProgresskMeans.m at line 11, column 1
+    error:  ?/ex7/mlclass-ex7/runkMeans.m at line 48, column 9
+    error:  ?/ex7/mlclass-ex7/ex7.m at line 92, column 19
+</pre>
+ <p>
+  i don't think it is caused by my solution, and found a workaround by modifying the plotDataPoints.m as follows
+ </p>
+ <pre>   % use idx directly. It will index into the default color map.
+   % scatter(X(:,1), X(:,2), 15, colors);
+    scatter(X(:,1), X(:,2), 15, idx);
+</pre>
+ <p>
+  The issue is a bug in the scatter() function in certain versions of Octave.
+ </p>
+ <h2 level="2">
+  findClosestCentroids() issue with regards to the grader
+ </h2>
+ <p>
+  If two centroids have identical distances, the submit grader wants you to select the one with the lowest index value. This situation arises when running ex7_pca.m - some of the image pixels have the same minimum distance to more than one centroid. This restriction is most easily accommodated by using the min() function to find the centroid with the minimum distance. Students have found that using the find() function does not result in the answer the grader prefers.
+ </p>
+ <h2 level="2">
+  Selecting the initial centroids - an additional consideration
+ </h2>
+ <p>
+  This issue was omitted from the lectures. When the initial centroids are selected, be sure that they are each unique. For example, if using K-Means to compress an image, each of the initial centroids should represent a unique color. If two initial centroids were the exact same color, then you would effectively have K-1 centroids, not K.
+ </p>
+ <p>
+  Using the kMeansInitCentroids() method as given in ex7.pdf, an experiment on the "bird_small.mat" data set shows that approximately 5 tries in 10,000 will result in duplicate centroids. The method given in ex7.pdf only selects unique members of the training set as the centroids - it does not verify that they are not duplicate values.
+ </p>
+ <p>
+  One method for preventing duplicate centroids would be as follows:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Randomly select a set of K training examples as the initial centroids.
+   </p>
+  </li>
+  <li>
+   <p>
+    Use the unique(centroids, 'rows') function to get a matrix of all of the unique centroid values.
+   </p>
+  </li>
+  <li>
+   <p>
+    If the number of unique rows is not equal to K, then re-select a new set of initial centroids.
+   </p>
+  </li>
+ </ul>
+ <p>
+  Another method would be to prevent any duplicates at all by using the unique function on the training examples (unique(X, 'rows'))
+  <strong>
+   before
+  </strong>
+  randomly selecting the initial centroids.
+ </p>
+ <h2 level="2">
+  Fully vectorizing findClosestCentroids()
+ </h2>
+ <p>
+  It is possible to fully vectorize this function by using 3D arrays for the training examples and the centroids.
+ </p>
+ <p>
+  <strong>
+   Tip 1:
+  </strong>
+  To transform 2D arrays to 3D, you can use
+  <a href="http://www.mathworks.com/help/matlab/ref/permute.html">
+   permute
+  </a>
+  with an extra dimension index. For example, you can transform a m×n (2D) matrix
+  <strong>
+   A2
+  </strong>
+  to a m×1×n (3D) array
+  <strong>
+   A3
+  </strong>
+  using A3 = permute(A2, [1 3 2]);
+ </p>
+ <p>
+  <strong>
+   Tip 2:
+  </strong>
+  Instead of using
+  <a href="http://www.mathworks.com/help/matlab/ref/repmat.html">
+   repmat
+  </a>
+  to "expand" a matrix for binary operations, it is usually faster to use
+  <a href="http://www.mathworks.com/help/matlab/ref/bsxfun.html">
+   bsxfun
+  </a>
+  .
+ </p>
+ <h2 level="2">
+  Errata in projectData.m
+ </h2>
+ <p>
+  Make the following change in the "Instructions" section:
+ </p>
+ <pre>%      projection_k = x' * U(:, 1:k);
+</pre>
+ <p>
+  The "1:k" portion was missing the "1:" part.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,205 @@
+<!-- MHonArc v2.6.16 -->
+<!--X-Subject: [Octave&#45;bug&#45;tracker] [bug #35769] [Windows] Segmentation fault on	subplot -->
+<!--X-From-R13: Buvyvc @vrauhvf <W@HOZWR.@ADSBZKNtah.bet> -->
+<!--X-Date: Sun, 11 Mar 2012 12:31:10 &#45;0400 -->
+<!--X-Message-Id: 20120311&#45;173057.sv78941.50649@savannah.gnu.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20120309&#45;122607.sv87449.28910@savannah.gnu.org -->
+<!--X-Reference: 20120309&#45;140824.sv87449.3150@savannah.gnu.org -->
+<!--X-Reference: 20120309&#45;090107.sv72865.94639@savannah.gnu.org -->
+<!--X-Reference: 20120310&#45;091938.sv87449.6198@savannah.gnu.org -->
+<!--X-Reference: 20120310&#45;144451.sv79336.56700@savannah.gnu.org -->
+<!--X-Head-End-->
+<!doctype html public "-//W3C//DTD HTML//EN">
+<html>
+<head>
+<title>[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<center>
+<table border=0 cellspacing=2 cellpadding=0 bgcolor="#000000">
+<tr><td><table border=0 bgcolor="#FFFFCC">
+<tr><td><big><b>octave-bug-tracker</b></big></td></tr></table></tr></table>
+<small><nobr>[<a href="../"
+>Top</a>][<a href="/archive/html">All Lists</a>]</small></nobr>
+<form method="get" action="/archive/cgi-bin/namazu.cgi">
+<input type="text" name="query" size="30">
+<input type="submit" name="submit" value="Search">
+<input type="hidden" name="idxname" value="octave-bug-tracker">
+<a href="/archive/cgi-bin/namazu.cgi?idxname=octave-bug-tracker">Advanced</a>
+</form>
+
+</center>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<hr>
+[<a href="msg00109.html">Date Prev</a>][<a href="msg00111.html">Date Next</a>][<a href="msg00103.html">Thread Prev</a>][<a href="msg00139.html">Thread Next</a>][<a
+href="index.html#00110">Date Index</a>][<a
+href="threads.html#00110">Thread Index</a>]
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h2>[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplo</h2>
+<hr>
+<table border=0>
+<tbody>
+<tr>
+<td align="right" valign="top">
+<b>From</b>: </td>
+<td align="left">
+Philip Nienhuis</td>
+</tr>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+
+<tr>
+<td align="right" valign="top">
+<b>Subject</b>: </td>
+<td align="left">
+[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</td>
+</tr>
+
+<tr>
+<td align="right" valign="top">
+<b>Date</b>: </td>
+<td align="left">
+Sun, 11 Mar 2012 16:30:57 +0000</td>
+</tr>
+
+<tr>
+<td align="right" valign="top">
+<b>User-agent</b>: </td>
+<td align="left">
+Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US;	rv:1.9.1.11) Gecko/20100701 SeaMonkey/2.0.6</td>
+</tr>
+
+</tbody>
+</table>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>Update of bug #35769 (project octave):
+
+                  Status:                    None =&gt; Works For Me           
+             Open/Closed:                    Open =&gt; Closed                 
+
+    _______________________________________________________
+
+Follow-up Comment #4:
+
+I suggest you'd better experiment with the various libblas.dll versions found
+in /bin. See the README which is in the octave-3.6.1-.......7z archive.
+
+E.g., on my Windows boxes a simple
+
+  demo plotyy
+
+can reliably crash Octave, depending on which libblas.dll is in place.
+
+(Admittedly this libblas.dll affair is a little sneaky.... the effects
+(crashes) can pop up in many unexpected situations. Sorry for that.)
+
+The latest Octave-3.6.1 MinGW version (dated March 3, 2012) is much more
+stable, yet offers a few more libblas.dll versions to try (9) than the earlier
+3.6.1 one (just 5 or so IIRC).
+
+On my box your example works OK (I tried it several times) with MinGW Octave
+3.6.1, both fltk &amp; gnuplot. 
+On MSVC it works OK as well (gnuplot, fltk and qt).
+
+I'll close this bug with a &quot;Works for me&quot;. 
+It can always be reopened if you report that your example code crashes with
+all 9 (nine) libblas.dll versions in /bin in the latest octave-3.6.1-MinGW
+drop.
+
+
+    _______________________________________________________
+
+Reply to this item at:
+
+  &lt;<a  rel="nofollow" href="http://savannah.gnu.org/bugs/?35769">http://savannah.gnu.org/bugs/?35769</a>&gt;
+
+_______________________________________________
+  Message sent via/by Savannah
+  <a  rel="nofollow" href="http://savannah.gnu.org/">http://savannah.gnu.org/</a>
+
+
+
+</pre>
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<form method="post" action="/mp/yyz.py" enctype="multipart/form-data">
+<input type="hidden" name="a" value="INVALID.NOREPLY">
+<input type="hidden" name="b" value="[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot">
+<input type="hidden" name="d" value="20120311-173057.sv78941.50649@savannah.gnu.org">
+<input type="hidden" name="c" value="gnu.org">
+<center>reply via email to<br><input type="submit" value=" Philip Nienhuis "></center>
+</form>
+<hr>
+<table width="100%">
+<tr><td align="left">[<a href="msg00103.html">Prev in Thread</a>]</td>
+<td align="center"><b>Current Thread</b></td>
+<td align="right">[<a href="msg00139.html">Next in Thread</a>]</td></tr></table>
+<ul>
+<li><b><a name="00085" href="msg00085.html">[Octave-bug-tracker] [bug #35769] Segmentation fault on subplot</a></b>, <i>Dik Dirk</i>, <tt>2012/03/09</tt>
+<ul>
+<li><b><a name="00089" href="msg00089.html">[Octave-bug-tracker] [bug #35769] Segmentation fault on subplot</a></b>, <i>Dik Dirk</i>, <tt>2012/03/09</tt>
+<ul>
+<li><b><a name="00093" href="msg00093.html">[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</a></b>, <i>Rik</i>, <tt>2012/03/09</tt>
+<ul>
+<li><b><a name="00101" href="msg00101.html">[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</a></b>, <i>Dik Dirk</i>, <tt>2012/03/10</tt>
+<li><b><a name="00103" href="msg00103.html">[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</a></b>, <i>Jordi Gutiérrez Hermoso</i>, <tt>2012/03/10</tt>
+<li><font color="#666666"><strong>[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</strong>,
+<em>Philip Nienhuis</em></font>&nbsp;<b>&lt;=</b>
+<li><b><a name="00139" href="msg00139.html">[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</a></b>, <i>Dik Dirk</i>, <tt>2012/03/13</tt>
+</li>
+</li>
+</li>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<ul>
+<li>Prev by Date:
+<strong><a href="msg00109.html">[Octave-bug-tracker] [bug #35787] Broadcasting inconsistency</a></strong>
+</li>
+<li>Next by Date:
+<strong><a href="msg00111.html">[Octave-bug-tracker] [bug #35683] regexp crash (named subexp/nested	paren; maybe related to #29438)</a></strong>
+</li>
+<li>Previous by thread:
+<strong><a href="msg00103.html">[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</a></strong>
+</li>
+<li>Next by thread:
+<strong><a href="msg00139.html">[Octave-bug-tracker] [bug #35769] [Windows] Segmentation fault on	subplot</a></strong>
+</li>
+<li>Index(es):
+<ul>
+<li><a href="index.html#00110"><strong>Date</strong></a></li>
+<li><a href="threads.html#00110"><strong>Thread</strong></a></li>
+</ul>
+</li>
+</ul>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

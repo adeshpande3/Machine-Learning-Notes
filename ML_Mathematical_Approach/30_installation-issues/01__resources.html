@@ -1,0 +1,380 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  General
+ </h1>
+ <p>
+  Installation files for all platforms are available at the
+  <a href="http://sourceforge.net/projects/octave/files">
+   GNU Octave Repository
+  </a>
+  on SourceForge.
+ </p>
+ <p>
+  The Gnu Octave Wiki has installation instructions for
+  <a href="http://wiki.octave.org/Octave_for_Windows">
+   Windows
+  </a>
+  and
+  <a href="http://wiki.octave.org/Octave_for_MacOS_X">
+   Mac OS X
+  </a>
+  .
+ </p>
+ <p>
+  The present instance of the course was tested using Octave 3.8.2. Earlier versions of Octave are not guaranteed to work. Very early versions are known to NOT work for the submit.m script.
+ </p>
+ <h1 level="1">
+  Windows
+ </h1>
+ <h2 level="2">
+  Version 4.0.1 (and later...)
+ </h2>
+ <p>
+  If you don't want to use MATLAB, then Octave 4.0.1 (or later) is recommended.
+ </p>
+ <h2 level="2">
+  Version 4.0.0
+ </h2>
+ <p>
+  Octave 4.0.0 has a bug in the prinft() function, which makes the submit script throw a very troubling error. Octave 4.0.0 is not recommended.
+ </p>
+ <h2 level="2">
+  Version 3.8.2
+ </h2>
+ <p>
+  The course materials were tested using Octave 3.8.2. This is the oldest version of Octave which will work on the present version of the course (as of June 2015). Earlier versions of Octave are not guaranteed to work, and some very early versions (such as 3.2.4, which Prof Ng uses in the video lectures) will not work at all.
+ </p>
+ <h2 level="2">
+  Historical information on previous Octave versions...
+ </h2>
+ <h3 level="3">
+  Version 3.6.4
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    The "Microsoft Visual Studio" or "Windows MinGW" version installers can be downloaded from
+    <a href="http://sourceforge.net/projects/octave/files/Octave%20Windows%20binaries/">
+     Sourceforge
+    </a>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    On Windows 8, you may see a console-related problem whereby Octave crashes and disappears at any syntax error; fix is detailed at
+    <a href="http://stackoverflow.com/questions/17513864/problems-with-octave-on-windows-8">
+     stackoverflow.com
+    </a>
+   </p>
+  </li>
+ </ul>
+ <h3 level="3">
+  Version 3.6.2
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    This bug-fix version was released on 5 June 2012. The "Microsoft Visual Studio 2010" version installer can be downloaded from
+    <a href="http://sourceforge.net/projects/octave/files/Octave%20Windows%20binaries/">
+     Sourceforge
+    </a>
+    . It seems more reliable than the MinGW 3.6.1 version, although some annoying bugs have been retained.
+   </p>
+  </li>
+  <li>
+   <p>
+    When installing this version from Cygwin, urlread/urlwrite may fail, resulting in an error message like:/usr/lib/octave/3.6.2/oct/i686-pc-cygwin/urlwrite.oct: failed to load: No such process. Thus the submit function provided with programming exercises also fails (submitWeb still works).I successfully worked around this by replacing urlwrite.oct with the file from the Octave/Cygwin 3.6.1 binary
+    <a href="http://mirrors.kernel.org/sourceware/cygwin/release/octave/">
+     distribution
+    </a>
+    . (Problem has also been mentioned in
+    <a href="https://class.coursera.org/ml-2012-002/forum/thread?thread_id=295">
+     this thread
+    </a>
+    for ml-2012-002.)
+   </p>
+  </li>
+ </ul>
+ <h3 level="3">
+  Version 3.6.1
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    The most recent version is from 3/5/2012, at the
+    <a href="http://sourceforge.net/projects/octave/files/Octave%20Windows%20binaries/Octave%203.6.1%20for%20Windows%20MinGW%20installer">
+     Sourceforge
+    </a>
+    site. Installation instructions for
+    <a href="http://www.octave.org/wiki/index.php?title=Octave_for_Windows">
+     Windows
+    </a>
+    and
+    <a href="http://www.octave.org/wiki/index.php?title=Octave_for_Windows#Octave_on_Cygwin">
+     Cygwin
+    </a>
+    are on the Wiki.
+   </p>
+  </li>
+  <li>
+   <p>
+    If you are having problems with crashes during (re-)plotting, see
+    <a href="http://lists.gnu.org/archive/html/octave-bug-tracker/2012-03/msg00110.html">
+     this bug report
+    </a>
+    concerning libblas.dll versions. You can probably reproduce this problem by typing the command:demo plotyy
+   </p>
+  </li>
+ </ul>
+ <p>
+  If you have the wrong version of libblas.dll installed, this will generally crash Octave. The libblas.dll.ref version is a slow but stable version.
+ </p>
+ <h3 level="3">
+  Version 3.2.4
+ </h3>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    The tutorial on the
+    <a href="https://class.coursera.org/ml/wiki/view?page=OctaveInstallation">
+     course website
+    </a>
+    is actually for version 3.2.4. This version is considered "very old" by the Octave Wiki. This version has a bug in the readline.dll file that causes garbage characters to show up when attempting to use command line history editing. Versions 3.4 and higher fix this.
+   </p>
+  </li>
+  <li>
+   <p>
+    Sometimes problems occur with Octave and gnuPlot if you have oct2mat module loaded. Try "pkg unload oct2mat' when you first run Octave. If that solves the problem you can make it permanent by either adding the line to your config file, or by executing "pkg uninstall oct2mat" command
+    <a href="https://class.coursera.org/ml/forum/thread?thread_id=946">
+     [1]
+    </a>
+    .
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Mac OS X
+ </h1>
+ <h2 level="2">
+  Version 3.8.1
+ </h2>
+ <p>
+  If you are not afraid of the Terminal you can use
+  <a href="https://github.com/mxcl/homebrew">
+   Homebrew
+  </a>
+  . This is by far the easiest method of installing everything that is needed. In fact, this may be the best option for versions of OSX prior to 10.9 Mavericks, because the
+  <a href="http://wiki.octave.org/Octave_for_MacOS_X">
+   Octave wiki
+  </a>
+  states that the binary installer is to be used "at your own risk" and is "not guaranteed to work" with anything other than OSX 10.9 Mavericks.
+ </p>
+ <p>
+  Let's install Homebrew as the easiest solution. Open Terminal and type the installation command below, which is listed on the Homebrew home page also, and then hit enter:
+ </p>
+ <pre>ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+</pre>
+ <p>
+  You will need a set of command line tools that are a subset of XCode. If you're comfortable with the Terminal, then use the command below to install just what is needed. Otherwise (or if you have issues), you need to install XCode from App Store, go to the XCode preferences -&gt; Downloads/Components section, and then select Command Line Tools to be installed.
+ </p>
+ <pre>xcode-select --install
+</pre>
+ <p>
+  Let's install an up to date gcc compiler:
+ </p>
+ <pre>brew install gcc
+</pre>
+ <p>
+  You will also need to install [MacTeX]. This can be done with Homebrew, as seen below using the Homebrew Cask project, or by downloading and installing from the website (
+  <a href="http://www.tug.org/mactex/">
+   http://www.tug.org/mactex/
+  </a>
+  ).
+ </p>
+ <pre>brew install caskroom/cask/brew-cask
+brew cask install mactex
+</pre>
+ <p>
+  Now let's install the plotting software, gnuplot, and have it use native Qt graphics (instead of the older X11 setup):
+ </p>
+ <pre>brew install gnuplot --with-qt
+</pre>
+ <p>
+  Finally, let's install Octave (note all build issues have been fixed, as of Nov 4th 2014):
+ </p>
+ <pre>brew tap homebrew/science
+brew install octave
+</pre>
+ <p>
+  And tell Octave to use Qt graphics with gnuplot when plotting:
+ </p>
+ <pre>echo "setenv GNUTERM qt;" &gt;&gt; ~/.octaverc
+</pre>
+ <p>
+  Now restart your Terminal and launch octave:
+ </p>
+ <pre>octave
+</pre>
+ <p>
+  Also, to avoid having to constantly change directories after starting octave, the following script will load octave with the Terminal's current working directory automatically set in octave. Let's set it up:
+ </p>
+ <pre>echo '#!/bin/bash' &gt;&gt; /usr/local/bin/oct
+echo 'octave -p "`pwd`"' &gt;&gt; /usr/local/bin/oct
+chmod +x /usr/local/bin/oct
+</pre>
+ <p>
+  And to start octave using this script instead (for example when you are working in a project directory and want to load octave with the directory already set):
+ </p>
+ <pre>oct
+</pre>
+ <p>
+  Known Issues: Executing GNUPlot gives error message on Octave (v 3.4.0) with X11 installed on OS 10.6.8(Snow leopard). For example: octave-3.4.0:10&gt; hist(w) warning: broken pipe -- some output may be lost "Reason: Incompatible library version: libfontconfig.1.dylib requires version 14.0.0 or later, but libfreetype.6.dylib provides version 13.0.0"
+ </p>
+ <p>
+  Fix: Open terminal window and type following 3 lines: cd /Applications/Gnuplot.app/Contents/Resources/lib mv libfreetype.6.dylib libfreetype.6.dylib.bak ln -s /usr/X11/lib/libfreetype.6.dylib .
+ </p>
+ <p>
+  (Source and explanation :
+  <a href="http://stackoverflow.com/questions/19932161/incompatible-library-version-libfontconfig-1-dylib-13-instead-of-15">
+   http://stackoverflow.com/questions/19932161/incompatible-library-version-libfontconfig-1-dylib-13-instead-of-15
+  </a>
+  )
+ </p>
+ <h1 level="1">
+  Linux
+ </h1>
+ <h2 level="2">
+  Ubuntu
+ </h2>
+ <h3 level="3">
+  Ubuntu Software Center
+ </h3>
+ <p>
+  Just search for GNU Octave in Ubuntu Software Center and click install. When the installation finishes, you're ready to use Octave.
+ </p>
+ <h3 level="3">
+  Command Line
+ </h3>
+ <p>
+  If you prefer using the command line or if you have an Ubuntu based version of Linux that comes without Ubuntu Software Center, you can install Octave by typing this command on a terminal:
+ </p>
+ <pre>sudo apt-get install octave
+</pre>
+ <p>
+  To update to a newer version (Octave 4.0.0 does not work), try these commands:
+ </p>
+ <pre>sudo apt-add-repository ppa:octave/stable
+sudo apt-get update
+sudo apt-get upgrade octave
+</pre>
+ <p>
+  If you get an error "E: Package 'octave3.2' has no installation candidate", then follow these steps
+ </p>
+ <pre>sudo apt-add-repository -y ppa:mtmiller/octave
+sudo apt-get update
+sudo apt-get install octave
+</pre>
+ <p>
+  This thread may be helpful with your Ubuntu installation:
+  <a href="http://askubuntu.com/questions/194151/how-do-you-install-the-latest-version-of-gnu-octave/206050#206050">
+   http://askubuntu.com/questions/194151/how-do-you-install-the-latest-version-of-gnu-octave/206050#206050
+  </a>
+ </p>
+ <h2 level="2">
+  Red Hat / CentOS
+ </h2>
+ <h3 level="3">
+  Command Line
+ </h3>
+ <p>
+  You can install Octave from the yum repository using the following command lines:
+ </p>
+ <pre>sudo yum install epel-release
+sudo yum install octave
+</pre>
+ <h2 level="2">
+  ArchLinux
+ </h2>
+ <h3 level="3">
+  Command Line
+ </h3>
+ <p>
+  Octave can be installed from pacman.
+ </p>
+ <pre>sudo pacman -S octave
+</pre>
+ <h1 level="1">
+  Browser (any OS)
+ </h1>
+ <p>
+  It is possible to use Octave online, without installing it on local computer. Web interface has a code editor and REPL console with inline plots. It gives access to Octave 3.6.4.
+ </p>
+ <p>
+  URL:
+  <a href="http://octave.im/">
+  </a>
+  <a href="http://octave.im/">
+   http://octave.im/
+  </a>
+ </p>
+ <h2 level="2">
+  Watching Videos in Chrome
+ </h2>
+ <p>
+  If you are on Ubuntu and the embedded playback of the mp4 course videos fails in the Chromium browser see
+  <a href="https://answers.launchpad.net/launchpad/+question/195340">
+   this Launchpad answer
+  </a>
+  . Chromium is the open source version of Chrome.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

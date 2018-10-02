@@ -1,0 +1,804 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  ML:Clustering
+ </h1>
+ <h1 level="1">
+  Unsupervised Learning: Introduction
+ </h1>
+ <p>
+  Unsupervised learning is contrasted from supervised learning because it uses an
+  <strong>
+   unlabeled
+  </strong>
+  training set rather than a labeled one.
+ </p>
+ <p>
+  In other words, we don't have the vector y of expected results, we only have a dataset of features where we can find structure.
+ </p>
+ <p>
+  Clustering is good for:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Market segmentation
+   </p>
+  </li>
+  <li>
+   <p>
+    Social network analysis
+   </p>
+  </li>
+  <li>
+   <p>
+    Organizing computer clusters
+   </p>
+  </li>
+  <li>
+   <p>
+    Astronomical data analysis
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  K-Means Algorithm
+ </h1>
+ <p>
+  The K-Means Algorithm is the most popular and widely used algorithm for automatically grouping data into coherent subsets.
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Randomly initialize two points in the dataset called the
+    <em>
+     cluster centroids
+    </em>
+    .
+   </p>
+  </li>
+  <li>
+   <p>
+    Cluster assignment: assign all examples into one of two groups based on which cluster centroid the example is closest to.
+   </p>
+  </li>
+  <li>
+   <p>
+    Move centroid: compute the averages for all the points inside each of the two cluster centroid groups, then move the cluster centroid points to those averages.
+   </p>
+  </li>
+  <li>
+   <p>
+    Re-run (2) and (3) until we have found our clusters.
+   </p>
+  </li>
+ </ol>
+ <p>
+  Our main variables are:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    K (number of clusters)
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Training set $${x^{(1)}, x^{(2)}, \dots,x^{(m)}}$$
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Where $$x^{(i)} \in \mathbb{R}^n$$
+   </p>
+  </li>
+ </ul>
+ <p>
+  Note that we
+  <strong>
+   will not use
+  </strong>
+  the x0=1 convention.
+ </p>
+ <p>
+  <strong>
+   The algorithm:
+  </strong>
+ </p>
+ <pre>Randomly initialize K cluster centroids mu(1), mu(2), ..., mu(K)
+Repeat:
+   for i = 1 to m:
+      c(i):= index (from 1 to K) of cluster centroid closest to x(i)
+   for k = 1 to K:
+      mu(k):= average (mean) of points assigned to cluster k</pre>
+ <p>
+  The
+  <strong>
+   first for-loop
+  </strong>
+  is the 'Cluster Assignment' step. We make a vector
+  <em>
+   c
+  </em>
+  where
+  <em>
+   c(i)
+  </em>
+  represents the centroid assigned to example
+  <em>
+   x(i)
+  </em>
+  .
+ </p>
+ <p>
+  We can write the operation of the Cluster Assignment step more mathematically as follows:
+ </p>
+ <p hasmath="true">
+  $$c^{(i)} = argmin_k\ ||x^{(i)} - \mu_k||^2$$
+ </p>
+ <p hasmath="true">
+  That is, each $$c^{(i)}$$ contains the index of the centroid that has minimal distance to $$x^{(i)}$$.
+ </p>
+ <p>
+  By convention, we square the right-hand-side, which makes the function we are trying to minimize more sharply increasing. It is mostly just a convention. But a convention that helps reduce the computation load because the Euclidean distance requires a square root but it is canceled.
+ </p>
+ <p>
+  Without the square:
+ </p>
+ <p hasmath="true">
+  $$||x^{(i)} - \mu_k|| = ||\quad\sqrt{(x_1^i - \mu_{1(k)})^2 + (x_2^i - \mu_{2(k)})^2 + (x_3^i - \mu_{3(k)})^2 + ...}\quad||$$
+ </p>
+ <p>
+  With the square:
+ </p>
+ <p hasmath="true">
+  $$||x^{(i)} - \mu_k||^2 = ||\quad(x_1^i - \mu_{1(k)})^2 + (x_2^i - \mu_{2(k)})^2 + (x_3^i - \mu_{3(k)})^2 + ...\quad||$$
+ </p>
+ <p>
+  ...so the square convention serves two purposes, minimize more sharply and less computation.
+ </p>
+ <p>
+  The
+  <strong>
+   second for-loop
+  </strong>
+  is the 'Move Centroid' step where we move each centroid to the average of its group.
+ </p>
+ <p>
+  More formally, the equation for this loop is as follows:
+ </p>
+ <p hasmath="true">
+  $$\mu_k = \dfrac{1}{n}[x^{(k_1)} + x^{(k_2)} + \dots + x^{(k_n)}] \in \mathbb{R}^n$$
+ </p>
+ <p hasmath="true">
+  Where each of $$x^{(k_1)}, x^{(k_2)}, \dots, x^{(k_n)}$$ are the training examples assigned to group $$mμ_k$$.
+ </p>
+ <p>
+  If you have a cluster centroid with
+  <strong>
+   0 points
+  </strong>
+  assigned to it, you can randomly
+  <strong>
+   re-initialize
+  </strong>
+  that centroid to a new point. You can also simply
+  <strong>
+   eliminate
+  </strong>
+  that cluster group.
+ </p>
+ <p>
+  After a number of iterations the algorithm will
+  <strong>
+   converge
+  </strong>
+  , where new iterations do not affect the clusters.
+ </p>
+ <p>
+  Note on non-separated clusters: some datasets have no real inner separation or natural structure. K-means can still evenly segment your data into K subsets, so can still be useful in this case.
+ </p>
+ <h1 level="1">
+  Optimization Objective
+ </h1>
+ <p>
+  Recall some of the parameters we used in our algorithm:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    $$c^{(i)}$$ = index of cluster (1,2,...,K) to which example x(i) is currently assigned
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$\mu_k $$= cluster centroid k (μk∈ℝn)
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$\mu_{c^{(i)}}$$ = cluster centroid of cluster to which example x(i) has been assigned
+   </p>
+  </li>
+ </ul>
+ <p>
+  Using these variables we can define our
+  <strong>
+   cost function
+  </strong>
+  :
+ </p>
+ <p hasmath="true">
+  $$J(c^{(i)},\dots,c^{(m)},\mu_1,\dots,\mu_K) = \dfrac{1}{m}\sum_{i=1}^m ||x^{(i)} - \mu_{c^{(i)}}||^2$$
+ </p>
+ <p>
+  Our
+  <strong>
+   optimization objective
+  </strong>
+  is to minimize all our parameters using the above cost function:
+ </p>
+ <p hasmath="true">
+  $$min_{c,\mu}\ J(c,\mu)$$
+ </p>
+ <p>
+  That is, we are finding all the values in sets c, representing all our clusters, and μ, representing all our centroids, that will minimize
+  <strong>
+   the average of the distances
+  </strong>
+  of every training example to its corresponding cluster centroid.
+ </p>
+ <p>
+  The above cost function is often called the
+  <strong>
+   distortion
+  </strong>
+  of the training examples.
+ </p>
+ <p>
+  In the
+  <strong>
+   cluster assignment step
+  </strong>
+  , our goal is to:
+ </p>
+ <p hasmath="true">
+  Minimize J(…) with $$c^{(1)},\dots,c^{(m)}$$ (holding $$\mu_1,\dots,\mu_K$$ fixed)
+ </p>
+ <p>
+  In the
+  <strong>
+   move centroid
+  </strong>
+  step, our goal is to:
+ </p>
+ <p hasmath="true">
+  Minimize J(…) with $$\mu_1,\dots,\mu_K$$
+ </p>
+ <p>
+  With k-means, it is
+  <strong>
+   not possible for the cost function to sometimes increase
+  </strong>
+  . It should always descend.
+ </p>
+ <h1 level="1">
+  Random Initialization
+ </h1>
+ <p>
+  There's one particular recommended method for randomly initializing your cluster centroids.
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Have K&lt;m. That is, make sure the number of your clusters is less than the number of your training examples.
+   </p>
+  </li>
+  <li>
+   <p>
+    Randomly pick K training examples. (Not mentioned in the lecture, but also be sure the selected examples are unique).
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Set $$\mu_1,\dots,\mu_K$$ equal to these K examples.
+   </p>
+  </li>
+ </ol>
+ <p>
+  K-means
+  <strong>
+   can get stuck in local optima
+  </strong>
+  . To decrease the chance of this happening, you can run the algorithm on many different random initializations. In cases where K&lt;10 it is strongly recommended to run a loop of random initializations.
+ </p>
+ <pre>for i = 1 to 100:
+   randomly initialize k-means
+   run k-means to get 'c' and 'm'
+   compute the cost function (distortion) J(c,m)
+pick the clustering that gave us the lowest cost
+</pre>
+ <h1 level="1">
+  Choosing the Number of Clusters
+ </h1>
+ <p>
+  Choosing K can be quite arbitrary and ambiguous.
+ </p>
+ <p>
+  <strong>
+   The elbow method
+  </strong>
+  : plot the cost J and the number of clusters K. The cost function should reduce as we increase the number of clusters, and then flatten out. Choose K at the point where the cost function starts to flatten out.
+ </p>
+ <p>
+  However, fairly often, the curve is
+  <strong>
+   very gradual
+  </strong>
+  , so there's no clear elbow.
+ </p>
+ <p>
+  <strong>
+   Note:
+  </strong>
+  J will
+  <strong>
+   always
+  </strong>
+  decrease as K is increased. The one exception is if k-means gets stuck at a bad local optimum.
+ </p>
+ <p>
+  Another way to choose K is to observe how well k-means performs on a
+  <strong>
+   downstream purpose
+  </strong>
+  . In other words, you choose K that proves to be most useful for some goal you're trying to achieve from using these clusters.
+ </p>
+ <h1 level="1">
+  Bonus: Discussion of the drawbacks of K-Means
+ </h1>
+ <p>
+  This links to a discussion that shows various situations in which K-means gives totally correct but unexpected results:
+  <a href="http://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means">
+   http://stats.stackexchange.com/questions/133656/how-to-understand-the-drawbacks-of-k-means
+  </a>
+ </p>
+ <h1 level="1">
+  ML:Dimensionality Reduction
+ </h1>
+ <p>
+  <strong>
+   Motivation I: Data Compression
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    We may want to reduce the dimension of our features if we have a lot of redundant data.
+   </p>
+  </li>
+  <li>
+   <p>
+    To do this, we find two highly correlated features, plot them, and make a new line that seems to describe both features accurately. We place all the new features on this single line.
+   </p>
+  </li>
+ </ul>
+ <p>
+  Doing dimensionality reduction will reduce the total data we have to store in computer memory and will speed up our learning algorithm.
+ </p>
+ <p hasmath="true">
+  Note: in dimensionality reduction, we are reducing our features rather than our number of examples. Our variable m will stay the same size; n, the number of features each example from $$x^{(1)}$$ to $$x^{(m)}$$ carries, will be reduced.
+ </p>
+ <h3 level="3">
+  <strong>
+   Motivation II: Visualization
+  </strong>
+ </h3>
+ <p>
+  It is not easy to visualize data that is more than three dimensions. We can reduce the dimensions of our data to 3 or less in order to plot it.
+ </p>
+ <p hasmath="true">
+  We need to find new features, $$z_1, z_2$$(and perhaps $$z_3$$) that can effectively
+  <strong>
+   summarize
+  </strong>
+  all the other features.
+ </p>
+ <p>
+  Example: hundreds of features related to a country's economic system may all be combined into one feature that you call "Economic Activity."
+ </p>
+ <h1 level="1">
+  Principal Component Analysis Problem Formulation
+ </h1>
+ <p>
+  The most popular dimensionality reduction algorithm is
+  <em>
+   Principal Component Analysis
+  </em>
+  (PCA)
+ </p>
+ <p>
+  <strong>
+   Problem formulation
+  </strong>
+ </p>
+ <p hasmath="true">
+  Given two features, $$x_1$$ and $$x_2$$, we want to find a single line that effectively describes both features at once. We then map our old features onto this new line to get a new single feature.
+ </p>
+ <p>
+  The same can be done with three features, where we map them to a plane.
+ </p>
+ <p>
+  The
+  <strong>
+   goal of PCA
+  </strong>
+  is to
+  <strong>
+   reduce
+  </strong>
+  the average of all the distances of every feature to the projection line. This is the
+  <strong>
+   projection error
+  </strong>
+  .
+ </p>
+ <p hasmath="true">
+  Reduce from 2d to 1d: find a direction (a vector $$u^{(1)} \in \mathbb{R}^n$$) onto which to project the data so as to minimize the projection error.
+ </p>
+ <p>
+  The more general case is as follows:
+ </p>
+ <p hasmath="true">
+  Reduce from n-dimension to k-dimension: Find k vectors $$u^{(1)}, u^{(2)}, \dots, u^{(k)}$$ onto which to project the data so as to minimize the projection error.
+ </p>
+ <p>
+  If we are converting from 3d to 2d, we will project our data onto two directions (a plane), so k will be 2.
+ </p>
+ <p>
+  <strong>
+   PCA is not linear regression
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    In linear regression, we are minimizing the
+    <strong>
+     squared error
+    </strong>
+    from every point to our predictor line. These are vertical distances.
+   </p>
+  </li>
+  <li>
+   <p>
+    In PCA, we are minimizing the
+    <strong>
+     shortest distance
+    </strong>
+    , or shortest
+    <em>
+     orthogonal
+    </em>
+    distances, to our data points.
+   </p>
+  </li>
+ </ul>
+ <p>
+  More generally, in linear regression we are taking all our examples in x and applying the parameters in Θ to predict y.
+ </p>
+ <p hasmath="true">
+  In PCA, we are taking a number of features $$x_1, x_2, \dots, x_n$$, and finding a closest common dataset among them. We aren't trying to predict any result and we aren't applying any theta weights to the features.
+ </p>
+ <h1 level="1">
+  Principal Component Analysis Algorithm
+ </h1>
+ <p>
+  Before we can apply PCA, there is a data pre-processing step we must perform:
+ </p>
+ <p>
+  <strong>
+   Data preprocessing
+  </strong>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Given training set: x(1),x(2),…,x(m)
+   </p>
+  </li>
+  <li>
+   <p>
+    Preprocess (feature scaling/mean normalization):
+   </p>
+  </li>
+ </ul>
+ <p hasmath="true">
+  $$\mu_j = \dfrac{1}{m}\sum^m_{i=1}x_j^{(i)}$$
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    Replace each $$x_j^{(i)}$$ with $$x_j^{(i)} - \mu_j$$
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    If different features on different scales (e.g., $$x_1$$ = size of house, $$x_2$$ = number of bedrooms), scale features to have comparable range of values.
+   </p>
+  </li>
+ </ul>
+ <p hasmath="true">
+  Above, we first subtract the mean of each feature from the original feature. Then we scale all the features $$x_j^{(i)} = \dfrac{x_j^{(i)} - \mu_j}{s_j}$$
+ </p>
+ <p>
+  We can define specifically what it means to reduce from 2d to 1d data as follows:
+ </p>
+ <p hasmath="true">
+  $$\Sigma = \dfrac{1}{m}\sum^m_{i=1}(x^{(i)})(x^{(i)})^T$$
+ </p>
+ <p hasmath="true">
+  The z values are all real numbers and are the projections of our features onto $$u^{(1)}$$.
+ </p>
+ <p hasmath="true">
+  So, PCA has two tasks: figure out $$u^{(1)},\dots,u^{(k)}$$ and also to find $$z_1, z_2, \dots, z_m$$.
+ </p>
+ <p>
+  The mathematical proof for the following procedure is complicated and beyond the scope of this course.
+ </p>
+ <p>
+  <strong>
+   1. Compute "covariance matrix"
+  </strong>
+ </p>
+ <p hasmath="true">
+  $$\Sigma = \dfrac{1}{m}\sum^m_{i=1}(x^{(i)})(x^{(i)})^T$$
+ </p>
+ <p>
+  This can be vectorized in Octave as:
+ </p>
+ <pre>Sigma = (1/m) * X' * X;
+</pre>
+ <p>
+  We denote the covariance matrix with a capital sigma (which happens to be the same symbol for summation, confusingly---they represent entirely different things).
+ </p>
+ <p hasmath="true">
+  Note that $$x^{(i)}$$ is an n×1 vector, $$(x^{(i)})^T$$ is an 1×n vector and X is a m×n matrix (row-wise stored examples). The product of those will be an n×n matrix, which are the dimensions of Σ.
+ </p>
+ <p>
+  <strong>
+   2. Compute "eigenvectors" of covariance matrix Σ
+  </strong>
+ </p>
+ <pre>[U,S,V] = svd(Sigma);
+</pre>
+ <p>
+  svd() is the 'singular value decomposition', a built-in Octave function.
+ </p>
+ <p hasmath="true">
+  What we actually want out of svd() is the 'U' matrix of the Sigma covariance matrix: $$U \in \mathbb{R}^{n \times n}$$. U contains $$u^{(1)},\dots,u^{(n)}$$, which is exactly what we want.
+ </p>
+ <p>
+  <strong>
+   3. Take the first k columns of the U matrix and compute z
+  </strong>
+ </p>
+ <p>
+  We'll assign the first k columns of U to a variable called 'Ureduce'. This will be an n×k matrix. We compute z with:
+ </p>
+ <p hasmath="true">
+  $$z^{(i)} = Ureduce^T \cdot x^{(i)}$$
+ </p>
+ <p hasmath="true">
+  $$UreduceZ^T$$ will have dimensions k×n while x(i) will have dimensions n×1. The product $$Ureduce^T \cdot x^{(i)}$$ will have dimensions k×1.
+ </p>
+ <p>
+  To summarize, the whole algorithm in octave is roughly:
+ </p>
+ <pre>Sigma = (1/m) * X' * X; % compute the covariance matrix
+[U,S,V] = svd(Sigma);   % compute our projected directions
+Ureduce = U(:,1:k);     % take the first k directions
+Z = X * Ureduce;        % compute the projected data points
+</pre>
+ <h1 level="1">
+  Reconstruction from Compressed Representation
+ </h1>
+ <p>
+  If we use PCA to compress our data, how can we uncompress our data, or go back to our original number of features?
+ </p>
+ <p hasmath="true">
+  To go from 1-dimension back to 2d we do: $$z \in \mathbb{R} \rightarrow x \in \mathbb{R}^2$$.
+ </p>
+ <p hasmath="true">
+  We can do this with the equation: $$x_{approx}^{(1)} = U_{reduce} \cdot z^{(1)}$$.
+ </p>
+ <p>
+  Note that we can only get approximations of our original data.
+ </p>
+ <p>
+  Note: It turns out that the U matrix has the special property that it is a Unitary Matrix. One of the special properties of a Unitary Matrix is:
+ </p>
+ <p hasmath="true">
+  $$U^{-1} = U^∗$$ where the "*" means "conjugate transpose".
+ </p>
+ <p>
+  Since we are dealing with real numbers here, this is equivalent to:
+ </p>
+ <p hasmath="true">
+  $$U^{-1} = U^T$$ So we could compute the inverse and use that, but it would be a waste of energy and compute cycles.
+ </p>
+ <h1 level="1">
+  Choosing the Number of Principal Components
+ </h1>
+ <p>
+  How do we choose k, also called the
+  <em>
+   number of principal components
+  </em>
+  ? Recall that k is the dimension we are reducing to.
+ </p>
+ <p>
+  One way to choose k is by using the following formula:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    Given the average squared projection error: $$\dfrac{1}{m}\sum^m_{i=1}||x^{(i)} - x_{approx}^{(i)}||^2$$
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Also given the total variation in the data: $$\dfrac{1}{m}\sum^m_{i=1}||x^{(i)}||^2$$
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Choose k to be the smallest value such that: $$\dfrac{\dfrac{1}{m}\sum^m_{i=1}||x^{(i)} - x_{approx}^{(i)}||^2}{\dfrac{1}{m}\sum^m_{i=1}||x^{(i)}||^2} \leq 0.01$$
+   </p>
+  </li>
+ </ul>
+ <p>
+  In other words, the squared projection error divided by the total variation should be less than one percent, so that
+  <strong>
+   99% of the variance is retained
+  </strong>
+  .
+ </p>
+ <p>
+  <strong>
+   Algorithm for choosing k
+  </strong>
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Try PCA with k=1,2,…
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Compute $$U_{reduce}, z, x$$
+   </p>
+  </li>
+  <li>
+   <p>
+    Check the formula given above that 99% of the variance is retained. If not, go to step one and increase k.
+   </p>
+  </li>
+ </ol>
+ <p>
+  This procedure would actually be horribly inefficient. In Octave, we will call svd:
+ </p>
+ <pre>[U,S,V] = svd(Sigma)
+</pre>
+ <p>
+  Which gives us a matrix S. We can actually check for 99% of retained variance using the S matrix as follows:
+ </p>
+ <p hasmath="true">
+  $$\dfrac{\sum_{i=1}^kS_{ii}}{\sum_{i=1}^nS_{ii}} \geq 0.99$$
+ </p>
+ <h2 level="2">
+  Advice for Applying PCA
+ </h2>
+ <p>
+  The most common use of PCA is to speed up supervised learning.
+ </p>
+ <p hasmath="true">
+  Given a training set with a large number of features (e.g. $$x^{(1)},\dots,x^{(m)} \in \mathbb{R}^{10000}$$ ) we can use PCA to reduce the number of features in each example of the training set (e.g. $$z^{(1)},\dots,z^{(m)} \in \mathbb{R}^{1000}$$).
+ </p>
+ <p hasmath="true">
+  Note that we should define the PCA reduction from $$x^{(i)}$$ to $$z^{(i)}$$ only on the training set and not on the cross-validation or test sets. You can apply the mapping z(i) to your cross-validation and test sets after it is defined on the training set.
+ </p>
+ <p>
+  Applications
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Compressions
+   </p>
+  </li>
+ </ul>
+ <p>
+  Reduce space of data
+ </p>
+ <p>
+  Speed up algorithm
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Visualization of data
+   </p>
+  </li>
+ </ul>
+ <p>
+  Choose k = 2 or k = 3
+ </p>
+ <p>
+  <strong>
+   Bad use of PC
+  </strong>
+  <strong>
+   A:
+  </strong>
+  trying to prevent overfitting. We might think that reducing the features with PCA would be an effective way to address overfitting. It might work, but is not recommended because it does not consider the values of our results y. Using just regularization will be at least as effective.
+ </p>
+ <p>
+  Don't assume you need to do PCA.
+  <strong>
+   Try your full machine learning algorithm without PCA first.
+  </strong>
+  Then use PCA if you find that you need it.
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

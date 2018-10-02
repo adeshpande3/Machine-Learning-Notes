@@ -1,0 +1,548 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Tutorials
+ </h1>
+ <p>
+  <strong>
+   Compute Cost Tutorial
+  </strong>
+ </p>
+ <p>
+  This is a step-by-step tutorial for how to complete the computeCost() function portion of ex1. You will still have to do some thinking, because I'll describe the implementation, but you have to turn it into Octave script commands. All the programming exercises in this course follow the same procedure; you are provided a starter code template for a function that you need to complete. You never have to start a new script file from scratch. This is a vectorized implementation. You're only going to write a few simple lines of code.
+ </p>
+ <p>
+  With a text editor (NOT a word processor), open up the computeCost.m file. Scroll down until you find the "====== YOUR CODE HERE =====" section. Below this section is where you're going to add your lines of code. Just skip over the lines that start with the '%' sign - those are instructive comments.
+ </p>
+ <p>
+  We'll write these three lines of code by inspecting the equation on Page 5 of ex1.pdf. The first line of code will compute a vector 'h' containing all of the hypothesis values - one for each training example (i.e. for each row of X). The hypothesis (also called the prediction) is simply the product of X and theta. So your first line of code is...
+ </p>
+ <pre language="matlab">h = {multiply X and theta, in the proper order that the ....inner dimensions match}</pre>
+ <p>
+  Since X is size (m x n) and theta is size (n x 1), you arrange the order of operators so the result is size (m x 1).
+ </p>
+ <p>
+  The second line of code will compute the difference between the hypothesis and y - that's the error for each training example. Difference means subtract.
+ </p>
+ <pre language="matlab">error = {the difference between h and y}</pre>
+ <p>
+  The third line of code will compute the square of each of those error terms (using element-wise exponentiation),
+ </p>
+ <p>
+  An example of using element-wise exponentiation - try this in your workspace command line so you see how it works.
+ </p>
+ <pre language="matlab">v = [-2 3]
+
+v_sqr = v.^2</pre>
+ <p>
+  So, now you should compute the squares of the error terms:
+ </p>
+ <pre language="matlab">error_sqr = {use what you have learned}</pre>
+ <p>
+  Next, here's an example of how the sum function works (try this from your command line)
+ </p>
+ <pre language="matlab">q = sum([1 2 3])</pre>
+ <p>
+  Now, we'll finish the last two steps all in one line of code. You need to compute the sum of the error_sqr vector, and scale the result (multiply) by 1/(2*m). That completed sum is the cost value J.
+ </p>
+ <pre language="matlab">J = {multiply 1/(2*m) times the sum of the error_sqr vector}</pre>
+ <p>
+  That's it. If you run the ex1.m script, you should have the correct value for J. Then you should run one of the unit tests (available in the Forum).
+ </p>
+ <p>
+  Then you can run the submit script, and hopefully it will pass.
+ </p>
+ <p>
+  Be sure that every line of code ends with a semicolon. That will suppress the output of any values to the workspace. Leaving out the semicolons will surely make the grader unhappy.
+ </p>
+ <p>
+  <strong>
+   Gradient Descent Tutorial
+  </strong>
+  - also applies to gradientDescentMulti() - includes test cases.
+ </p>
+ <p>
+  I use the vectorized method, hopefully you're comfortable with vector math. Using this method means you don't have to fuss with array indices, and your solution will automatically work for any number of features or training examples.
+ </p>
+ <p>
+  What follows is a vectorized implementation of the gradient descent equation on the bottom of Page 5 in ex1.pdf.
+ </p>
+ <p>
+  Reminder that 'm' is the number of training examples (the rows of X), and 'n' is the number of features (the columns of X). 'n' is also the size of the theta vector (n x 1).
+ </p>
+ <p>
+  Perform all of these steps within the provided for-loop from 1 to the number of iterations. Note that the code template provides you this for-loop - you only have to complete the body of the for-loop. The steps below go immediately below where the script template says "======= YOUR CODE HERE ======".
+ </p>
+ <p>
+  1 - The hypothesis is a vector, formed by multiplying the X matrix and the theta vector. X has size (m x n), and theta is (n x 1), so the product is (m x 1). That's good, because it's the same size as 'y'. Call this hypothesis vector 'h'.
+ </p>
+ <p>
+  2 - The "errors vector" is the difference between the 'h' vector and the 'y' vector.
+ </p>
+ <p>
+  3 - The change in theta (the "gradient") is the sum of the product of X and the "errors vector", scaled by alpha and 1/m. Since X is (m x n), and the error vector is (m x 1), and the result you want is the same size as theta (which is (n x 1), you need to transpose X before you can multiply it by the error vector.
+ </p>
+ <p>
+  The vector multiplication automatically includes calculating the sum of the products.
+ </p>
+ <p>
+  When you're scaling by alpha and 1/m, be sure you use enough sets of parenthesis to get the factors correct.
+ </p>
+ <p>
+  4 - Subtract this "change in theta" from the original value of theta. A line of code like this will do it:
+ </p>
+ <pre language="matlab">theta = theta - theta_change;</pre>
+ <p>
+  That's it. Since you're never indexing by m or n, this solution works identically for both gradientDescent() and gradientDescentMulti().
+ </p>
+ <p>
+  <strong>
+   Feature Normalization Tutorial
+  </strong>
+ </p>
+ <p>
+  There are a couple of methods to accomplish this. The method here is one I use that doesn't rely on automatic broadcasting or the bsxfun() or repmat() functions.
+ </p>
+ <p>
+  You can use the mean() and sigma() functions to get the mean and std deviation for each column of X. These are returned as row vectors (1 x n)
+ </p>
+ <p>
+  Now you want to apply those values to each element in every row of the X matrix. One way to do this is to duplicate these vectors for each row in X, so they're the same size.
+ </p>
+ <p>
+  One method to do this is to create a column vector of all-ones - size (m x 1) - and multiply it by the mu or sigma row vector (1 x n). Dimensionally, (m x 1) * (1 x n) gives you a (m x n) matrix, and every row of the resulting matrix will be identical.
+ </p>
+ <p>
+  Now that X, mu, and sigma are all the same size, you can use element-wise operators to compute X_normalized.
+ </p>
+ <p>
+  Try these commands in your workspace:
+ </p>
+ <pre language="matlab">X = [1 2 3; 4 5 6]
+
+% creates a test matrix
+
+mu = mean(X)
+
+% returns a row vector
+
+sigma = std(X)
+
+% returns a row vector
+
+m = size(X, 1)
+
+% returns the number of rows in X
+
+mu_matrix = ones(m, 1) * mu
+
+sigma_matrix = ones(m, 1) * sigma</pre>
+ <p>
+  Now you can subtract the mu matrix from X, and divide element-wise by the sigma matrix, and arrive at X_normalized.
+ </p>
+ <p>
+  You can do this even easier if you're using a Matlab or Octave version that supports automatic broadcasting - then you can skip the "multiply by a column of 1's" part.
+ </p>
+ <p>
+  You can also use the bsxfun() or repmat() functions. Be advised the bsxfun() has a non-obvious syntax that I can never remember, and repmat() runs rather slowly.
+ </p>
+ <h1 level="1">
+  Test Cases
+ </h1>
+ <p>
+  <strong>
+   computeCost:
+  </strong>
+ </p>
+ <p>
+  &gt;&gt;computeCost( [1 2; 1 3; 1 4; 1 5], [7;6;5;4], [0.1;0.2] )
+ </p>
+ <p>
+  ans = 11.9450
+ </p>
+ <p>
+  -----
+ </p>
+ <p>
+  &gt;&gt;computeCost( [1 2 3; 1 3 4; 1 4 5; 1 5 6], [7;6;5;4], [0.1;0.2;0.3])
+ </p>
+ <p>
+  ans = 7.0175
+ </p>
+ <p>
+  ============
+ </p>
+ <p>
+  <strong>
+   gradientDescent:
+  </strong>
+ </p>
+ <p>
+  Test Case 1:
+ </p>
+ <pre language="matlab">&gt;&gt;[theta J_hist] = gradientDescent([1 5; 1 2; 1 4; 1 5],[1 6 4 2]',[0 0]',0.01,1000);
+
+% then type in these variable names, to display the final results
+
+&gt;&gt;theta
+
+theta =
+
+5.2148
+
+-0.5733
+
+&gt;&gt;J_hist(1)
+
+ans = 5.9794
+
+&gt;&gt;J_hist(1000)
+
+ans = 0.85426</pre>
+ <p>
+  For debugging, here are the first few theta values computed in the gradientDescent() for-loop for this test case:
+ </p>
+ <pre language="matlab">% first iteration
+theta =
+  0.032500
+  0.107500
+% second iteration
+theta =
+  0.060375
+  0.194887
+% third iteration
+theta =
+  0.084476
+  0.265867
+% fourth iteration
+theta =
+  0.10550
+  0.32346</pre>
+ <p>
+  The values can be inspected by adding the "keyboard" command within your for-loop. This exits the code to the debugger, where you can inspect the values. Use the "return" command to resume execution.
+ </p>
+ <p>
+  Test Case 2:
+ </p>
+ <p>
+  This test case is similar, but uses a non-zero initial theta value.
+ </p>
+ <pre language="matlab">&gt;&gt; [theta J_hist] = gradientDescent([1 5; 1 2],[1 6]',[.5 .5]',0.1,10);
+&gt;&gt; theta
+theta =   
+1.70986  
+0.19229
+&gt;&gt; J_hist
+J_hist =   
+  5.8853  
+  5.7139  
+  5.5475  
+  5.3861  
+  5.2294  
+  5.0773  
+  4.9295  
+  4.7861  
+  4.6469  
+  4.5117</pre>
+ <p>
+  <strong>
+   featureNormalize():
+  </strong>
+ </p>
+ <pre language="matlab">[Xn mu sigma] = featureNormalize([1 ; 2 ; 3])
+% result
+Xn = 
+  -1  
+  0  
+  1
+mu =  2
+sigma =  1
+[Xn mu sigma] = featureNormalize(magic(3))
+% result
+Xn =   
+  1.13389 -1.00000 0.37796  
+  -0.75593 0.00000 0.75593 
+  -0.37796 1.00000 -1.13389
+mu =   
+  5   5   5
+sigma =   
+  2.6458   4.0000   2.6458
+%--------------
+[Xn mu sigma] = featureNormalize([-ones(1,3); magic(3)])
+% results
+Xn =  
+  -1.21725  -1.01472  -1.21725   
+  1.21725  -0.56373   0.67625 
+  -0.13525   0.33824   0.94675 
+  0.13525   1.24022  -0.40575
+mu =   
+  3.5000   3.5000   3.5000
+sigma = 
+  3.6968   4.4347   3.6968</pre>
+ <p>
+  <strong>
+   computeCostMulti
+  </strong>
+ </p>
+ <pre language="matlab">X = [ 2 1 3; 7 1 9; 1 8 1; 3 7 4 ];
+y = [2 ; 5 ; 5 ; 6];
+theta_test = [0.4 ; 0.6 ; 0.8];
+computeCostMulti( X, y, theta_test )
+% result
+ans =  5.2950</pre>
+ <p>
+  <strong>
+   gradientDescentMulti
+  </strong>
+ </p>
+ <pre language="matlab">X = [ 2 1 3; 7 1 9; 1 8 1; 3 7 4 ];
+y = [2 ; 5 ; 5 ; 6];
+[theta J_hist] = gradientDescentMulti(X, y, zeros(3,1), 0.01, 100);
+
+% results
+
+&gt;&gt; theta
+theta =
+
+   0.23680
+   0.56524
+   0.31248
+
+&gt;&gt; J_hist(1)
+ans =  2.8299
+
+&gt;&gt; J_hist(end)
+ans =  0.0017196</pre>
+ <p>
+  <strong>
+   normalEqn
+  </strong>
+ </p>
+ <pre language="matlab">X = [ 2 1 3; 7 1 9; 1 8 1; 3 7 4 ];
+y = [2 ; 5 ; 5 ; 6];
+theta = normalEqn(X,y)
+
+% results
+theta =
+
+   0.0083857
+   0.5681342
+   0.4863732</pre>
+ <h1 level="1">
+  Debugging Tip
+ </h1>
+ <p>
+  The submit script, for all the programming assignments, does not report the line number and location of the error when it crashes. The follow method can be used to make it do so which makes debugging easier.
+ </p>
+ <p>
+  Open ex1/lib/submitWithConfiguration.m and replace line:
+ </p>
+ <pre> fprintf('!! Please try again later.\n');
+</pre>
+ <p>
+  (around 28) with:
+ </p>
+ <pre>fprintf('Error from file:%s\nFunction:%s\nOn line:%d\n', e.stack(1,1).file,e.stack(1,1).name, e.stack(1,1).line );
+</pre>
+ <p>
+  That top line says '!! Please try again later' on crash, instead of that, the bottom line will give the location and line number of the error. This change can be applied to all the programming assignments.
+ </p>
+ <h3 level="3">
+  Note for OS X users
+ </h3>
+ <p>
+  If you are using OS X and get this error message when you run ex1.m and expect to see a plot figure:
+ </p>
+ <pre>gnuplot&gt; set terminal aqua enhanced title "Figure 1" size 560 420  font "*,6" dashlength 1                     
+                  ^
+     line 0: unknown or ambiguous terminal type; type just 'set terminal' for a list
+</pre>
+ <p>
+  ... try entering this command in the workspace console to change the terminal type:
+ </p>
+ <pre>setenv("GNUTERM","qt")
+</pre>
+ <h3 level="3">
+  How to check format of function arguments
+ </h3>
+ <p>
+  So that you may print the argument just by typing its name in the body of the function on a distinct line and call submit() in Octave.
+ </p>
+ <p>
+  For example I may print the theta argument in the "Compute cost for one variable" exercise by writing this in my computeCost.m file. Of course, it will fail because 5 is just random number, but it will show me the value of theta:
+ </p>
+ <pre>function J = computeCost(X, y, theta)
+    m = length(y);
+    J = 0
+    theta
+    J = 5  % I have added this line just to show that the argument you want to print doesn't have to be on the last line
+end
+</pre>
+ <h1 level="1">
+  Testing matrix operations in Octave
+ </h1>
+ <p>
+  In our programming exercises, there are many complex matrix operations where it may not be clear what form the result is in. I find it helpful to create a few basic matrices and vectors to test out my operations. For instance the following commands can be copied to a file to be used at any time for testing an operation.
+ </p>
+ <pre>X = [1 2 3; 1 2 3; 1 2 3; 1 2 3; 1 5 6] % Make sure X has more rows than theta and isn't square
+y = [1; 2; 3; 4; 5]
+theta = [1; 1; 1]
+</pre>
+ <p>
+  With these basic matrices and vectors you can model most of the programming exercises. If you don't know what form specific operations in the exercises take, you can test it in the Octave shell.
+ </p>
+ <p>
+  One thing that got me was using formulas like theta' * x where x was a single row in X. All the notes show x as being a mX1 vector, but X(i,:) is a 1xm vector. Using the terminal, I figured out that I had to transpose x. It is very helpful.
+ </p>
+ <h1 level="1">
+  Repeating previous operations in Octave
+ </h1>
+ <p>
+  When using the great unit tests by Vinh, if your function doesn't work the first time -- after you to edit and save your function file, then in your Octave window - just type ctrl-p to back up to what you typed previously, then enter to run it. (once you've gone back, can use ctrl-n for next) (more info @
+  <a href="https://www.gnu.org/software/octave/doc/interpreter/Commands-For-History.html">
+   https://www.gnu.org/software/octave/doc/interpreter/Commands-For-History.html
+  </a>
+  )
+ </p>
+ <h1 level="1">
+  Warm up exercise
+ </h1>
+ <p>
+  If you type "ex1.m" you will get an error - just use "ex1". Press 'Run' in Matlab editor.
+ </p>
+ <h1 level="1">
+  Compute cost for one variable
+ </h1>
+ <p>
+  theta is a matrix of size 2x1; first row is theta[0] and second one is theta[1] (I following index convention of videos here) Also fill arbitrary (non-zero) initial values to theta[0] and theta[1].
+ </p>
+ <h1 level="1">
+  Gradient descent for one variable
+ </h1>
+ <p>
+  See the 5th segment of Week 1 Video II ("Gradient Descent") for a key tip on simultaneous updates of theta.
+ </p>
+ <h1 level="1">
+  Feature normalization
+ </h1>
+ <p>
+  Use the zscore function to normalize:
+  <a href="http://www.gnu.org/software/octave/doc/interpreter/Basic-Statistical-Functions.html#XREFzscore">
+   http://www.gnu.org/software/octave/doc/interpreter/Basic-Statistical-Functions.html#XREFzscore
+  </a>
+ </p>
+ <p>
+  repmat function can be used here.
+ </p>
+ <p>
+  The bsxfun is helpful for applying a function (limited to two arguments) in an element-wise fashion to rows of a matrix using a vector of source values. This is useful for feature normalization. An example you can enter at the octave command line:
+ </p>
+ <pre>Z=[1 1 1; 2 2 2;];
+v=[1 1 1];
+bsxfun(@minus,Z,v);
+ans =
+    0   0   0
+    1   1   1
+</pre>
+ <p>
+  In this case, the corresponding elements of v are subtracted from each row of Z. The minus(a,b) function is equivalent to computing (a-b).
+ </p>
+ <p>
+  (other mathematical functions: @plus, @rdivide)
+ </p>
+ <p>
+  In Octave &gt;= 3.0.6 you can use broadcast feature to abbreviate:
+  <a href="https://www.gnu.org/software/octave/doc/interpreter/Broadcasting.html#Broadcasting">
+   https://www.gnu.org/software/octave/doc/interpreter/Broadcasting.html#Broadcasting
+  </a>
+ </p>
+ <pre>Z=[1 1 1; 2 2 2;];
+v=[1 1 1];
+Z - v   % or Z .- v
+ans =
+   0   0   0
+   1   1   1
+</pre>
+ <p>
+  A note regarding Feature Normalization when a feature is a constant: &lt;provided by a ML-005 student&gt;
+ </p>
+ <p>
+  When I used the feature normalization routine we used in class it did not occur to me that some features of the training examples may have constant values, which means that the sigma vector has zeroes for those features. Thus when I divide by sigma to normalize the matrix NaNs filled in some slots. This causes gradient descent to get lost wandering through a NaN wasteland, but never reporting why.The fix is easy. In featureNormalize, after sigma is calculated but before the division takes place, insert
+ </p>
+ <pre>sigma( sigma == 0 ) = 1;         % to keep away the NaN's and Inf's</pre>
+ <p>
+  Once this was done, gradient descent ran fine.
+ </p>
+ <p>
+  TA note: for the ML class exercises, you do not need this trick, because the scripts add the column of bias units after the features are normalized. But for your use outside of the class exercises, this may be a useful technique.
+ </p>
+ <h1 level="1">
+  Gradient descent for multiple variables
+ </h1>
+ <p>
+  The lecture notes "Week 2" under section Matrix Notation basically spells out one line solution to the problem.
+ </p>
+ <p>
+  When predicting prices using theta derived from gradient descent, do not forget to normalize input x or you'll get multimillion house value (wrong one).
+ </p>
+ <h1 level="1">
+  Normal Equations
+ </h1>
+ <p>
+  I found that the line "data = csvread('ex1data2.txt');" in ex1_multi.m is not needed as we previously load this data via "data = load('ex1data2.txt');"
+ </p>
+ <p>
+  Prior steps normalized X, this line sets X back to the original values. To have theta from gradient descent and from the normal equations to be close run the normal equations using normalized features as well. Therefor do not reload X.
+ </p>
+ <p>
+  Comment: I think the point in reloading is to show that you actually get the same results even without doing anything with the data beforehand. Of course for this script its not effective, but in a real application you would use only one of the approaches. Similar considerations would argue against feature normalization. Therefore do reload X.
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

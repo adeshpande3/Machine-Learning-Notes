@@ -1,0 +1,709 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  ML:Introduction
+ </h1>
+ <h2 level="2">
+  What is Machine Learning?
+ </h2>
+ <p>
+  Two definitions of Machine Learning are offered. Arthur Samuel described it as: "the field of study that gives computers the ability to learn without being explicitly programmed." This is an older, informal definition.
+ </p>
+ <p>
+  Tom Mitchell provides a more modern definition: "A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E."
+ </p>
+ <p>
+  Example: playing checkers.
+ </p>
+ <p>
+  E = the experience of playing many games of checkers
+ </p>
+ <p>
+  T = the task of playing checkers.
+ </p>
+ <p>
+  P = the probability that the program will win the next game.
+ </p>
+ <p>
+  In general, any machine learning problem can be assigned to one of two broad classifications:
+ </p>
+ <p>
+  supervised learning, OR
+ </p>
+ <p>
+  unsupervised learning.
+ </p>
+ <h3 level="3">
+  <strong>
+   Supervised Learning
+  </strong>
+ </h3>
+ <p>
+  In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.
+ </p>
+ <p>
+  Supervised learning problems are categorized into "regression" and "classification" problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function. In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories. Here is a description on Math is Fun on Continuous and Discrete Data.
+ </p>
+ <p>
+  <strong>
+   Example 1:
+  </strong>
+ </p>
+ <p>
+  Given data about the size of houses on the real estate market, try to predict their price. Price as a function of size is a continuous output, so this is a regression problem.
+ </p>
+ <p>
+  We could turn this example into a classification problem by instead making our output about whether the house "sells for more or less than the asking price." Here we are classifying the houses based on price into two discrete categories.
+ </p>
+ <p>
+  <strong>
+   Example 2
+  </strong>
+  :
+ </p>
+ <p>
+  (a) Regression - Given a picture of Male/Female, We have to predict his/her age on the basis of given picture.
+ </p>
+ <p>
+  (b) Classification - Given a picture of Male/Female, We have to predict Whether He/She is of High school, College, Graduate age. Another Example for Classification - Banks have to decide whether or not to give a loan to someone on the basis of his credit history.
+ </p>
+ <h3 level="3">
+  <strong>
+   Unsupervised Learning
+  </strong>
+ </h3>
+ <p>
+  Unsupervised learning, on the other hand, allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don't necessarily know the effect of the variables.
+ </p>
+ <p>
+  We can derive this structure by clustering the data based on relationships among the variables in the data.
+ </p>
+ <p>
+  With unsupervised learning there is no feedback based on the prediction results, i.e., there is no teacher to correct you.
+ </p>
+ <p>
+  <strong>
+   Example:
+  </strong>
+ </p>
+ <p>
+  Clustering: Take a collection of 1000 essays written on the US Economy, and find a way to automatically group these essays into a small number that are somehow similar or related by different variables, such as word frequency, sentence length, page count, and so on.
+ </p>
+ <p>
+  Non-clustering: The "Cocktail Party Algorithm", which can find structure in messy data (such as the identification of individual voices and music from a mesh of sounds at a cocktail party (
+  <a href="https://en.wikipedia.org/wiki/Cocktail_party_effect">
+   https://en.wikipedia.org/wiki/Cocktail_party_effect
+  </a>
+  ) ). Here is an answer on Quora to enhance your understanding. :
+  <a href="https://www.quora.com/What-is-the-difference-between-supervised-and-unsupervised-learning-algorithms">
+   https://www.quora.com/What-is-the-difference-between-supervised-and-unsupervised-learning-algorithms
+  </a>
+  ?
+ </p>
+ <h1 level="1">
+  ML:Linear Regression with One Variable
+ </h1>
+ <h2 level="2">
+  Model Representation
+ </h2>
+ <p>
+  Recall that in
+  <em>
+   regression problems
+  </em>
+  , we are taking input variables and trying to fit the output onto a
+  <em>
+   continuous
+  </em>
+  expected result function.
+ </p>
+ <p>
+  Linear regression with one variable is also known as "univariate linear regression."
+ </p>
+ <p>
+  Univariate linear regression is used when you want to predict a
+  <strong>
+   single output
+  </strong>
+  value y from a
+  <strong>
+   single input
+  </strong>
+  value x. We're doing
+  <strong>
+   supervised learning
+  </strong>
+  here, so that means we already have an idea about what the input/output cause and effect should be.
+ </p>
+ <h2 level="2">
+  The Hypothesis Function
+ </h2>
+ <p>
+  Our hypothesis function has the general form:
+ </p>
+ <p hasmath="true">
+  $$\hat{y} = h_\theta(x) = \theta_0 + \theta_1 x$$
+ </p>
+ <p hasmath="true">
+  Note that this is like the equation of a straight line. We give to $$h_\theta(x)$$ values for $$\theta_0$$ and $$\theta_1$$ to get our estimated output $$\hat{y}$$. In other words, we are trying to create a function called $$h_\theta$$ that is trying to map our input data (the x's) to our output data (the y's).
+ </p>
+ <h3 level="3">
+  Example:
+ </h3>
+ <p>
+  Suppose we have the following set of training data:
+ </p>
+ <table columns="2" rows="5">
+  <tr>
+   <th>
+    <p>
+     input x
+    </p>
+   </th>
+   <th>
+    <p>
+     output y
+    </p>
+   </th>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     0
+    </p>
+   </td>
+   <td>
+    <p>
+     4
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     1
+    </p>
+   </td>
+   <td>
+    <p>
+     7
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     2
+    </p>
+   </td>
+   <td>
+    <p>
+     7
+    </p>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <p>
+     3
+    </p>
+   </td>
+   <td>
+    <p>
+     8
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  Now we can make a random guess about our $$h_\theta$$ function: $$\theta_0=2$$ and $$\theta_1=2$$. The hypothesis function becomes $$h_\theta(x)=2+2x$$.
+ </p>
+ <p hasmath="true">
+  So for input of 1 to our hypothesis, y will be 4. This is off by 3. Note that we will be trying out various values of $$\theta_0$$ and $$\theta_1$$ to try to find values which provide the best possible "fit" or the most representative "straight line" through the data points mapped on the x-y plane.
+ </p>
+ <h1 level="1">
+  Cost Function
+ </h1>
+ <p>
+  We can measure the accuracy of our hypothesis function by using a
+  <strong>
+   cost function
+  </strong>
+  . This takes an average (actually a fancier version of an average) of all the results of the hypothesis with inputs from x's compared to the actual output y's.
+ </p>
+ <p hasmath="true">
+  $$J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{y}_{i}- y_{i} \right)^2  = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2$$
+ </p>
+ <p hasmath="true">
+  To break it apart, it is $$\frac{1}{2}$$ $$\bar{x}$$ where $$\bar{x}$$ is the mean of the squares of $$h_\theta (x_{i}) - y_{i}$$ , or the difference between the predicted value and the actual value.
+ </p>
+ <p hasmath="true">
+  This function is otherwise called the "Squared error function", or "Mean squared error". The mean is halved $$\left(\frac{1}{2m}\right)$$ as a convenience for the computation of the gradient descent, as the derivative term of the square function will cancel out the $$\frac{1}{2}$$ term.
+ </p>
+ <p>
+  Now we are able to concretely measure the accuracy of our predictor function against the correct results we have so that we can predict new results we don't have.
+ </p>
+ <p hasmath="true">
+  If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make straight line (defined by $$h_\theta(x)$$) which passes through this scattered set of data. Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. In the best case, the line should pass through all the points of our training data set. In such a case the value of $$J(\theta_0, \theta_1)$$ will be 0.
+ </p>
+ <h1 level="1">
+  ML:Gradient Descent
+ </h1>
+ <p>
+  So we have our hypothesis function and we have a way of measuring how well it fits into the data. Now we need to estimate the parameters in hypothesis function. That's where gradient descent comes in.
+ </p>
+ <p hasmath="true">
+  Imagine that we graph our hypothesis function based on its fields $$\theta_0$$ and $$\theta_1$$ (actually we are graphing the cost function as a function of the parameter estimates). This can be kind of confusing; we are moving up to a higher level of abstraction. We are not graphing x and y itself, but the parameter range of our hypothesis function and the cost resulting from selecting particular set of parameters.
+ </p>
+ <p hasmath="true">
+  We put $$\theta_0$$ on the x axis and $$\theta_1$$ on the y axis, with the cost function on the vertical z axis. The points on our graph will be the result of the cost function using our hypothesis with those specific theta parameters.
+ </p>
+ <p>
+  We will know that we have succeeded when our cost function is at the very bottom of the pits in our graph, i.e. when its value is the minimum.
+ </p>
+ <p>
+  The way we do this is by taking the derivative (the tangential line to a function) of our cost function. The slope of the tangent is the derivative at that point and it will give us a direction to move towards. We make steps down the cost function in the direction with the steepest descent, and the size of each step is determined by the parameter α, which is called the learning rate.
+ </p>
+ <p>
+  The gradient descent algorithm is:
+ </p>
+ <p>
+  repeat until convergence:
+ </p>
+ <p hasmath="true">
+  $$\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)$$
+ </p>
+ <p>
+  where
+ </p>
+ <p>
+  j=0,1 represents the feature index number.
+ </p>
+ <p>
+  Intuitively, this could be thought of as:
+ </p>
+ <p>
+  repeat until convergence:
+ </p>
+ <p hasmath="true">
+  $$\theta_j := \theta_j - \alpha [\text{Slope of tangent aka derivative in j dimension}]$$[Slope of tangent aka derivative in j dimension]
+ </p>
+ <h3 level="3">
+  <strong>
+   Gradient Descent for Linear Regression
+  </strong>
+ </h3>
+ <p>
+  When specifically applied to the case of linear regression, a new form of the gradient descent equation can be derived. We can substitute our actual cost function and our actual hypothesis function and modify the equation to (the derivation of the formulas are out of the scope of this course, but a really great one can be found here):
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p>
+     $$\begin{align*}
+  \text{repeat until convergence: } \lbrace &amp; \newline 
+  \theta_0 := &amp; \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \newline
+  \theta_1 := &amp; \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) x_{i}\right) \newline
+  \rbrace&amp;
+  \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  where m is the size of the training set, $$\theta_0$$ a constant that will be changing simultaneously with $$\theta_1$$ and $$x_{i}, y_{i}$$are values of the given training set (data).
+ </p>
+ <p hasmath="true">
+  Note that we have separated out the two cases for $$\theta_j$$ into separate equations for $$\theta_0$$ and $$\theta_1$$; and that for $$\theta_1$$ we are multiplying $$x_{i}$$ at the end due to the derivative.
+ </p>
+ <p>
+  The point of all this is that if we start with a guess for our hypothesis and then repeatedly apply these gradient descent equations, our hypothesis will become more and more accurate.
+ </p>
+ <h3 level="3">
+  <strong>
+   Gradient Descent for Linear Regression: visual worked example
+  </strong>
+ </h3>
+ <p>
+  Some may find the following video (
+  <a href="https://www.youtube.com/watch?v=WnqQrPNYz5Q">
+   https://www.youtube.com/watch?v=WnqQrPNYz5Q
+  </a>
+  ) useful as it visualizes the improvement of the hypothesis as the error function reduces.
+ </p>
+ <h1 level="1">
+  ML:Linear Algebra Review
+ </h1>
+ <p>
+  <a href="https://www.khanacademy.org/#linear-algebra">
+  </a>
+  Khan Academy has excellent Linear Algebra Tutorials (
+  <a href="https://www.khanacademy.org/#linear-algebra">
+   https://www.khanacademy.org/#linear-algebra
+  </a>
+  )
+ </p>
+ <h1 level="1">
+  Matrices and Vectors
+ </h1>
+ <p>
+  Matrices are 2-dimensional arrays:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}  a &amp; b &amp; c \newline   d &amp; e &amp; f \newline   g &amp; h &amp; i \newline   j &amp; k &amp; l\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+ </p>
+ <p>
+  The above matrix has four rows and three columns, so it is a 4 x 3 matrix.
+ </p>
+ <p>
+  A vector is a matrix with one column and many rows:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}  w \newline  x \newline  y \newline  z \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+ </p>
+ <p>
+  So vectors are a subset of matrices. The above vector is a 4 x 1 matrix.
+ </p>
+ <p>
+  <strong>
+   Notation and terms
+  </strong>
+  :
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    $$A_{ij}$$ refers to the element in the ith row and jth column of matrix A.
+   </p>
+  </li>
+  <li>
+   <p>
+    A vector with 'n' rows is referred to as an 'n'-dimensional vector
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$v_i$$ refers to the element in the ith row of the vector.
+   </p>
+  </li>
+  <li>
+   <p>
+    In general, all our vectors and matrices will be 1-indexed. Note that for some programming languages, the arrays are 0-indexed.
+   </p>
+  </li>
+  <li>
+   <p>
+    Matrices are usually denoted by uppercase names while vectors are lowercase.
+   </p>
+  </li>
+  <li>
+   <p>
+    "Scalar" means that an object is a single value, not a vector or matrix.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$\mathbb{R}$$ refers to the set of scalar real numbers
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    $$\mathbb{R^n}$$ refers to the set of n-dimensional vectors of real numbers
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Addition and Scalar Multiplication
+ </h1>
+ <p>
+  Addition and subtraction are
+  <strong>
+   element-wise
+  </strong>
+  , so you simply add or subtract each corresponding element:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}  a &amp; b \newline   c &amp; d \newline  \end{bmatrix} +\begin{bmatrix}  w &amp; x \newline   y &amp; z \newline  \end{bmatrix} =\begin{bmatrix}  a+w &amp; b+x \newline   c+y &amp; d+z \newline \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  To add or subtract two matrices, their dimensions must be
+  <strong>
+   the same
+  </strong>
+  .
+ </p>
+ <p>
+  In scalar multiplication, we simply multiply every element by the scalar value:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}  a &amp; b \newline   c &amp; d \newline  \end{bmatrix} * x =\begin{bmatrix}  a*x &amp; b*x \newline   c*x &amp; d*x \newline \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+ </p>
+ <h1 level="1">
+  Matrix-Vector Multiplication
+ </h1>
+ <p>
+  We map the column of the vector onto each row of the matrix, multiplying each element and summing the result.
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}  a &amp; b \newline   c &amp; d \newline   e &amp; f \end{bmatrix} *\begin{bmatrix}  x \newline   y \newline  \end{bmatrix} =\begin{bmatrix}  a*x + b*y \newline   c*x + d*y \newline   e*x + f*y\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  The result is a
+  <strong>
+   vector
+  </strong>
+  . The vector must be the
+  <strong>
+   second
+  </strong>
+  term of the multiplication. The number of
+  <strong>
+   columns
+  </strong>
+  of the matrix must equal the number of
+  <strong>
+   rows
+  </strong>
+  of the vector.
+ </p>
+ <p>
+  An
+  <strong>
+   m x n matrix
+  </strong>
+  multiplied by an
+  <strong>
+   n x 1 vector
+  </strong>
+  results in an
+  <strong>
+   m x 1 vector
+  </strong>
+  .
+ </p>
+ <h1 level="1">
+  Matrix-Matrix Multiplication
+ </h1>
+ <p>
+  We multiply two matrices by breaking it into several vector multiplications and concatenating the result
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}  a &amp; b \newline   c &amp; d \newline   e &amp; f \end{bmatrix} *\begin{bmatrix}  w &amp; x \newline   y &amp; z \newline  \end{bmatrix} =\begin{bmatrix}  a*w + b*y &amp; a*x + b*z \newline   c*w + d*y &amp; c*x + d*z \newline   e*w + f*y &amp; e*x + f*z\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  An
+  <strong>
+   m x n matrix
+  </strong>
+  multiplied by an
+  <strong>
+   n x o matrix
+  </strong>
+  results in an
+  <strong>
+   m x o
+  </strong>
+  matrix. In the above example, a 3 x 2 matrix times a 2 x 2 matrix resulted in a 3 x 2 matrix.
+ </p>
+ <p>
+  To multiply two matrices, the number of
+  <strong>
+   columns
+  </strong>
+  of the first matrix must equal the number of
+  <strong>
+   rows
+  </strong>
+  of the second matrix.
+ </p>
+ <h1 level="1">
+  Matrix Multiplication Properties
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Not commutative. A∗B≠B∗A
+   </p>
+  </li>
+  <li>
+   <p>
+    Associative. (A∗B)∗C=A∗(B∗C)
+   </p>
+  </li>
+ </ul>
+ <p>
+  The
+  <strong>
+   identity matrix
+  </strong>
+  , when multiplied by any matrix of the same dimensions, results in the original matrix. It's just like multiplying numbers by 1. The identity matrix simply has 1's on the diagonal (upper left to lower right diagonal) and 0's elsewhere.
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}  1 &amp; 0 &amp; 0 \newline   0 &amp; 1 &amp; 0 \newline   0 &amp; 0 &amp; 1 \newline \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  When multiplying the identity matrix after some matrix (A∗I), the square identity matrix should match the other matrix's
+  <strong>
+   columns
+  </strong>
+  . When multiplying the identity matrix before some other matrix (I∗A), the square identity matrix should match the other matrix's
+  <strong>
+   rows
+  </strong>
+  .
+ </p>
+ <h1 level="1">
+  Inverse and Transpose
+ </h1>
+ <p>
+  The
+  <strong>
+   inverse
+  </strong>
+  of a matrix A is denoted A−1. Multiplying by the inverse results in the identity matrix.
+ </p>
+ <p>
+  A non square matrix does not have an inverse matrix. We can compute inverses of matrices in octave with the pinv(A) function [1] and in matlab with the inv(A) function. Matrices that don't have an inverse are
+  <em>
+   singular
+  </em>
+  or
+  <em>
+   degenerate
+  </em>
+  .
+ </p>
+ <p>
+  The
+  <strong>
+   transposition
+  </strong>
+  of a matrix is like rotating the matrix 90
+  <strong>
+   °
+  </strong>
+  in clockwise direction and then reversing it. We can compute transposition of matrices in matlab with the transpose(A) function or A':
+ </p>
+ <p>
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$A =  \begin{bmatrix}  a &amp; b \newline   c &amp; d \newline   e &amp; f \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$A^T = \begin{bmatrix} a &amp; c &amp; e \newline b &amp; d &amp; f \newline \end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  In other words:
+ </p>
+ <p hasmath="true">
+  $$A_{ij} = A^T_{ji}$$
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

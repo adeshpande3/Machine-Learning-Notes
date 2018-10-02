@@ -1,0 +1,163 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  VI. Logistic Regression
+ </h1>
+ <h2 level="2">
+  Decision Boundary
+ </h2>
+ <p>
+  At 1:56 in the transcript, it should read 'sigmoid function' instead of 'sec y function'.
+ </p>
+ <h2 level="2">
+  Cost Function
+ </h2>
+ <p>
+  The section between 8:30 and 9:20 is then repeated from 9:20 to the quiz. The case for y=0 is explained twice.
+ </p>
+ <h2 level="2">
+  Simplified Cost Function and Gradient Descent
+ </h2>
+ <p>
+  These following mistakes also exist in the video:
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    6.5: On page 19 in the PDF, the leftmost square bracket seems to be slightly misplaced.
+   </p>
+  </li>
+  <li>
+   <p>
+    6.5: It seems that the factor 1/m is accidentally omitted between pages 20 and 21 when the handwritten expression is converted to a typeset one (starting at 6:53 of the video)
+   </p>
+  </li>
+ </ul>
+ <h2 level="2">
+  Advanced Optimization
+ </h2>
+ <p>
+  In the video at 7:30, the notation for specifying MaxIter is incorrect. The value provided should be an integer, not a character string. So (...'MaxIter', '100') is incorrect. It should be (...'MaxIter', 100). This error only exists in the video - the exercise script files are correct.
+ </p>
+ <h1 level="1">
+  VII. Regularization
+ </h1>
+ <h2 level="2">
+  The Problem of Overfitting
+ </h2>
+ <p hasmath="true">
+  At 2:07, a curve is drawn using predicting function $$\theta_0+\theta_1 x+\theta_2 x^2$$, which is said as "just right". But when size of house is large enough, the prediction of this function will increase much faster than linear if $$\theta_2 &gt; 0$$, or will decrease to −∞ if $$θ_2$$ &lt; 0, which neither could correspond to reality. Instead, $$\theta_0+\theta_1 x+\theta_2 \sqrt{x}$$ may be "just right".
+ </p>
+ <p hasmath="true">
+  At 2:28, a curve is drawn using a quartic (degree 4) polynomial predicting function $$\theta_0+\theta_1 x+\theta_2 x^2 +\theta_3 x^3 +\theta_4 x^4$$; however, the curve drawn is at least quintic (degree 5).
+ </p>
+ <h2 level="2">
+  Cost Function
+ </h2>
+ <p hasmath="true">
+  In the video at 5:17, the sum of the regularization term should use 'j' instead of 'i', giving $$\sum_{j=1}^{n} \theta _j ^2$$ instead of $$\sum_{i=1}^{n} \theta _j ^2$$.
+ </p>
+ <h2 level="2">
+  Regularized linear regression
+ </h2>
+ <p>
+  In the video starting at 8:04, Prof Ng discusses the Normal Equation and invertibility. He states that X is non-invertible if m &lt;= n. The correct statement should be that X is non-invertible if m &lt; n, and may be non-invertible if m = n.
+ </p>
+ <h2 level="2">
+  Regularized logistic regression
+ </h2>
+ <p>
+  In the video at 3:52, the lecturer mistakenly said "gradient descent for regularized linear regression". Indeed, it should be "gradient descent for regularized logistic regression".
+ </p>
+ <p hasmath="true">
+  In the video at 5:21, the cost function is missing a pair of parentheses around the second log argument. It should be $$J(θ)=J(\theta) = [-\frac{1}{m}\sum_{i=1}^{m}y^{(i)}log(h _\theta (x^{(i)}) + (1-y^{(i)})log(1-h _\theta (x^{(i)}))] + \frac{\lambda}{2m} \sum_{j=1}^{n} \theta ^2 _j$$
+ </p>
+ <p>
+  In the original videos for the course (ML-001 through ML-008), there were typos in the equation for regularized logistic regression in both the video lecture and the PDF lecture notes. In the slides for "Gradient descent" and "advanced optimization", there should be positive signs for the regularization term of the gradient. The formula on page 10 of 'ex2.pdf' is correct. These issues in the video were corrected for the 'on-demand' format of the course.
+ </p>
+ <h1 level="1">
+  Quizzes
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    Typo "it's" in question «Because logistic regression outputs values $$0≤h_θ(x)≤1$$, it's range [...]»
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    1m factor missing in the definition of the gradient in question «For logistic regression, the gradient is given by $$\frac{\partial}{\partial \theta_j} J(\theta) = \sum_{i=1}^m$$ . It should be $$\frac{\partial}{\partial \theta_j} J(\theta) = \frac{1}{m} \sum_{i=1}^m$$.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Programming Exercise Errata
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    In ex2.pdf on page 5, Section 1.2.3, "gradent descent" should be "gradient descent".
+   </p>
+  </li>
+  <li>
+   <p>
+    If you are using a linux-derived operating system, you may need to remove the attribute "MarkerFaceColor" from the plot() function call in plotData.m.
+   </p>
+  </li>
+  <li>
+   <p>
+    In ex2.m at lines 10 through 13, the list of files the student needs to complete should include plotData.m
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

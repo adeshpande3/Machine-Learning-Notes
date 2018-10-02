@@ -1,0 +1,145 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Errors in the video lectures
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    Multiple Features, at 7:25 to 7:30. It is recorded that $$\theta^T$$ is an (n+1)×1 matrix; it should be 1×(n+1) matrix since it has 1 row with n+1 columns.
+   </p>
+  </li>
+  <li>
+   <p>
+    Gradient Descent in Practice I - Feature Scaling, at 6:20 to 6:24. It is recorded that the average price of the house is 1,000 but he writes 100 on the slide. The slide should show "Average size = 1000" instead of "Average size = 100".
+   </p>
+  </li>
+  <li>
+   <p>
+    Gradient Descent in Practice II - Learning Rate, at 5:00. The plot on the right-hand side is not of J(θ) against the number of iterations, but rather against the parameters; so the x axis should say "θ", not "No. of iterations".
+   </p>
+  </li>
+  <li>
+   <p>
+    Error in Normal Equation at 2:19. The range shown for θ is 0 to m, but it should be 0 to n.
+   </p>
+  </li>
+  <li>
+   <p>
+    Normal Equation, from 8:00 to 8:44The design matrix X (in the bottom right side of the slide) given in the example should have elements x with subscript 1 and superscripts varying from 1to m because for all m training set there are only 2 features x0 and x1.
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Normal Equation, at 12:56($$X^TX$$)−1 is described as an n×n matrix, but it should be n+1×n+1
+   </p>
+  </li>
+  <li>
+   <p>
+    Error in "Normal Equation Noninvertibility" at 3:20. Prof Ng states that X is non-invertible if m &lt;= n. The correct statement should be that X is non-invertible if m &lt; n, and may be non-invertible if m = n.
+   </p>
+  </li>
+ </ul>
+ <p>
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    Ex1.pdf, page 9; code segmentPrior to defining J_vals, we must initialize theta0_vals and theta1_vals. Add "theta0_vals = -10:0.01:10; theta1_vals = -1:0.01:4;" to the beginning of the code segment.
+   </p>
+  </li>
+  <li>
+   <p>
+    Ex1.pdf, page 9; code segmentcomputeCost(x, y, t) - should be capital X (as it is correctly in ex1.m)
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    Ex1.pdf, page 14; normal equations in closed-form solution to linear regression:Inconsistency in notation: Whereas the column vector $$\vec{y}$$ of dimension m×1is denoted by an over line vector, the (n+1)×1 vector θ lacks the over line vector.Same applies to definition of vector θ in lecture notes - I would suggest to always denote column and row vectors by over line vectors, increases readability enormously to distinguish vectors from matrices. Matlab itself of course does not distinguish between vectors and matrices, vectors are just special matrices with only one row resp. column.
+   </p>
+  </li>
+  <li>
+   <p>
+    Ex1.pdf, page 14:In section 3.3, there is the following sentence: "The code in ex1.m will add the column of 1’s to X for you." But in this section, it is talking about ex1_multi.m. Of course, it is also true that ex1.m adds the bias units for you, but that is not the script being referred to here.
+   </p>
+  </li>
+  <li>
+   <p>
+    Octave Tutorial:When Prof Ng enters this line: "w = -6 + sqrt(10) * randn(1,10000))", add a semicolon at the end to prevent its display.If Octave crashes when you type "hist(w)", try the command "graphics_toolkit('gnu_plot')".
+   </p>
+  </li>
+  <li>
+   <p>
+    Vectorization video at 2:19. The comma at the end of the line "for j=1:n+1," is a typo. The comma is not needed.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Errors in the Programming Exercise Instructions
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    ex1.pdf Page 2 1st paragraph: Students are required to modify ex1_muilt.m to complete the optional portion of this exercise. So ignore the sentence "You do not need to modify either of them.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Errors in the programming exercise scripts
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    In plotData.m, the statement "figure" at line 17 should be above the "===== YOUR CODE HERE ===" section. The code you add must be below the "figure" statement.
+   </p>
+  </li>
+ </ul>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>
