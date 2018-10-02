@@ -1,0 +1,478 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  ML:Neural Networks: Representation
+ </h1>
+ <h1 level="1">
+  Non-linear Hypotheses
+ </h1>
+ <p>
+  Performing linear regression with a complex set of data with many features is very unwieldy. Say you wanted to create a hypothesis from three (3) features that included all the quadratic terms:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; g(\theta_0 + \theta_1x_1^2 + \theta_2x_1x_2 + \theta_3x_1x_3 \newline&amp; + \theta_4x_2^2 + \theta_5x_2x_3 \newline&amp; + \theta_6x_3^2 )\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  That gives us 6 features. The exact way to calculate how many features for all polynomial terms is the combination function with repetition:
+  <a href="http://www.mathsisfun.com/combinatorics/combinations-permutations.html">
+   http://www.mathsisfun.com/combinatorics/combinations-permutations.html
+  </a>
+  $$\frac{(n+r-1)!}{r!(n-1)!}$$. In this case we are taking all two-element combinations of three features: $$\frac{(3 + 2 - 1)!}{(2!\cdot (3-1)!)}$$ = $$\frac{4!}{4} = 6$$. (
+  <strong>
+   Note
+  </strong>
+  : you do not have to know these formulas, I just found it helpful for understanding).
+ </p>
+ <p hasmath="true">
+  For 100 features, if we wanted to make them quadratic we would get $$\frac{(100 + 2 - 1)!}{(2\cdot (100-1)!)} = 5050$$ resulting new features.
+ </p>
+ <p hasmath="true">
+  We can approximate the growth of the number of new features we get with all quadratic terms with $$\mathcal{O}(n^2/2)$$. And if you wanted to include all cubic terms in your hypothesis, the features would grow asymptotically at $$\mathcal{O}(n^3)$$. These are very steep growths, so as the number of our features increase, the number of quadratic or cubic features increase very rapidly and becomes quickly impractical.
+ </p>
+ <p>
+  Example: let our training set be a collection of 50 x 50 pixel black-and-white photographs, and our goal will be to classify which ones are photos of cars. Our feature set size is then n = 2500 if we compare every pair of pixels.
+ </p>
+ <p hasmath="true">
+  Now let's say we need to make a quadratic hypothesis function. With quadratic features, our growth is $$\mathcal{O}(n^2/2)$$. So our total features will be about $$2500^2 / 2 = 3125000$$, which is very impractical.
+ </p>
+ <p>
+  Neural networks offers an alternate way to perform machine learning when we have complex hypotheses with many features.
+ </p>
+ <h1 level="1">
+  Neurons and the Brain
+ </h1>
+ <p>
+  Neural networks are limited imitations of how our own brains work. They've had a big recent resurgence because of advances in computer hardware.
+ </p>
+ <p>
+  There is evidence that the brain uses only one "learning algorithm" for all its different functions. Scientists have tried cutting (in an animal brain) the connection between the ears and the auditory cortex and rewiring the optical nerve with the auditory cortex to find that the auditory cortex literally learns to see.
+ </p>
+ <p>
+  This principle is called "neuroplasticity" and has many examples and experimental evidence.
+ </p>
+ <h1 level="1">
+  Model Representation I
+ </h1>
+ <p>
+  Let's examine how we will represent a hypothesis function using neural networks.
+ </p>
+ <p>
+  At a very simple level, neurons are basically computational units that take input (
+  <strong>
+   dendrites
+  </strong>
+  ) as electrical input (called "spikes") that are channeled to outputs (
+  <strong>
+   axons
+  </strong>
+  ).
+ </p>
+ <p hasmath="true">
+  In our model, our dendrites are like the input features $$x_1\cdots x_n$$, and the output is the result of our hypothesis function:
+ </p>
+ <p>
+  In this model our x0 input node is sometimes called the "bias unit." It is always equal to 1.
+ </p>
+ <p hasmath="true">
+  In neural networks, we use the same logistic function as in classification: $$\frac{1}{1 + e^{-\theta^Tx}}$$. In neural networks however we sometimes call it a sigmoid (logistic)
+  <strong>
+   activation
+  </strong>
+  function.
+ </p>
+ <p>
+  Our "theta" parameters are sometimes instead called "weights" in the neural networks model.
+ </p>
+ <p>
+  Visually, a simplistic representation looks like:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline \end{bmatrix}\rightarrow\begin{bmatrix}\ \ \ \newline \end{bmatrix}\rightarrow h_\theta(x)$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  Our input nodes (layer 1) go into another node (layer 2), and are output as the hypothesis function.
+ </p>
+ <p>
+  The first layer is called the "input layer" and the final layer the "output layer," which gives the final value computed on the hypothesis.
+ </p>
+ <p>
+  We can have intermediate layers of nodes between the input and output layers called the "hidden layer."
+ </p>
+ <p hasmath="true">
+  We label these intermediate or "hidden" layer nodes $$a^2_0 \cdots a^2_n$$ and call them "activation units."
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; a_i^{(j)} = \text{"activation" of unit $i$ in layer $j$} \newline&amp; \Theta^{(j)} = \text{matrix of weights controlling function mapping from layer $j$ to layer $j+1$}\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  If we had one hidden layer, it would look visually something like:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline x_3\end{bmatrix}\rightarrow\begin{bmatrix}a_1^{(2)} \newline a_2^{(2)} \newline a_3^{(2)} \newline \end{bmatrix}\rightarrow h_\theta(x)$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  The values for each of the "activation" nodes is obtained as follows:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p>
+     $$\begin{align*}
+a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3) \newline
+a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3) \newline
+a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3) \newline
+h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)}) \newline
+\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  This is saying that we compute our activation nodes by using a 3×4 matrix of parameters. We apply each row of the parameters to our inputs to obtain the value for one activation node. Our hypothesis output is the logistic function applied to the sum of the values of our activation nodes, which have been multiplied by yet another parameter matrix $$\Theta^{(2)}$$ containing the weights for our second layer of nodes.
+ </p>
+ <p hasmath="true">
+  Each layer gets its own matrix of weights, $$\Theta^{(j)}$$.
+ </p>
+ <p>
+  The dimensions of these matrices of weights is determined as follows:
+ </p>
+ <p hasmath="true">
+  $$\text{If network has $s_j$ units in layer $j$ and $s_{j+1}$ units in layer $j+1$, then $\Theta^{(j)}$ will be of dimension $s_{j+1} \times (s_j + 1)$.}$$
+ </p>
+ <p hasmath="true">
+  The +1 comes from the addition in $$\Theta^{(j)}$$ of the "bias nodes," $$x_0$$ and $$\Theta_0^{(j)}$$. In other words the output nodes will not include the bias nodes while the inputs will.
+ </p>
+ <p hasmath="true">
+  Example: layer 1 has 2 input nodes and layer 2 has 4 activation nodes. Dimension of $$\Theta^{(1)}$$ is going to be 4×3 where $$s_j = 2$$ and $$s_{j+1} = 4$$, so $$s_{j+1} \times (s_j + 1) = 4 \times 3$$.
+ </p>
+ <h1 level="1">
+  Model Representation II
+ </h1>
+ <p hasmath="true">
+  In this section we'll do a vectorized implementation of the above functions. We're going to define a new variable $$z_k^{(j)}$$ that encompasses the parameters inside our g function. In our previous example if we replaced the variable z for all the parameters we would get:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}a_1^{(2)} = g(z_1^{(2)}) \newline a_2^{(2)} = g(z_2^{(2)}) \newline a_3^{(2)} = g(z_3^{(2)}) \newline \end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  In other words, for layer j=2 and node k, the variable z will be:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$z_k^{(2)} = \Theta_{k,0}^{(1)}x_0 + \Theta_{k,1}^{(1)}x_1 + \cdots + \Theta_{k,n}^{(1)}x_n$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  The vector representation of x and $$z^{j}$$ is:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}x = \begin{bmatrix}x_0 \newline x_1 \newline\cdots \newline x_n\end{bmatrix} &amp;z^{(j)} = \begin{bmatrix}z_1^{(j)} \newline z_2^{(j)} \newline\cdots \newline z_n^{(j)}\end{bmatrix}\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  Setting $$x = a^{(1)}$$, we can rewrite the equation as:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$z^{(j)} = \Theta^{(j-1)}a^{(j-1)}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  We are multiplying our matrix $$\Theta^{(j-1)}$$ with dimensions $$s_j\times (n+1)$$ (where $$s_j$$ is the number of our activation nodes) by our vector $$a^{(j-1)}$$ with height (n+1). This gives us our vector $$z^{(j)}$$ with height $$s_j$$.
+ </p>
+ <p>
+  Now we can get a vector of our activation nodes for layer j as follows:
+ </p>
+ <p hasmath="true">
+  $$a^{(j)} = g(z^{(j)})$$
+ </p>
+ <p hasmath="true">
+  Where our function g can be applied element-wise to our vector $$z^{(j)}$$.
+ </p>
+ <p hasmath="true">
+  We can then add a bias unit (equal to 1) to layer j after we have computed $$a^{(j)}$$. This will be element $$a_0^{(j)}$$ and will be equal to 1.
+ </p>
+ <p>
+  To compute our final hypothesis, let's first compute another z vector:
+ </p>
+ <p hasmath="true">
+  $$z^{(j+1)} = \Theta^{(j)}a^{(j)}$$
+ </p>
+ <p hasmath="true">
+  We get this final z vector by multiplying the next theta matrix after $$\Theta^{(j-1)}$$ with the values of all the activation nodes we just got.
+ </p>
+ <p hasmath="true">
+  This last theta matrix $$\Theta^{(j)}$$ will have only
+  <strong>
+   one row
+  </strong>
+  so that our result is a single number.
+ </p>
+ <p>
+  We then get our final result with:
+ </p>
+ <p hasmath="true">
+  $$h_\Theta(x) = a^{(j+1)} = g(z^{(j+1)})$$
+ </p>
+ <p>
+  Notice that in this
+  <strong>
+   last step
+  </strong>
+  , between layer j and layer j+1, we are doing
+  <strong>
+   exactly the same thing
+  </strong>
+  as we did in logistic regression.
+ </p>
+ <p>
+  Adding all these intermediate layers in neural networks allows us to more elegantly produce interesting and more complex non-linear hypotheses.
+ </p>
+ <h1 level="1">
+  Examples and Intuitions I
+ </h1>
+ <p hasmath="true">
+  A simple example of applying neural networks is by predicting $$x_1$$ AND $$x_2$$, which is the logical 'and' operator and is only true if both $$x_1$$ and $$x_2$$ are 1.
+ </p>
+ <p>
+  The graph of our functions will look like:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}\begin{bmatrix}x_0 \newline x_1 \newline x_2\end{bmatrix} \rightarrow\begin{bmatrix}g(z^{(2)})\end{bmatrix} \rightarrow h_\Theta(x)\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  Remember that $$x_0$$ is our bias variable and is always 1.
+ </p>
+ <p>
+  Let's set our first theta matrix as:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\Theta^{(1)} =\begin{bmatrix}-30 &amp; 20 &amp; 20\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  This will cause the output of our hypothesis to only be positive if both $$x_1$$ and $$x_2$$ are 1. In other words:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; h_\Theta(x) = g(-30 + 20x_1 + 20x_2) \newline \newline &amp; x_1 = 0 \ \ and \ \ x_2 = 0 \ \ then \ \ g(-30) \approx 0 \newline &amp; x_1 = 0 \ \ and \ \ x_2 = 1 \ \ then \ \ g(-10) \approx 0 \newline &amp; x_1 = 1 \ \ and \ \ x_2 = 0 \ \ then \ \ g(-10) \approx 0 \newline &amp; x_1 = 1 \ \ and \ \ x_2 = 1 \ \ then \ \ g(10) \approx 1\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  So we have constructed one of the fundamental operations in computers by using a small neural network rather than using an actual AND gate. Neural networks can also be used to simulate all the other logical gates.
+ </p>
+ <h1 level="1">
+  Examples and Intuitions II
+ </h1>
+ <p hasmath="true">
+  The $$Θ^(1)$$ matrices for AND, NOR, and OR are:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}AND:\newline\Theta^{(1)} &amp;=\begin{bmatrix}-30 &amp; 20 &amp; 20\end{bmatrix} \newline NOR:\newline\Theta^{(1)} &amp;= \begin{bmatrix}10 &amp; -20 &amp; -20\end{bmatrix} \newline OR:\newline\Theta^{(1)} &amp;= \begin{bmatrix}-10 &amp; 20 &amp; 20\end{bmatrix} \newline\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  We can combine these to get the XNOR logical operator (which gives 1 if $$x_1$$ and $$x_2$$ are both 0 or both 1).
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}\begin{bmatrix}x_0 \newline x_1 \newline x_2\end{bmatrix} \rightarrow\begin{bmatrix}a_1^{(2)} \newline a_2^{(2)} \end{bmatrix} \rightarrow\begin{bmatrix}a^{(3)}\end{bmatrix} \rightarrow h_\Theta(x)\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  For the transition between the first and second layer, we'll use a $$Θ^(1)$$ matrix that combines the values for AND and NOR:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\Theta^{(1)} =\begin{bmatrix}-30 &amp; 20 &amp; 20 \newline 10 &amp; -20 &amp; -20\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  For the transition between the second and third layer, we'll use a $$Θ^(2)$$ matrix that uses the value for OR:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\Theta^{(2)} =\begin{bmatrix}-10 &amp; 20 &amp; 20\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  Let's write out the values for all our nodes:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}&amp; a^{(2)} = g(\Theta^{(1)} \cdot x) \newline&amp; a^{(3)} = g(\Theta^{(2)} \cdot a^{(2)}) \newline&amp; h_\Theta(x) = a^{(3)}\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  And there we have the XNOR operator using two hidden layers!
+ </p>
+ <h1 level="1">
+  Multiclass Classification
+ </h1>
+ <p>
+  To classify data into multiple classes, we let our hypothesis function return a vector of values. Say we wanted to classify our data into one of four final resulting classes:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$\begin{align*}\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline\cdots \newline x_n\end{bmatrix} \rightarrow\begin{bmatrix}a_0^{(2)} \newline a_1^{(2)} \newline a_2^{(2)} \newline\cdots\end{bmatrix} \rightarrow\begin{bmatrix}a_0^{(3)} \newline a_1^{(3)} \newline a_2^{(3)} \newline\cdots\end{bmatrix} \rightarrow \cdots \rightarrow\begin{bmatrix}h_\Theta(x)_1 \newline h_\Theta(x)_2 \newline h_\Theta(x)_3 \newline h_\Theta(x)_4 \newline\end{bmatrix} \rightarrow\end{align*}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p>
+  Our final layer of nodes, when multiplied by its theta matrix, will result in another vector, on which we will apply the g() logistic function to get a vector of hypothesis values.
+ </p>
+ <p>
+  Our resulting hypothesis for one set of inputs may look like:
+ </p>
+ <table columns="1" rows="1">
+  <tr>
+   <td>
+    <p hasmath="true">
+     $$h_\Theta(x) =\begin{bmatrix}0 \newline 0 \newline 1 \newline 0 \newline\end{bmatrix}$$
+    </p>
+   </td>
+  </tr>
+ </table>
+ <p hasmath="true">
+  In which case our resulting class is the third one down, or $$h_\Theta(x)_3$$.
+ </p>
+ <p>
+  We can define our set of resulting classes as y:
+ </p>
+ <img alt="" assetid="KBpHLXqiEealOA67wFuqoQ" src="data:image/png;base64,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"/>
+ <p>
+  Our final value of our hypothesis for a set of inputs will be one of the elements in y.
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

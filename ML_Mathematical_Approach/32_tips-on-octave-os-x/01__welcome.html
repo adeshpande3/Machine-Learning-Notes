@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html class='v2' dir='ltr' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<link href='https://www.blogger.com/static/v1/widgets/521441841-css_bundle_v2.css' rel='stylesheet' type='text/css'/>
+<meta content='width=1100' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='http://deepneural.blogspot.in/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='http://deepneural.blogspot.com/p/welcome.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Deep Learning and Neural Nets - Atom" href="http://deepneural.blogspot.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Deep Learning and Neural Nets - RSS" href="http://deepneural.blogspot.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Deep Learning and Neural Nets - Atom" href="https://www.blogger.com/feeds/5307349604948173968/posts/default" />
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/35781802-ieretrofit.js"></script>
+<![endif]-->
+<meta content='http://deepneural.blogspot.com/p/welcome.html' property='og:url'/>
+<meta content='Octave for Mac Installation' property='og:title'/>
+<meta content='A blog about neural nets and deep learning, artificial intelligence and applications' property='og:description'/>
+<meta content='https://3.bp.blogspot.com/-KvlFlEHh3M4/V-8ECQnqr9I/AAAAAAAAA7c/jE53bwl8piwIYU7limk2kwp-I4HFGGyKQCLcB/w1200-h630-p-k-no-nu/Screen%2BShot%2B2016-10-01%2Bat%2B02.30.05.png' property='og:image'/>
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>Deep Learning and Neural Nets: Octave for Mac Installation</title>
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Awesome Inc.
+Designer: Tina Chen
+URL:      tinachen.org
+----------------------------------------------- */
+
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 13px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+background: #eeeeee none repeat scroll top left;
+}
+html body .content-outer {
+min-width: 0;
+max-width: 100%;
+width: 100%;
+}
+a:link {
+text-decoration: none;
+color: #3778cd;
+}
+a:visited {
+text-decoration: none;
+color: #4d469c;
+}
+a:hover {
+text-decoration: underline;
+color: #3778cd;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 276px;
+width: 100%;
+background: transparent none repeat-x scroll top left;
+_background-image: none;
+}
+/* Columns
+----------------------------------------------- */
+.content-inner {
+padding: 0;
+}
+.header-inner .section {
+margin: 0 16px;
+}
+.tabs-inner .section {
+margin: 0 16px;
+}
+.main-inner {
+padding-top: 30px;
+}
+.main-inner .column-center-inner,
+.main-inner .column-left-inner,
+.main-inner .column-right-inner {
+padding: 0 5px;
+}
+*+html body .main-inner .column-center-inner {
+margin-top: -30px;
+}
+#layout .main-inner .column-center-inner {
+margin-top: 0;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+margin: 0 0 0 0;
+background: transparent none repeat scroll 0 0;
+}
+.Header h1 {
+font: normal bold 40px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+text-shadow: 0 0 -1px #000000;
+}
+.Header h1 a {
+color: #444444;
+}
+.Header .description {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+}
+.header-inner .Header .titlewrapper,
+.header-inner .Header .descriptionwrapper {
+padding-left: 0;
+padding-right: 0;
+margin-bottom: 0;
+}
+.header-inner .Header .titlewrapper {
+padding-top: 22px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-outer {
+overflow: hidden;
+position: relative;
+background: #eeeeee url(//www.blogblog.com/1kt/awesomeinc/tabs_gradient_light.png) repeat scroll 0 0;
+}
+#layout .tabs-outer {
+overflow: visible;
+}
+.tabs-cap-top, .tabs-cap-bottom {
+position: absolute;
+width: 100%;
+border-top: 1px solid #999999;
+}
+.tabs-cap-bottom {
+bottom: 0;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+margin: 0;
+padding: .6em 1.5em;
+font: normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+border-left: 1px solid #999999;
+height: 16px;
+line-height: 16px;
+}
+.tabs-inner .widget li:last-child a {
+border-right: 1px solid #999999;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+background: #666666 url(//www.blogblog.com/1kt/awesomeinc/tabs_gradient_light.png) repeat-x scroll 0 -100px;
+color: #ffffff;
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+font: normal bold 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+}
+/* Widgets
+----------------------------------------------- */
+.main-inner .section {
+margin: 0 27px;
+padding: 0;
+}
+.main-inner .column-left-outer,
+.main-inner .column-right-outer {
+margin-top: 0;
+}
+#layout .main-inner .column-left-outer,
+#layout .main-inner .column-right-outer {
+margin-top: 0;
+}
+.main-inner .column-left-inner,
+.main-inner .column-right-inner {
+background: transparent none repeat 0 0;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+#layout .main-inner .column-left-inner,
+#layout .main-inner .column-right-inner {
+margin-top: 0;
+}
+.sidebar .widget {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+}
+.sidebar .widget a:link {
+color: #3778cd;
+}
+.sidebar .widget a:visited {
+color: #4d469c;
+}
+.sidebar .widget a:hover {
+color: #3778cd;
+}
+.sidebar .widget h2 {
+text-shadow: 0 0 -1px #000000;
+}
+.main-inner .widget {
+background-color: #ffffff;
+border: 1px solid #eeeeee;
+padding: 0 15px 15px;
+margin: 20px -16px;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+.main-inner .widget h2 {
+margin: 0 -15px;
+padding: .6em 15px .5em;
+border-bottom: 1px solid transparent;
+}
+.footer-inner .widget h2 {
+padding: 0 0 .4em;
+border-bottom: 1px solid transparent;
+}
+.main-inner .widget h2 + div, .footer-inner .widget h2 + div {
+border-top: 1px solid #eeeeee;
+padding-top: 8px;
+}
+.main-inner .widget .widget-content {
+margin: 0 -15px;
+padding: 7px 15px 0;
+}
+.main-inner .widget ul, .main-inner .widget #ArchiveList ul.flat {
+margin: -8px -15px 0;
+padding: 0;
+list-style: none;
+}
+.main-inner .widget #ArchiveList {
+margin: -8px 0 0;
+}
+.main-inner .widget ul li, .main-inner .widget #ArchiveList ul.flat li {
+padding: .5em 15px;
+text-indent: 0;
+color: #666666;
+border-top: 1px solid #eeeeee;
+border-bottom: 1px solid transparent;
+}
+.main-inner .widget #ArchiveList ul li {
+padding-top: .25em;
+padding-bottom: .25em;
+}
+.main-inner .widget ul li:first-child, .main-inner .widget #ArchiveList ul.flat li:first-child {
+border-top: none;
+}
+.main-inner .widget ul li:last-child, .main-inner .widget #ArchiveList ul.flat li:last-child {
+border-bottom: none;
+}
+.post-body {
+position: relative;
+}
+.main-inner .widget .post-body ul {
+padding: 0 2.5em;
+margin: .5em 0;
+list-style: disc;
+}
+.main-inner .widget .post-body ul li {
+padding: 0.25em 0;
+margin-bottom: .25em;
+color: #444444;
+border: none;
+}
+.footer-inner .widget ul {
+padding: 0;
+list-style: none;
+}
+.widget .zippy {
+color: #666666;
+}
+/* Posts
+----------------------------------------------- */
+body .main-inner .Blog {
+padding: 0;
+margin-bottom: 1em;
+background-color: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+-goog-ms-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.main-inner .section:last-child .Blog:last-child {
+padding: 0;
+margin-bottom: 1em;
+}
+.main-inner .widget h2.date-header {
+margin: 0 -15px 1px;
+padding: 0 0 0 0;
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+background: transparent none no-repeat scroll top left;
+border-top: 0 solid #eeeeee;
+border-bottom: 1px solid transparent;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+position: static;
+bottom: 100%;
+right: 15px;
+text-shadow: 0 0 -1px #000000;
+}
+.main-inner .widget h2.date-header span {
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+display: block;
+padding: .5em 15px;
+border-left: 0 solid #eeeeee;
+border-right: 0 solid #eeeeee;
+}
+.date-outer {
+position: relative;
+margin: 30px 0 20px;
+padding: 0 15px;
+background-color: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+}
+.date-outer:first-child {
+margin-top: 0;
+}
+.date-outer:last-child {
+margin-bottom: 20px;
+-moz-border-radius-bottomleft: 0;
+-moz-border-radius-bottomright: 0;
+-webkit-border-bottom-left-radius: 0;
+-webkit-border-bottom-right-radius: 0;
+-goog-ms-border-bottom-left-radius: 0;
+-goog-ms-border-bottom-right-radius: 0;
+border-bottom-left-radius: 0;
+border-bottom-right-radius: 0;
+}
+.date-posts {
+margin: 0 -15px;
+padding: 0 15px;
+clear: both;
+}
+.post-outer, .inline-ad {
+border-top: 1px solid #eeeeee;
+margin: 0 -15px;
+padding: 15px 15px;
+}
+.post-outer {
+padding-bottom: 10px;
+}
+.post-outer:first-child {
+padding-top: 0;
+border-top: none;
+}
+.post-outer:last-child, .inline-ad:last-child {
+border-bottom: none;
+}
+.post-body {
+position: relative;
+}
+.post-body img {
+padding: 8px;
+background: transparent;
+border: 1px solid transparent;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+border-radius: 0;
+}
+h3.post-title, h4 {
+font: normal bold 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+}
+h3.post-title a {
+font: normal bold 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #444444;
+}
+h3.post-title a:hover {
+color: #3778cd;
+text-decoration: underline;
+}
+.post-header {
+margin: 0 0 1em;
+}
+.post-body {
+line-height: 1.4;
+}
+.post-outer h2 {
+color: #444444;
+}
+.post-footer {
+margin: 1.5em 0 0;
+}
+#blog-pager {
+padding: 15px;
+font-size: 120%;
+background-color: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+-goog-ms-border-radius: 0;
+border-radius: 0;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+-goog-ms-border-top-left-radius: 0;
+-goog-ms-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius-topright: 0;
+margin-top: 1em;
+}
+.blog-feeds, .post-feeds {
+margin: 1em 0;
+text-align: center;
+color: #444444;
+}
+.blog-feeds a, .post-feeds a {
+color: #3778cd;
+}
+.blog-feeds a:visited, .post-feeds a:visited {
+color: #4d469c;
+}
+.blog-feeds a:hover, .post-feeds a:hover {
+color: #3778cd;
+}
+.post-outer .comments {
+margin-top: 2em;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+.comments .continue {
+border-top: 2px solid #999999;
+}
+/* Footer
+----------------------------------------------- */
+.footer-outer {
+margin: -20px 0 -1px;
+padding: 20px 0 0;
+color: #444444;
+overflow: hidden;
+}
+.footer-fauxborder-left {
+border-top: 1px solid #eeeeee;
+background: #ffffff none repeat scroll 0 0;
+-moz-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+-goog-ms-box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+margin: 0 -20px;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+*+html body.mobile .main-inner .column-center-inner {
+margin-top: 0;
+}
+.mobile .main-inner .widget {
+padding: 0 0 15px;
+}
+.mobile .main-inner .widget h2 + div,
+.mobile .footer-inner .widget h2 + div {
+border-top: none;
+padding-top: 0;
+}
+.mobile .footer-inner .widget h2 {
+padding: 0.5em 0;
+border-bottom: none;
+}
+.mobile .main-inner .widget .widget-content {
+margin: 0;
+padding: 7px 0 0;
+}
+.mobile .main-inner .widget ul,
+.mobile .main-inner .widget #ArchiveList ul.flat {
+margin: 0 -15px 0;
+}
+.mobile .main-inner .widget h2.date-header {
+right: 0;
+}
+.mobile .date-header span {
+padding: 0.4em 0;
+}
+.mobile .date-outer:first-child {
+margin-bottom: 0;
+border: 1px solid #eeeeee;
+-moz-border-radius-topleft: 0;
+-moz-border-radius-topright: 0;
+-webkit-border-top-left-radius: 0;
+-webkit-border-top-right-radius: 0;
+-goog-ms-border-top-left-radius: 0;
+-goog-ms-border-top-right-radius: 0;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+}
+.mobile .date-outer {
+border-color: #eeeeee;
+border-width: 0 1px 1px;
+}
+.mobile .date-outer:last-child {
+margin-bottom: 0;
+}
+.mobile .main-inner {
+padding: 0;
+}
+.mobile .header-inner .section {
+margin: 0;
+}
+.mobile .post-outer, .mobile .inline-ad {
+padding: 5px 0;
+}
+.mobile .tabs-inner .section {
+margin: 0 10px;
+}
+.mobile .main-inner .widget h2 {
+margin: 0;
+padding: 0;
+}
+.mobile .main-inner .widget h2.date-header span {
+padding: 0;
+}
+.mobile .main-inner .widget .widget-content {
+margin: 0;
+padding: 7px 0 0;
+}
+.mobile #blog-pager {
+border: 1px solid transparent;
+background: #ffffff none repeat scroll 0 0;
+}
+.mobile .main-inner .column-left-inner,
+.mobile .main-inner .column-right-inner {
+background: transparent none repeat 0 0;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+-goog-ms-box-shadow: none;
+box-shadow: none;
+}
+.mobile .date-posts {
+margin: 0;
+padding: 0;
+}
+.mobile .footer-fauxborder-left {
+margin: 0;
+border-top: inherit;
+}
+.mobile .main-inner .section:last-child .Blog:last-child {
+margin-bottom: 0;
+}
+.mobile-index-contents {
+color: #444444;
+}
+.mobile .mobile-link-button {
+background: #3778cd url(//www.blogblog.com/1kt/awesomeinc/tabs_gradient_light.png) repeat scroll 0 0;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background: transparent;
+border-top: 1px solid;
+border-color: #999999;
+color: #444444;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #999999;
+}
+
+--></style>
+<style id='template-skin-1' type='text/css'><!--
+body {
+min-width: 1280px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 1280px;
+max-width: 1280px;
+_width: 1280px;
+}
+.main-inner .columns {
+padding-left: 0;
+padding-right: 500px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0;
+right: 500px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0") -
+parseInt("500px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 500px;
+}
+.main-inner .column-left-outer {
+width: 0;
+right: 100%;
+margin-left: -0;
+}
+.main-inner .column-right-outer {
+width: 500px;
+margin-right: -500px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+--></style>
+<link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=5307349604948173968&amp;zx=0a6350db-ce25-43c4-b9ee-e4f5bbdd60c2' media='none' onload='if(media!=&#39;all&#39;)media=&#39;all&#39;' rel='stylesheet'/><noscript><link href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=5307349604948173968&amp;zx=0a6350db-ce25-43c4-b9ee-e4f5bbdd60c2' rel='stylesheet'/></noscript>
+</head>
+<body class='loading variant-light'>
+<div class='navbar no-items section' id='navbar'>
+</div>
+<div class='body-fauxcolumns'>
+<div class='fauxcolumn-outer body-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='content-fauxcolumns'>
+<div class='fauxcolumn-outer content-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content-outer'>
+<div class='content-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left content-fauxborder-left'>
+<div class='fauxborder-right content-fauxborder-right'></div>
+<div class='content-inner'>
+<header>
+<div class='header-outer'>
+<div class='header-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left header-fauxborder-left'>
+<div class='fauxborder-right header-fauxborder-right'></div>
+<div class='region-inner header-inner'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='http://deepneural.blogspot.in/'>
+Deep Learning and Neural Nets
+</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>By Edmund Ronald. My experimental notebook, on the web so I can't lose it. </span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='header-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</header>
+<div class='tabs-outer'>
+<div class='tabs-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left tabs-fauxborder-left'>
+<div class='fauxborder-right tabs-fauxborder-right'></div>
+<div class='region-inner tabs-inner'>
+<div class='tabs section' id='crosscol'><div class='widget Text' data-version='1' id='Text1'>
+<h2 class='title'>NEW: RESOURCE PAGE</h2>
+<div class='widget-content'>
+<span style="color:#ff0000;"><b>Searching for tutorials and software about Deep Learning and Neural Nets? Be sure to look at my <a href="http://deepneural.blogspot.fr/p/edmund-ronald-deep-learning-rsources.html">Resource Page</a>!</b></span>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=5307349604948173968&widgetType=Text&widgetId=Text1&action=editWidget&sectionId=crosscol' onclick='return _WidgetManager._PopupConfig(document.getElementById("Text1"));' target='configText1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+<div class='tabs section' id='crosscol-overflow'><div class='widget Text' data-version='1' id='Text2'>
+<div class='widget-content'>
+<span style="color:#66ffff;">Looking for Octave? Go to my </span><span style="color:#3366ff;"><a href="http://deepneural.blogspot.fr/p/easy-octave-on-mac-landing-page.html">Easy Octave on Mac page</a></span>!
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=5307349604948173968&widgetType=Text&widgetId=Text2&action=editWidget&sectionId=crosscol-overflow' onclick='return _WidgetManager._PopupConfig(document.getElementById("Text2"));' target='configText2' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+</div>
+</div>
+<div class='tabs-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='main-outer'>
+<div class='main-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left main-fauxborder-left'>
+<div class='fauxborder-right main-fauxborder-right'></div>
+<div class='region-inner main-inner'>
+<div class='columns fauxcolumns'>
+<div class='fauxcolumn-outer fauxcolumn-center-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-left-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-right-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class='columns-inner'>
+<div class='column-center-outer'>
+<div class='column-center-inner'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<meta content='https://3.bp.blogspot.com/-KvlFlEHh3M4/V-8ECQnqr9I/AAAAAAAAA7c/jE53bwl8piwIYU7limk2kwp-I4HFGGyKQCLcB/s640/Screen%2BShot%2B2016-10-01%2Bat%2B02.30.05.png' itemprop='image_url'/>
+<meta content='5307349604948173968' itemprop='blogId'/>
+<meta content='3346172247046717508' itemprop='postId'/>
+<a name='3346172247046717508'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Octave for Mac Installation
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-3346172247046717508' itemprop='description articleBody'>
+<div class="separator" style="clear: both; text-align: center;">
+MacOctave, Octave for OS X Download.</div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://3.bp.blogspot.com/-KvlFlEHh3M4/V-8ECQnqr9I/AAAAAAAAA7c/jE53bwl8piwIYU7limk2kwp-I4HFGGyKQCLcB/s1600/Screen%2BShot%2B2016-10-01%2Bat%2B02.30.05.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="428" src="https://3.bp.blogspot.com/-KvlFlEHh3M4/V-8ECQnqr9I/AAAAAAAAA7c/jE53bwl8piwIYU7limk2kwp-I4HFGGyKQCLcB/s640/Screen%2BShot%2B2016-10-01%2Bat%2B02.30.05.png" width="640" /></a></div>
+<br />
+<div style="text-align: justify;">
+<div style="text-align: center;">
+<br /></div>
+Welcome. You are looking to install Octave on the Mac, without pain. You are in the right place. With the installer you can download below you will get a very usable Octave system in about 20 minutes, provided you have a broadband connection.&nbsp;</div>
+<div style="text-align: justify;">
+<br />
+<div style="text-align: center;">
+<b style="background-color: #ffd966;">If you have an issue, would like to see some changes or improvements to this page, please send me an email!</b><br />
+<b style="background-color: #ffd966;"><br /></b></div>
+<div style="text-align: center;">
+<b style="background-color: #ffd966;">edmundronald at gmail dot com</b><br />
+<b style="background-color: #ffd966;"><br /></b><b style="background-color: #ffd966;">And please, please, TIP ME! &nbsp;</b><span style="text-align: justify;">$10 individuals, $5 students, and $50 for companies</span><b style="background-color: #ffd966;">.</b><br />
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input name="cmd" type="hidden" value="_s-xclick" />
+<input name="hosted_button_id" type="hidden" value="R8RW3MX6BA3SS" />
+<br />
+<table>
+<tbody>
+<tr><td><input name="on0" type="hidden" value="Contribution" />Contribution</td></tr>
+<tr><td><select name="os0">
+ <option value="Individual">Individual $10,00 USD</option>
+ <option value="Company Seat">Company Seat $50,00 USD</option>
+ <option value="Student">Student $5,00 USD</option>
+</select> </td></tr>
+</tbody></table>
+<input name="currency_code" type="hidden" value="USD" />
+<input alt="PayPal - The safer, easier way to pay online!" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" type="image" />
+<img alt="" border="0" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" />
+</form>
+</div>
+</div>
+<div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<b>I will be really thankful if you donate, and donations will help me maintain this software!</b><b>&nbsp;</b></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://drive.google.com/drive/folders/0B1uQRKrjkUwdVUFYbE1OcUNKbWs?usp=sharing">CLICK HERE TO DOWNLOAD</a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<br /></div>
+<div style="text-align: justify;">
+The release of Octave which will be installed at the moment is 4.02 &nbsp;A folder containing instructions and the necessary files is <a href="https://drive.google.com/file/d/0B1uQRKrjkUwdWTZWUTVkUnVyd0E/view?usp=sharing">available for download.</a> There is nothing to type, all you need to do is click.&nbsp;</div>
+<div style="text-align: justify;">
+<br />
+<b>WARNING:You may hit a Vagrant Installation BUG. <a href="https://github.com/mitchellh/vagrant/issues/6034">SEE HERE FOR DETAILS</a></b><br />
+<br /></div>
+<div style="text-align: justify;">
+<b>BTW, if the Barista at Starbucks deserves a tip, don't you think I do too?</b> Hit that Donate link, I really appreciate it ... if you are an individual user, $10 would be nice, $5 if you are a student, $50 if you use this for work.<br />
+<br />
+If you need help you can comment below or shoot me an email, but do remember that tipping me keeps me happy, people who donate get faster responses and better handholding and problem solving. My email is edmundronald at gmail dot com.<br />
+<br /></div>
+<div style="text-align: justify;">
+Edmund</div>
+</div>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+</span>
+<span class='post-timestamp'>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-547224957'>
+<a href='https://www.blogger.com/page-edit.g?blogID=5307349604948173968&pageID=3346172247046717508&from=pencil' title='Edit Page'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+<div class='post-share-buttons goog-inline-block'>
+<a class='goog-inline-block share-button sb-email' href='https://www.blogger.com/share-post.g?blogID=5307349604948173968&pageID=3346172247046717508&target=email' target='_blank' title='Email This'><span class='share-button-link-text'>Email This</span></a><a class='goog-inline-block share-button sb-blog' href='https://www.blogger.com/share-post.g?blogID=5307349604948173968&pageID=3346172247046717508&target=blog' onclick='window.open(this.href, "_blank", "height=270,width=475"); return false;' target='_blank' title='BlogThis!'><span class='share-button-link-text'>BlogThis!</span></a><a class='goog-inline-block share-button sb-twitter' href='https://www.blogger.com/share-post.g?blogID=5307349604948173968&pageID=3346172247046717508&target=twitter' target='_blank' title='Share to Twitter'><span class='share-button-link-text'>Share to Twitter</span></a><a class='goog-inline-block share-button sb-facebook' href='https://www.blogger.com/share-post.g?blogID=5307349604948173968&pageID=3346172247046717508&target=facebook' onclick='window.open(this.href, "_blank", "height=430,width=640"); return false;' target='_blank' title='Share to Facebook'><span class='share-button-link-text'>Share to Facebook</span></a><a class='goog-inline-block share-button sb-pinterest' href='https://www.blogger.com/share-post.g?blogID=5307349604948173968&pageID=3346172247046717508&target=pinterest' target='_blank' title='Share to Pinterest'><span class='share-button-link-text'>Share to Pinterest</span></a><div class='goog-inline-block google-plus-share-container'><g:plusone source='blogger:blog:plusone' href='http://deepneural.blogspot.com/p/welcome.html' size='medium' width='300' annotation='inline'/></div>
+</div>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'><span class='post-location'>
+</span>
+</div>
+</div>
+</div>
+<div class='comments' id='comments'>
+<a name='comments'></a>
+<h4>17 comments:</h4>
+<div class='comments-content'>
+<script async='async' src='//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js' type='text/javascript'></script>
+<script type='text/javascript'>
+    (function() {
+      var items = [{'id': '1564346424342602575', 'body': 'Hi Edmund,\x3cbr /\x3e\x3cbr /\x3eThanks for the help getting this working on my Hackintosh. For you and for anyone else that may be interested, here\x26#39;s the key stuff that may help the install go more smoothly on other Hackintoshes.\x3cbr /\x3e\x3cbr /\x3eFirst off some details about my particular Hackintosh\x3cbr /\x3e\x3cbr /\x3eSystem   Hackintosh CustoMac Pro\x3cbr /\x3eCPU    Intel i7 3.4 GHz\x3cbr /\x3eGraphics   EVGA nVidia GeForce GTX 670\x3cbr /\x3eOther Hardware GA-Z77X-UD5H/F14, 3.4 GHz i3770, 16GB 1600 MHz DDR3 (2x8GB Corsair Vengeance), EVGA GeForce GTX 670, SanDisk 240 GB SSD, Seagate Barracuda 7200 RPM 1TB, TP-Link TL-WDN4800, Sony 24x SATA DVD +/- RW, D\x3cbr /\x3e\x3cbr /\x3eRecommended Hackintosh GIGABYTE - UEFI DualBIOS settings (I was using these at the start of the process):\x3cbr /\x3e\x3cbr /\x3eSave \x26amp; Exit Page: Load Optimized Defaults: Yes\x3cbr /\x3eM.I.T\\Advanced Memory Settings Page: Extreme Memory Profile(X.M.P.): Profile1Gigabyte 7 Series motherboard\x3cbr /\x3eRecommended GIGABYTE - UEFI DualBIOS settings:\x3cbr /\x3eSave \x26amp; Exit Page: Load Optimized Defaults: Yes\x3cbr /\x3eM.I.T\\Advanced Memory Settings Page: Extreme Memory Profile(X.M.P.): Profile1\x3cbr /\x3eBIOS Features Page: Intel Virtualization Technology: Disabled\x3cbr /\x3eBIOS Features Page: VT-d: Disabled\x3cbr /\x3ePeripherals Page: VIA 1394 Controller: Enabled\x3cbr /\x3ePower Management Page: Wake on LAN: Disabled\x3cbr /\x3eBIOS Features Page: VT-d: Disabled\x3cbr /\x3ePeripherals Page: VIA 1394 Controller: Enabled\x3cbr /\x3ePower Management Page: Wake on LAN: Disabled\x3cbr /\x3e\x3cbr /\x3eThe conventional wisdom in the Hackintosh community appears to be to disable Intel Virtualization Technology in the bios, however this will prevent running any Virtual Machines, and when running the VirtualBox GUI it can be seen that attempting to boot any VM will give an error stating that \x26quot;Vt-x is disabled in the BIOS\x26quot;. It\x26#39;s worth noting that Vt-x is NOT the same as Vt-d. I found that enabling Vt-d would prevent my Hackintosh from booting, however enabling Intel Virtualization Technology did not prevent me from booting, and did enable VirtualBox to power up the octave VM.\x3cbr /\x3e\x3cbr /\x3eBeyond this point I\x26#39;m not clear as to what specifically got me up and running, but I believe it was some combination of the new Vagrant file you sent and rebooting one more time at my end after I had verified that I could power up VMs using VirtualBox.\x3cbr /\x3e\x3cbr /\x3eBottom line: I primarily need to enable Intel Virtualization Technology on the  BIOS features tab of my Gigabyte UEFI BIOS. Enabling Vt-d was counterproductive and not needed.\x3cbr /\x3e\x3cbr /\x3eThanks again for the help!\x3cbr /\x3e\x3cbr /\x3eSteve', 'timestamp': '1446415877756', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Steve Ratts', 'avatarUrl': '//lh3.googleusercontent.com/-OzX2fFo5hOg/AAAAAAAAAAI/AAAAAAAAAQE/Egq8C5QBHFU/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/04761325324832530535'}, 'displayTime': 'November 1, 2015 at 2:11 PM', 'deleteclass': 'item-control blog-admin pid-834800752'}, {'id': '585099525763364915', 'body': 'Hi Steve - congrats on making this work. My only explanatory comment here is that on a Hackintosh one may have issues with the VirtualBox configuration. It is possible that another virtualiser might play better.\x3cbr /\x3e\x3cbr /\x3eIf people need the Vagrantfile that shows the boot console they can email me, or just remove the \x26quot;#\x26quot; on the  line that says \x26quot;vb.gui \x3d true \x26quot;. But be careful to use a clean text editor. A backup of the Vagrantfile is provided for safety in the install package ...', 'timestamp': '1446502540247', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'November 2, 2015 at 2:15 PM', 'deleteclass': 'item-control blog-admin pid-547224957'}, {'id': '737230467346290251', 'body': 'hi edmund, \x3cbr /\x3ei am just tying out your software. it works pretty nice so far, but i need to install an extra package (signal). \x3cbr /\x3ei have no idea how to do that actually. \x3cbr /\x3ecould you give me some advice? \x3cbr /\x3ethanks a lot \x26amp; best regards, f', 'timestamp': '1447624894779', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'fran', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/11120572939614788297'}, 'displayTime': 'November 15, 2015 at 2:01 PM', 'deleteclass': 'item-control blog-admin pid-552395057'}, {'id': '8259875061650007186', 'body': 'Hi Fran, \x3cbr /\x3e\x3cbr /\x3e My advice would be to \x3cbr /\x3e 1. Look at the following page:    http://octave.sourceforge.net\x3cbr /\x3e 2 Try typing this at the Octave prompt:  pkg install -forge signal\x3cbr /\x3e\x3cbr /\x3eYou will get an error and be told to install control before signal ...which means typing \x3cbr /\x3e\x3cbr /\x3e3 pkg install -forge control\x3cbr /\x3e4 pkg install -forge signal\x3cbr /\x3e\x3cbr /\x3eAfter you\x26#39;ve figured it out with these hints, you might be so kind as to tip your Octave Barista, your contribution even small will be greatly appreciated  :)\x3cbr /\x3e\x3cbr /\x3e', 'timestamp': '1447629925299', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'November 15, 2015 at 3:25 PM', 'deleteclass': 'item-control blog-admin pid-547224957'}, {'id': '5388321094333850981', 'body': 'Hi,\x3cbr /\x3eAs Fran I\x26#39;m trying to install an extra package (dynare http://www.dynare.org/DynareWiki/InstallOnDebianOrUbuntu )\x3cbr /\x3e\x3cbr /\x3eI added the apt lines for installing it in the virtual machine (using &#8220;vagrant up; vagrant ssh&#8221;), but when I run sudo apt-get install dynare it starts to require dependencies that, as far as I know, are already installed..\x3cbr /\x3e\x3cbr /\x3eCould you give some hint to do it?\x3cbr /\x3e\x3cbr /\x3eThanks\x3cbr /\x3e', 'timestamp': '1453898196284', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Unknown', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/12053542290177292037'}, 'displayTime': 'January 27, 2016 at 4:36 AM', 'deleteclass': 'item-control blog-admin pid-1796549305'}, {'id': '2154516204066853374', 'body': 'Hi, unknown Dynare installer: A lot of people ask me for free tech support; I would suggest they try the Octave mailing list. If you had donated, I might have felt motivated to help you, but that ship has now sailed. \x3cbr /\x3e\x3cbr /\x3eYou\x26#39;re like somebody who goes into Starbucks and asks for a glass of -free- water, goes to the restroom, and then comes back and tells the Barista \x26quot;oh, and as you give things away, could I have a latte\x26quot; ?\x3cbr /\x3e\x3cbr /\x3eEdmund\x3cbr /\x3e', 'timestamp': '1453952184198', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'January 27, 2016 at 7:36 PM', 'deleteclass': 'item-control blog-admin pid-547224957'}, {'id': '8967859983593175454', 'body': 'I just installed this wonderfull package, bit when I run the octave-gui-signed applet, only the commandline version of Octave is displayed, I dont get a GUI window. Any ideas?\x3cbr /\x3e\x3cbr /\x3eI\x26#39;m running El Capitan 10.11.1\x3cbr /\x3e\x3cbr /\x3eThanks!', 'timestamp': '1456308303390', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Unknown', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/03859643708272142557'}, 'displayTime': 'February 24, 2016 at 2:05 AM', 'deleteclass': 'item-control blog-admin pid-47153306'}, {'id': '5362085887739199541', 'parentId': '8967859983593175454', 'body': 'Hi Unknown,\x3cbr /\x3e\x3cbr /\x3e Please email me edmundronald at gmail, and we will try to figure out your bug.\x3cbr /\x3e\x3cbr /\x3eE.\x3cbr /\x3e', 'timestamp': '1457023359771', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'March 3, 2016 at 8:42 AM', 'deleteclass': 'item-control blog-admin pid-547224957'}, {'id': '7567950550099450040', 'body': 'Would it be possible to do a version of octave that supports 16 bit images. I\x26#39;ve tried to install Octave your way and then recompile GraphicsMagick and Octave from the source packages, but failed. ', 'timestamp': '1458232788586', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Neil', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/14659542907870759228'}, 'displayTime': 'March 17, 2016 at 9:39 AM', 'deleteclass': 'item-control blog-admin pid-1022863645'}, {'id': '4742257254435547075', 'body': 'I love the package, but I need to use 16 bit image files. I tried to install your package and then recompile graphicsMagick and Octave from the source but it doesn\x26#39;t seem to work. Can you build a package that supports graphicMagick with quantum \x3d 16?', 'timestamp': '1458232939610', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Neil', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/14659542907870759228'}, 'displayTime': 'March 17, 2016 at 9:42 AM', 'deleteclass': 'item-control blog-admin pid-1022863645'}, {'id': '8788704845162261429', 'body': 'Hi Edmund,\x3cbr /\x3e\x3cbr /\x3eThank you for the great solution! I have installed Octave following the instructions and been able to submit my Coursera assignment. Still, I have two questions.\x3cbr /\x3e\x3cbr /\x3eFirst, I am wondering how to cleanly uninstall all the packages automatically installed by octave-gui-signed (though I will be using it for some time).\x3cbr /\x3e\x3cbr /\x3eIn addition, the text looks fuzzy on my Retina screen. Is there some way to fix it? I guess this is probably a problem with XQuartz.\x3cbr /\x3e\x3cbr /\x3eThanks!\x3cbr /\x3e', 'timestamp': '1458238520391', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Unknown', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/11859465493888296772'}, 'displayTime': 'March 17, 2016 at 11:15 AM', 'deleteclass': 'item-control blog-admin pid-1011043423'}, {'id': '2358744522934080296', 'parentId': '4742257254435547075', 'body': 'the point about my package is that one doesn\x26#39;t recompile. I guess one can recompile -I\x26#39;ve done it - but one really needs to be motivated. ', 'timestamp': '1458358152091', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'March 18, 2016 at 8:29 PM', 'deleteclass': 'item-control blog-admin pid-547224957'}, {'id': '5003648650599881611', 'body': 'to uninstall, cd to the oct folder and type \x3cbr /\x3evagrant destroy\x3cbr /\x3e\x3cbr /\x3ebtw, if it worked for you, dude, did you tip?', 'timestamp': '1458358863683', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'March 18, 2016 at 8:41 PM', 'deleteclass': 'item-control blog-admin pid-547224957'}, {'id': '2814922421456018589', 'body': 'Hi Edmund,\x3cbr /\x3e\x3cbr /\x3e  When i launch octave-gui-signed on my OS X, i am getting a popup  \x26quot;AppleEvent Timed Out Error -1712\x26quot; and the application exits after i close the popup.\x3cbr /\x3e\x3cbr /\x3e  Any suggestions.\x3cbr /\x3e\x3cbr /\x3eThanks', 'timestamp': '1464198676680', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Kumar Jayanti', 'avatarUrl': '//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA\x3ds35', 'profileUrl': 'https://www.blogger.com/profile/11004994101150514420'}, 'displayTime': 'May 25, 2016 at 10:51 AM', 'deleteclass': 'item-control blog-admin pid-160939674'}, {'id': '3229276611161380066', 'parentId': '2814922421456018589', 'body': 'Yes, I wonder whether you have the screensaver running? Try and turn it off when running the applet the first time as it needs to download a lot of stuff. \x3cbr /\x3e\x3cbr /\x3eBTW, if the applet works for you, a donation would be appreciated ...', 'timestamp': '1464641136387', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'May 30, 2016 at 1:45 PM', 'deleteclass': 'item-control blog-admin pid-547224957'}, {'id': '5895261170427125619', 'body': 'Looks like a great package you\x26#39;ve made for us. Will install shortly.\x3cbr /\x3e\x3cbr /\x3eI noticed a broken link on your page, the link on the top: \x26quot;Looking for Octave? Go to my Easy Octave on Mac page!\x26quot; leads to \x26quot;Sorry, the page you were looking for in this blog does not exist.\x26quot;.', 'timestamp': '1465121903413', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Flemming Steffensen', 'avatarUrl': '//lh5.googleusercontent.com/--g5sxX-TLzA/AAAAAAAAAAI/AAAAAAAADEE/LUaYhFfBD4Q/s35-c/photo.jpg', 'profileUrl': 'https://www.blogger.com/profile/15215043682450386809'}, 'displayTime': 'June 5, 2016 at 3:18 AM', 'deleteclass': 'item-control blog-admin pid-1901167247'}, {'id': '3984914273727945953', 'body': 'Flemming, \x3cbr /\x3e\x3cbr /\x3e You are absolutely right. I think this is the page :) I will remove the dead link. \x3cbr /\x3e And by the way, thank  you very much for the donation you made!\x3cbr /\x3e\x3cbr /\x3eEdmund', 'timestamp': '1465154712041', 'permalink': 'http://deepneural.blogspot.com/p/welcome.html', 'author': {'name': 'Edmund Ronald Ph. D.', 'avatarUrl': '//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg', 'profileUrl': 'https://www.blogger.com/profile/04377336351536210266'}, 'displayTime': 'June 5, 2016 at 12:25 PM', 'deleteclass': 'item-control blog-admin pid-547224957'}];
+      var msgs = {'loadMore': 'Load more...', 'loading': 'Loading...', 'loaded': 'No more!', 'addComment': 'Add comment', 'reply': 'Reply', 'delete': 'Delete'};
+      var config = {'blogId': '5307349604948173968', 'postId': '3346172247046717508', 'feed': 'http://deepneural.blogspot.com/feeds/3346172247046717508/comments/default', 'authorName': 'Edmund Ronald Ph. D.', 'authorUrl': 'https://www.blogger.com/profile/04377336351536210266', 'baseUri': 'https://www.blogger.com', 'maxThreadDepth': 2};
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        if (entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + entry.content.$t + '</span>';
+            }
+          }
+        }
+        return entry.content.$t;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/delete-comment.g?blogID='
+               + config.blogId + '&postID=' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          replybox.src = '';
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+  </script>
+<div id='comment-holder'>
+<div id='bc_0_18C' kind='c'><div id='bc_0_18CT'><div id='bc_0_17T' class='comment-thread' kind='r'  t='0' u='0'><ol id='bc_0_17TB'><li id='bc_0_0B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/-OzX2fFo5hOg/AAAAAAAAAAI/AAAAAAAAAQE/Egq8C5QBHFU/s35-c/photo.jpg'></img></div><div id='c1564346424342602575' class='comment-block'><div id='bc_0_0M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/04761325324832530535'>Steve Ratts</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>November 1, 2015 at 2:11 PM</a></span></div><p id='bc_0_0MC' class='comment-content'>Hi Edmund,<br /><br />Thanks for the help getting this working on my Hackintosh. For you and for anyone else that may be interested, here&#39;s the key stuff that may help the install go more smoothly on other Hackintoshes.<br /><br />First off some details about my particular Hackintosh<br /><br />System   Hackintosh CustoMac Pro<br />CPU    Intel i7 3.4 GHz<br />Graphics   EVGA nVidia GeForce GTX 670<br />Other Hardware GA-Z77X-UD5H/F14, 3.4 GHz i3770, 16GB 1600 MHz DDR3 (2x8GB Corsair Vengeance), EVGA GeForce GTX 670, SanDisk 240 GB SSD, Seagate Barracuda 7200 RPM 1TB, TP-Link TL-WDN4800, Sony 24x SATA DVD +/- RW, D<br /><br />Recommended Hackintosh GIGABYTE - UEFI DualBIOS settings (I was using these at the start of the process):<br /><br />Save &amp; Exit Page: Load Optimized Defaults: Yes<br />M.I.T\Advanced Memory Settings Page: Extreme Memory Profile(X.M.P.): Profile1Gigabyte 7 Series motherboard<br />Recommended GIGABYTE - UEFI DualBIOS settings:<br />Save &amp; Exit Page: Load Optimized Defaults: Yes<br />M.I.T\Advanced Memory Settings Page: Extreme Memory Profile(X.M.P.): Profile1<br />BIOS Features Page: Intel Virtualization Technology: Disabled<br />BIOS Features Page: VT-d: Disabled<br />Peripherals Page: VIA 1394 Controller: Enabled<br />Power Management Page: Wake on LAN: Disabled<br />BIOS Features Page: VT-d: Disabled<br />Peripherals Page: VIA 1394 Controller: Enabled<br />Power Management Page: Wake on LAN: Disabled<br /><br />The conventional wisdom in the Hackintosh community appears to be to disable Intel Virtualization Technology in the bios, however this will prevent running any Virtual Machines, and when running the VirtualBox GUI it can be seen that attempting to boot any VM will give an error stating that &quot;Vt-x is disabled in the BIOS&quot;. It&#39;s worth noting that Vt-x is NOT the same as Vt-d. I found that enabling Vt-d would prevent my Hackintosh from booting, however enabling Intel Virtualization Technology did not prevent me from booting, and did enable VirtualBox to power up the octave VM.<br /><br />Beyond this point I&#39;m not clear as to what specifically got me up and running, but I believe it was some combination of the new Vagrant file you sent and rebooting one more time at my end after I had verified that I could power up VMs using VirtualBox.<br /><br />Bottom line: I primarily need to enable Intel Virtualization Technology on the  BIOS features tab of my Gigabyte UEFI BIOS. Enabling Vt-d was counterproductive and not needed.<br /><br />Thanks again for the help!<br /><br />Steve</p><span id='bc_0_0MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-834800752'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=1564346424342602575'>Delete</a></span></span></div><div id='bc_0_0BR' class='comment-replies'></div><div id='bc_0_0B_box' class='comment-replybox-single'></div></li><li id='bc_0_1B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c585099525763364915' class='comment-block'><div id='bc_0_1M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>November 2, 2015 at 2:15 PM</a></span></div><p id='bc_0_1MC' class='comment-content'>Hi Steve - congrats on making this work. My only explanatory comment here is that on a Hackintosh one may have issues with the VirtualBox configuration. It is possible that another virtualiser might play better.<br /><br />If people need the Vagrantfile that shows the boot console they can email me, or just remove the &quot;#&quot; on the  line that says &quot;vb.gui = true &quot;. But be careful to use a clean text editor. A backup of the Vagrantfile is provided for safety in the install package ...</p><span id='bc_0_1MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=585099525763364915'>Delete</a></span></span></div><div id='bc_0_1BR' class='comment-replies'></div><div id='bc_0_1B_box' class='comment-replybox-single'></div></li><li id='bc_0_2B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35'></img></div><div id='c737230467346290251' class='comment-block'><div id='bc_0_2M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/11120572939614788297'>fran</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>November 15, 2015 at 2:01 PM</a></span></div><p id='bc_0_2MC' class='comment-content'>hi edmund, <br />i am just tying out your software. it works pretty nice so far, but i need to install an extra package (signal). <br />i have no idea how to do that actually. <br />could you give me some advice? <br />thanks a lot &amp; best regards, f</p><span id='bc_0_2MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-552395057'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=737230467346290251'>Delete</a></span></span></div><div id='bc_0_2BR' class='comment-replies'></div><div id='bc_0_2B_box' class='comment-replybox-single'></div></li><li id='bc_0_3B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c8259875061650007186' class='comment-block'><div id='bc_0_3M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>November 15, 2015 at 3:25 PM</a></span></div><p id='bc_0_3MC' class='comment-content'>Hi Fran, <br /><br /> My advice would be to <br /> 1. Look at the following page:    http://octave.sourceforge.net<br /> 2 Try typing this at the Octave prompt:  pkg install -forge signal<br /><br />You will get an error and be told to install control before signal ...which means typing <br /><br />3 pkg install -forge control<br />4 pkg install -forge signal<br /><br />After you&#39;ve figured it out with these hints, you might be so kind as to tip your Octave Barista, your contribution even small will be greatly appreciated  :)<br /><br /></p><span id='bc_0_3MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=8259875061650007186'>Delete</a></span></span></div><div id='bc_0_3BR' class='comment-replies'></div><div id='bc_0_3B_box' class='comment-replybox-single'></div></li><li id='bc_0_4B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35'></img></div><div id='c5388321094333850981' class='comment-block'><div id='bc_0_4M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/12053542290177292037'>Unknown</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>January 27, 2016 at 4:36 AM</a></span></div><p id='bc_0_4MC' class='comment-content'>Hi,<br />As Fran I&#39;m trying to install an extra package (dynare http://www.dynare.org/DynareWiki/InstallOnDebianOrUbuntu )<br /><br />I added the apt lines for installing it in the virtual machine (using &#8220;vagrant up; vagrant ssh&#8221;), but when I run sudo apt-get install dynare it starts to require dependencies that, as far as I know, are already installed..<br /><br />Could you give some hint to do it?<br /><br />Thanks<br /></p><span id='bc_0_4MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-1796549305'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=5388321094333850981'>Delete</a></span></span></div><div id='bc_0_4BR' class='comment-replies'></div><div id='bc_0_4B_box' class='comment-replybox-single'></div></li><li id='bc_0_5B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c2154516204066853374' class='comment-block'><div id='bc_0_5M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>January 27, 2016 at 7:36 PM</a></span></div><p id='bc_0_5MC' class='comment-content'>Hi, unknown Dynare installer: A lot of people ask me for free tech support; I would suggest they try the Octave mailing list. If you had donated, I might have felt motivated to help you, but that ship has now sailed. <br /><br />You&#39;re like somebody who goes into Starbucks and asks for a glass of -free- water, goes to the restroom, and then comes back and tells the Barista &quot;oh, and as you give things away, could I have a latte&quot; ?<br /><br />Edmund<br /></p><span id='bc_0_5MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=2154516204066853374'>Delete</a></span></span></div><div id='bc_0_5BR' class='comment-replies'></div><div id='bc_0_5B_box' class='comment-replybox-single'></div></li><li id='bc_0_7B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35'></img></div><div id='c8967859983593175454' class='comment-block'><div id='bc_0_7M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/03859643708272142557'>Unknown</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>February 24, 2016 at 2:05 AM</a></span></div><p id='bc_0_7MC' class='comment-content'>I just installed this wonderfull package, bit when I run the octave-gui-signed applet, only the commandline version of Octave is displayed, I dont get a GUI window. Any ideas?<br /><br />I&#39;m running El Capitan 10.11.1<br /><br />Thanks!</p><span id='bc_0_7MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-47153306'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=8967859983593175454'>Delete</a></span></span></div><div id='bc_0_7BR' class='comment-replies'><span id='bc_0_7b+seedBdKzD' kind='d'><div id='bc_0_6T' class='comment-thread inline-thread' kind='t'   t='0' u='0'><span id='bc_0_6TT' class='thread-toggle thread-expanded' kind='g'><span id='bc_0_6TA' class='thread-arrow'></span><span id='bc_0_6TN' class='thread-count'><span id='bc_0_6TNT' style='display: none;'></span><span id='bc_0_6TNU' style='display: none;'></span><a href='javascript:;' target='_self'>Replies</a><div id='bc_0_6TD' class='thread-dropContainer thread-expanded'><span class='thread-drop'></span></div></span></span><ol id='bc_0_6TC' class='thread-chrome thread-expanded'><div><li id='bc_0_6B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c5362085887739199541' class='comment-block'><div id='bc_0_6M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>March 3, 2016 at 8:42 AM</a></span></div><p id='bc_0_6MC' class='comment-content'>Hi Unknown,<br /><br /> Please email me edmundronald at gmail, and we will try to figure out your bug.<br /><br />E.<br /></p><span id='bc_0_6MN' class='comment-actions secondary-text' kind='m'><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=5362085887739199541'>Delete</a></span></span></div><div id='bc_0_6BR' class='comment-replies'></div><div id='bc_0_6B_box' class='comment-replybox-single'></div></li></div><div id='bc_0_6I' class='continue' kind='ci'><a href='javascript:;' target='_self'>Reply</a></div></ol><div id='bc_0_6T_box' class='comment-replybox-thread'></div></div></span></div><div id='bc_0_7B_box' class='comment-replybox-single'></div></li><li id='bc_0_8B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35'></img></div><div id='c7567950550099450040' class='comment-block'><div id='bc_0_8M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/14659542907870759228'>Neil</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>March 17, 2016 at 9:39 AM</a></span></div><p id='bc_0_8MC' class='comment-content'>Would it be possible to do a version of octave that supports 16 bit images. I&#39;ve tried to install Octave your way and then recompile GraphicsMagick and Octave from the source packages, but failed. </p><span id='bc_0_8MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-1022863645'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=7567950550099450040'>Delete</a></span></span></div><div id='bc_0_8BR' class='comment-replies'></div><div id='bc_0_8B_box' class='comment-replybox-single'></div></li><li id='bc_0_10B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35'></img></div><div id='c4742257254435547075' class='comment-block'><div id='bc_0_10M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/14659542907870759228'>Neil</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>March 17, 2016 at 9:42 AM</a></span></div><p id='bc_0_10MC' class='comment-content'>I love the package, but I need to use 16 bit image files. I tried to install your package and then recompile graphicsMagick and Octave from the source but it doesn&#39;t seem to work. Can you build a package that supports graphicMagick with quantum = 16?</p><span id='bc_0_10MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-1022863645'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=4742257254435547075'>Delete</a></span></span></div><div id='bc_0_10BR' class='comment-replies'><span id='bc_0_10b+seedBdK3D' kind='d'><div id='bc_0_9T' class='comment-thread inline-thread' kind='t'   t='0' u='0'><span id='bc_0_9TT' class='thread-toggle thread-expanded' kind='g'><span id='bc_0_9TA' class='thread-arrow'></span><span id='bc_0_9TN' class='thread-count'><span id='bc_0_9TNT' style='display: none;'></span><span id='bc_0_9TNU' style='display: none;'></span><a href='javascript:;' target='_self'>Replies</a><div id='bc_0_9TD' class='thread-dropContainer thread-expanded'><span class='thread-drop'></span></div></span></span><ol id='bc_0_9TC' class='thread-chrome thread-expanded'><div><li id='bc_0_9B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c2358744522934080296' class='comment-block'><div id='bc_0_9M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>March 18, 2016 at 8:29 PM</a></span></div><p id='bc_0_9MC' class='comment-content'>the point about my package is that one doesn&#39;t recompile. I guess one can recompile -I&#39;ve done it - but one really needs to be motivated. </p><span id='bc_0_9MN' class='comment-actions secondary-text' kind='m'><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=2358744522934080296'>Delete</a></span></span></div><div id='bc_0_9BR' class='comment-replies'></div><div id='bc_0_9B_box' class='comment-replybox-single'></div></li></div><div id='bc_0_9I' class='continue' kind='ci'><a href='javascript:;' target='_self'>Reply</a></div></ol><div id='bc_0_9T_box' class='comment-replybox-thread'></div></div></span></div><div id='bc_0_10B_box' class='comment-replybox-single'></div></li><li id='bc_0_11B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35'></img></div><div id='c8788704845162261429' class='comment-block'><div id='bc_0_11M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/11859465493888296772'>Unknown</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>March 17, 2016 at 11:15 AM</a></span></div><p id='bc_0_11MC' class='comment-content'>Hi Edmund,<br /><br />Thank you for the great solution! I have installed Octave following the instructions and been able to submit my Coursera assignment. Still, I have two questions.<br /><br />First, I am wondering how to cleanly uninstall all the packages automatically installed by octave-gui-signed (though I will be using it for some time).<br /><br />In addition, the text looks fuzzy on my Retina screen. Is there some way to fix it? I guess this is probably a problem with XQuartz.<br /><br />Thanks!<br /></p><span id='bc_0_11MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-1011043423'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=8788704845162261429'>Delete</a></span></span></div><div id='bc_0_11BR' class='comment-replies'></div><div id='bc_0_11B_box' class='comment-replybox-single'></div></li><li id='bc_0_12B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c5003648650599881611' class='comment-block'><div id='bc_0_12M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>March 18, 2016 at 8:41 PM</a></span></div><p id='bc_0_12MC' class='comment-content'>to uninstall, cd to the oct folder and type <br />vagrant destroy<br /><br />btw, if it worked for you, dude, did you tip?</p><span id='bc_0_12MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=5003648650599881611'>Delete</a></span></span></div><div id='bc_0_12BR' class='comment-replies'></div><div id='bc_0_12B_box' class='comment-replybox-single'></div></li><li id='bc_0_14B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh3.googleusercontent.com/zFdxGE77vvD2w5xHy6jkVuElKv-U9_9qLkRYK8OnbDeJPtjSZ82UPq5w6hJ-SA=s35'></img></div><div id='c2814922421456018589' class='comment-block'><div id='bc_0_14M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/11004994101150514420'>Kumar Jayanti</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>May 25, 2016 at 10:51 AM</a></span></div><p id='bc_0_14MC' class='comment-content'>Hi Edmund,<br /><br />  When i launch octave-gui-signed on my OS X, i am getting a popup  &quot;AppleEvent Timed Out Error -1712&quot; and the application exits after i close the popup.<br /><br />  Any suggestions.<br /><br />Thanks</p><span id='bc_0_14MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-160939674'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=2814922421456018589'>Delete</a></span></span></div><div id='bc_0_14BR' class='comment-replies'><span id='bc_0_14b+seedBdK6D' kind='d'><div id='bc_0_13T' class='comment-thread inline-thread' kind='t'   t='0' u='0'><span id='bc_0_13TT' class='thread-toggle thread-expanded' kind='g'><span id='bc_0_13TA' class='thread-arrow'></span><span id='bc_0_13TN' class='thread-count'><span id='bc_0_13TNT' style='display: none;'></span><span id='bc_0_13TNU' style='display: none;'></span><a href='javascript:;' target='_self'>Replies</a><div id='bc_0_13TD' class='thread-dropContainer thread-expanded'><span class='thread-drop'></span></div></span></span><ol id='bc_0_13TC' class='thread-chrome thread-expanded'><div><li id='bc_0_13B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c3229276611161380066' class='comment-block'><div id='bc_0_13M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>May 30, 2016 at 1:45 PM</a></span></div><p id='bc_0_13MC' class='comment-content'>Yes, I wonder whether you have the screensaver running? Try and turn it off when running the applet the first time as it needs to download a lot of stuff. <br /><br />BTW, if the applet works for you, a donation would be appreciated ...</p><span id='bc_0_13MN' class='comment-actions secondary-text' kind='m'><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=3229276611161380066'>Delete</a></span></span></div><div id='bc_0_13BR' class='comment-replies'></div><div id='bc_0_13B_box' class='comment-replybox-single'></div></li></div><div id='bc_0_13I' class='continue' kind='ci'><a href='javascript:;' target='_self'>Reply</a></div></ol><div id='bc_0_13T_box' class='comment-replybox-thread'></div></div></span></div><div id='bc_0_14B_box' class='comment-replybox-single'></div></li><li id='bc_0_15B' class='comment' kind='b'><div class='avatar-image-container'><img src='//lh5.googleusercontent.com/--g5sxX-TLzA/AAAAAAAAAAI/AAAAAAAADEE/LUaYhFfBD4Q/s35-c/photo.jpg'></img></div><div id='c5895261170427125619' class='comment-block'><div id='bc_0_15M' class='comment-header' kind='m'><cite class='user'><a rel='nofollow' href='https://www.blogger.com/profile/15215043682450386809'>Flemming Steffensen</a></cite><span class='icon user'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>June 5, 2016 at 3:18 AM</a></span></div><p id='bc_0_15MC' class='comment-content'>Looks like a great package you&#39;ve made for us. Will install shortly.<br /><br />I noticed a broken link on your page, the link on the top: &quot;Looking for Octave? Go to my Easy Octave on Mac page!&quot; leads to &quot;Sorry, the page you were looking for in this blog does not exist.&quot;.</p><span id='bc_0_15MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-1901167247'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=5895261170427125619'>Delete</a></span></span></div><div id='bc_0_15BR' class='comment-replies'></div><div id='bc_0_15B_box' class='comment-replybox-single'></div></li><li id='bc_0_16B' class='comment' kind='b'><div class='avatar-image-container'><img src='//2.bp.blogspot.com/_KC5q6EK_Gvw/SaNsM_wJRjI/AAAAAAAAACg/v4FjRoxcJi4/S45-s35/19711079_ff6322cbb1.jpg'></img></div><div id='c3984914273727945953' class='comment-block'><div id='bc_0_16M' class='comment-header' kind='m'><cite class='user blog-author'><a rel='nofollow' href='https://www.blogger.com/profile/04377336351536210266'>Edmund Ronald Ph. D.</a></cite><span class='icon user blog-author'></span><span class='datetime secondary-text'><a rel='nofollow' href='http://deepneural.blogspot.com/p/welcome.html'>June 5, 2016 at 12:25 PM</a></span></div><p id='bc_0_16MC' class='comment-content'>Flemming, <br /><br /> You are absolutely right. I think this is the page :) I will remove the dead link. <br /> And by the way, thank  you very much for the donation you made!<br /><br />Edmund</p><span id='bc_0_16MN' class='comment-actions secondary-text' kind='m'><a kind='i' href='javascript:;' target='_self' o='r'>Reply</a><span class='item-control blog-admin pid-547224957'><a o='d' target='_self' href='https://www.blogger.com/delete-comment.g?blogID=5307349604948173968&amp;postID=3984914273727945953'>Delete</a></span></span></div><div id='bc_0_16BR' class='comment-replies'></div><div id='bc_0_16B_box' class='comment-replybox-single'></div></li></ol><div id='bc_0_17I' class='continue' kind='ci'><a href='javascript:;' target='_self'>Add comment</a></div><div id='bc_0_17T_box' class='comment-replybox-thread'></div><div id='bc_0_17L' class='loadmore loaded' kind='rb'><a href='javascript:;' target='_self'>Load more...</a></div></div></div></div>
+</div>
+</div>
+<p class='comment-footer'>
+<div class='comment-form'>
+<a name='comment-form'></a>
+<p>Hey, let me know what you think of my blog, and what material I should add!</p>
+<a href='https://www.blogger.com/comment-iframe.g?blogID=5307349604948173968&pageID=3346172247046717508' id='comment-editor-src'></a>
+<iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='410px' id='comment-editor' name='comment-editor' src='' width='100%'></iframe>
+<script src='https://www.blogger.com/static/v1/jsbin/3223910711-comment_from_post_iframe.js' type='text/javascript'></script>
+<script type='text/javascript'>
+      BLOG_CMT_createIframe('https://www.blogger.com/rpc_relay.html');
+    </script>
+</div>
+</p>
+<div id='backlinks-container'>
+<div id='Blog1_backlinks-container'>
+<a name='links'></a><h4><!--Can't find substitution for tag [post.backlinksLabel]--></h4>
+<p class='comment-footer'>
+<a class='comment-link' href='' id='Blog1_backlinks-create-link' target='_blank'><!--Can't find substitution for tag [post.createLinkLabel]--></a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<a class='home-link' href='http://deepneural.blogspot.in/'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='blog-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://deepneural.blogspot.com/feeds/posts/default' target='_blank' type='application/atom+xml'>Posts (Atom)</a>
+</div>
+</div>
+<script type='text/javascript'>
+    window.___gcfg = { 'lang': 'en' };
+  </script>
+</div></div>
+</div>
+</div>
+<div class='column-left-outer'>
+<div class='column-left-inner'>
+<aside>
+</aside>
+</div>
+</div>
+<div class='column-right-outer'>
+<div class='column-right-inner'>
+<aside>
+<div class='sidebar no-items section' id='sidebar-right-1'></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='sidebar section' id='sidebar-right-2-1'><div class='widget BlogArchive' data-version='1' id='BlogArchive1'>
+<h2>Blog Archive</h2>
+<div class='widget-content'>
+<div id='ArchiveList'>
+<div id='BlogArchive1_ArchiveList'>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2016/'>
+2016
+</a>
+<span class='post-count' dir='ltr'>(8)</span>
+<ul class='hierarchy'>
+<li class='archivedate expanded'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy toggle-open'>
+
+        &#9660;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2016/04/'>
+April
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+<ul class='posts'>
+<li><a href='http://deepneural.blogspot.in/2016/04/numerai-stuff.html'>Numerai stuff.</a></li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2016/02/'>
+February
+</a>
+<span class='post-count' dir='ltr'>(1)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2016/01/'>
+January
+</a>
+<span class='post-count' dir='ltr'>(6)</span>
+</li>
+</ul>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2015/'>
+2015
+</a>
+<span class='post-count' dir='ltr'>(35)</span>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2015/11/'>
+November
+</a>
+<span class='post-count' dir='ltr'>(5)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2015/04/'>
+April
+</a>
+<span class='post-count' dir='ltr'>(9)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2015/03/'>
+March
+</a>
+<span class='post-count' dir='ltr'>(11)</span>
+</li>
+</ul>
+<ul class='hierarchy'>
+<li class='archivedate collapsed'>
+<a class='toggle' href='javascript:void(0)'>
+<span class='zippy'>
+
+        &#9658;&#160;
+      
+</span>
+</a>
+<a class='post-count-link' href='http://deepneural.blogspot.in/2015/02/'>
+February
+</a>
+<span class='post-count' dir='ltr'>(10)</span>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=5307349604948173968&widgetType=BlogArchive&widgetId=BlogArchive1&action=editWidget&sectionId=sidebar-right-2-1' onclick='return _WidgetManager._PopupConfig(document.getElementById("BlogArchive1"));' target='configBlogArchive1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div></div>
+</td>
+<td class='columns-cell'>
+<div class='sidebar section' id='sidebar-right-2-2'><div class='widget Subscribe' data-version='1' id='Subscribe1'>
+<div style='white-space:nowrap'>
+<h2 class='title'>Subscribe To Me!</h2>
+<div class='widget-content'>
+<div class='subscribe-wrapper subscribe-type-POST'>
+<div class='subscribe expanded subscribe-type-POST' id='SW_READER_LIST_Subscribe1POST' style='display:none;'>
+<div class='top'>
+<span class='inner' onclick='return(_SW_toggleReaderList(event, "Subscribe1POST"));'>
+<img class='subscribe-dropdown-arrow' src='https://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='https://img1.blogblog.com/img/icon_feed12.png'/>
+Posts
+</span>
+<div class='feed-reader-links'>
+<a class='feed-reader-link' href='https://www.netvibes.com/subscribe.php?url=http%3A%2F%2Fdeepneural.blogspot.com%2Ffeeds%2Fposts%2Fdefault' target='_blank'>
+<img src='https://img1.blogblog.com/img/widgets/subscribe-netvibes.png'/>
+</a>
+<a class='feed-reader-link' href='https://add.my.yahoo.com/content?url=http%3A%2F%2Fdeepneural.blogspot.com%2Ffeeds%2Fposts%2Fdefault' target='_blank'>
+<img src='https://img1.blogblog.com/img/widgets/subscribe-yahoo.png'/>
+</a>
+<a class='feed-reader-link' href='http://deepneural.blogspot.com/feeds/posts/default' target='_blank'>
+<img align='absmiddle' class='feed-icon' src='https://img1.blogblog.com/img/icon_feed12.png'/>
+                  Atom
+                </a>
+</div>
+</div>
+<div class='bottom'></div>
+</div>
+<div class='subscribe' id='SW_READER_LIST_CLOSED_Subscribe1POST' onclick='return(_SW_toggleReaderList(event, "Subscribe1POST"));'>
+<div class='top'>
+<span class='inner'>
+<img class='subscribe-dropdown-arrow' src='https://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<span onclick='return(_SW_toggleReaderList(event, "Subscribe1POST"));'>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='https://img1.blogblog.com/img/icon_feed12.png'/>
+Posts
+</span>
+</span>
+</div>
+<div class='bottom'></div>
+</div>
+</div>
+<div class='subscribe-wrapper subscribe-type-COMMENT'>
+<div class='subscribe expanded subscribe-type-COMMENT' id='SW_READER_LIST_Subscribe1COMMENT' style='display:none;'>
+<div class='top'>
+<span class='inner' onclick='return(_SW_toggleReaderList(event, "Subscribe1COMMENT"));'>
+<img class='subscribe-dropdown-arrow' src='https://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='https://img1.blogblog.com/img/icon_feed12.png'/>
+All Comments
+</span>
+<div class='feed-reader-links'>
+<a class='feed-reader-link' href='https://www.netvibes.com/subscribe.php?url=http%3A%2F%2Fdeepneural.blogspot.com%2Ffeeds%2Fcomments%2Fdefault' target='_blank'>
+<img src='https://img1.blogblog.com/img/widgets/subscribe-netvibes.png'/>
+</a>
+<a class='feed-reader-link' href='https://add.my.yahoo.com/content?url=http%3A%2F%2Fdeepneural.blogspot.com%2Ffeeds%2Fcomments%2Fdefault' target='_blank'>
+<img src='https://img1.blogblog.com/img/widgets/subscribe-yahoo.png'/>
+</a>
+<a class='feed-reader-link' href='http://deepneural.blogspot.com/feeds/comments/default' target='_blank'>
+<img align='absmiddle' class='feed-icon' src='https://img1.blogblog.com/img/icon_feed12.png'/>
+                  Atom
+                </a>
+</div>
+</div>
+<div class='bottom'></div>
+</div>
+<div class='subscribe' id='SW_READER_LIST_CLOSED_Subscribe1COMMENT' onclick='return(_SW_toggleReaderList(event, "Subscribe1COMMENT"));'>
+<div class='top'>
+<span class='inner'>
+<img class='subscribe-dropdown-arrow' src='https://img2.blogblog.com/img/widgets/arrow_dropdown.gif'/>
+<span onclick='return(_SW_toggleReaderList(event, "Subscribe1COMMENT"));'>
+<img align='absmiddle' alt='' border='0' class='feed-icon' src='https://img1.blogblog.com/img/icon_feed12.png'/>
+All Comments
+</span>
+</span>
+</div>
+<div class='bottom'></div>
+</div>
+</div>
+<div style='clear:both'></div>
+</div>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=5307349604948173968&widgetType=Subscribe&widgetId=Subscribe1&action=editWidget&sectionId=sidebar-right-2-2' onclick='return _WidgetManager._PopupConfig(document.getElementById("Subscribe1"));' target='configSubscribe1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class='sidebar no-items section' id='sidebar-right-3'></div>
+</aside>
+</div>
+</div>
+</div>
+<div style='clear: both'></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class='main-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<footer>
+<div class='footer-outer'>
+<div class='footer-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left footer-fauxborder-left'>
+<div class='fauxborder-right footer-fauxborder-right'></div>
+<div class='region-inner footer-inner'>
+<div class='foot no-items section' id='footer-1'></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='foot no-items section' id='footer-2-1'></div>
+</td>
+<td class='columns-cell'>
+<div class='foot no-items section' id='footer-2-2'></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class='foot section' id='footer-3'><div class='widget Stats' data-version='1' id='Stats1'>
+<h2>Total Pageviews</h2>
+<div class='widget-content'>
+<div id='Stats1_content' style='display: none;'>
+<span class='counter-wrapper graph-counter-wrapper' id='Stats1_totalCount'>
+</span>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=5307349604948173968&widgetType=Stats&widgetId=Stats1&action=editWidget&sectionId=footer-3' onclick='return _WidgetManager._PopupConfig(document.getElementById("Stats1"));' target='configStats1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div>
+</div><div class='widget Attribution' data-version='1' id='Attribution1'>
+<div class='widget-content' style='text-align: center;'>
+Awesome Inc. theme. Powered by <a href='https://www.blogger.com' target='_blank'>Blogger</a>.
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=5307349604948173968&widgetType=Attribution&widgetId=Attribution1&action=editWidget&sectionId=footer-3' onclick='return _WidgetManager._PopupConfig(document.getElementById("Attribution1"));' target='configAttribution1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div></div>
+</div>
+</div>
+<div class='footer-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class='content-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<script type='text/javascript'>
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+<!-- Start of StatCounter Code for Blogger / Blogspot -->
+<script type='text/javascript'>
+//<![CDATA[
+var sc_project=10317378; 
+var sc_invisible=1; 
+var sc_security="c88a1245"; 
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" + scJsHost+ "statcounter.com/counter/counter_xhtml.js'></"+"script>");
+//]]>
+</script>
+<noscript><div class='statcounter'><a class='statcounter' href='http://statcounter.com/blogger/' title='blogger web statistics'><img alt='blogger web statistics' class='statcounter' src='http://c.statcounter.com/10317378/0/c88a1245/1/'/></a></div></noscript>
+<!-- End of StatCounter Code for Blogger / Blogspot -->
+<script src='https://apis.google.com/js/plusone.js' type='text/javascript'></script>
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/1909267815-widgets.js"></script>
+<script type='text/javascript'>
+window['__wavt'] = 'AOuZoY710FMwVYmgqVGQ27wLAfm7hRD6_w:1506629433302';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d5307349604948173968','//deepneural.blogspot.in/p/welcome.html','5307349604948173968');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '5307349604948173968', 'title': 'Deep Learning and Neural Nets', 'url': 'http://deepneural.blogspot.in/p/welcome.html', 'canonicalUrl': 'http://deepneural.blogspot.com/p/welcome.html', 'homepageUrl': 'http://deepneural.blogspot.in/', 'searchUrl': 'http://deepneural.blogspot.in/search', 'canonicalHomepageUrl': 'http://deepneural.blogspot.com/', 'blogspotFaviconUrl': 'http://deepneural.blogspot.in/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Deep Learning and Neural Nets - Atom\x22 href\x3d\x22http://deepneural.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Deep Learning and Neural Nets - RSS\x22 href\x3d\x22http://deepneural.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Deep Learning and Neural Nets - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/5307349604948173968/posts/default\x22 /\x3e\n', 'meTag': '', 'openIdOpTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/35781802-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/c9a642e53959f9a4', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Google+', 'key': 'googlePlus', 'shareMessage': 'Share to Google+', 'target': 'googleplus'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Read more', 'pageType': 'static_page', 'pageId': '3346172247046717508', 'pageName': 'Octave for Mac Installation', 'pageTitle': 'Deep Learning and Neural Nets: Octave for Mac Installation', 'metaDescription': ''}}, {'name': 'features', 'data': {'lazy_images': 'false', 'unsupported_browser_message': 'false', 'lightbox_img_parsing': 'false', 'video_theatre_support': 'false', 'sharing_get_link_dialog': 'false', 'sharing_native': 'false'}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Link copied to clipboard!', 'ok': 'Ok', 'postLink': 'Post Link'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true, 'variant': 'light', 'variantId': 'light', 'variantName': 'Light', 'localizedVariantName': 'Light'}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Octave for Mac Installation', 'description': 'A blog about neural nets and deep learning, artificial intelligence and applications', 'featuredImage': 'https://3.bp.blogspot.com/-KvlFlEHh3M4/V-8ECQnqr9I/AAAAAAAAA7c/jE53bwl8piwIYU7limk2kwp-I4HFGGyKQCLcB/s640/Screen%2BShot%2B2016-10-01%2Bat%2B02.30.05.png', 'url': 'http://deepneural.blogspot.in/p/welcome.html', 'type': 'item', 'isSingleItem': true, 'isMultipleItems': false, 'isError': false, 'isPage': true, 'isPost': false, 'isHomepage': false, 'isArchive': false, 'isLabelSearch': false, 'pageId': 3346172247046717508}}]);
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text1', 'crosscol', null, document.getElementById('Text1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text2', 'crosscol-overflow', null, document.getElementById('Text2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/836818746-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/368954415-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogArchiveView', new _WidgetInfo('BlogArchive1', 'sidebar-right-2-1', null, document.getElementById('BlogArchive1'), {'languageDirection': 'ltr', 'loadingMessage': 'Loading\x26hellip;'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_SubscribeView', new _WidgetInfo('Subscribe1', 'sidebar-right-2-2', null, document.getElementById('Subscribe1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_StatsView', new _WidgetInfo('Stats1', 'footer-3', null, document.getElementById('Stats1'), {'title': 'Total Pageviews', 'showGraphicalCounter': true, 'showAnimatedCounter': true, 'showSparkline': false, 'statsUrl': '//deepneural.blogspot.in/b/stats?style\x3dBLACK_TRANSPARENT\x26timeRange\x3dALL_TIME\x26token\x3d1yvUy14BAAA.h8lT97U4rRaqcYnjtwKLNbxagEyMcGHNct_CkP0yhqg.WmmeL0mdzsj0CzmVRmes3A'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_AttributionView', new _WidgetInfo('Attribution1', 'footer-3', null, document.getElementById('Attribution1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

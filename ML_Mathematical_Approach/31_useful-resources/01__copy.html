@@ -1,0 +1,33 @@
+
+<html> 
+  <head> 
+    <!--loading header, content, footer-->
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#header").load("header.html"); 
+      $("#content").load("processed_md/copy.html"); 
+      $("#footer").load("footer.html"); 
+      $("#menu").load("menu.html"); 
+    });
+    </script> 
+     <div id="header"></div>
+  </head> 
+
+  <body> 
+     <div id="cols">
+         <div class="right">
+                 <div id="menu"></div>
+         </div>
+         <div class="left">
+             <div class="left2">
+                 <br>
+                 <div id="content"></div>
+                 <div id="footer"></div>
+             </div>
+         </div>
+     </div>
+  </body> 
+
+
+</html>

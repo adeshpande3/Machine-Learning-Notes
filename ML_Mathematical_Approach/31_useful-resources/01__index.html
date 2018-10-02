@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    
+    <title>Summary &#8212; Shark 3.0a documentation</title>
+    <script type="text/x-mathjax-config">
+        MathJax.Ajax.timeout = 5000;  <!-- 5 second rather than 15 seconds timeout for file access -->
+        <!-- ( nicked from https://groups.google.com/forum/#!msg/mathjax-users/HKA2lNqv-OQ/_Yv72L7MtjYJ ) -->
+    </script>
+    
+    <link rel="stylesheet" href="_static/mt_sphinx_deriv.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '3.0a',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntilConfig"></script>
+    <link rel="shortcut icon" href="_static/shark16.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Downloads" href="rest_sources/downloads/downloads.html" />
+    <link rel="stylesheet" href="_static/mt_sphinx_shark.css" type="text/css" />
+    <script type="text/javascript">
+       window.MathJax || document.write('<script src="index/../../../../../contrib/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML&delayStartupUntilConfig"><\/script>');
+       <!--delay nicked from https://groups.google.com/forum/#!msg/mathjax-users/J-36V22-G9Q/AW3ncCbJzS8J -->
+    </script>
+    <script src="index/../../../../mlstyle.js"></script>
+    <!-- nicked from https://groups.google.com/forum/#!msg/mathjax-users/J-36V22-G9Q/AW3ncCbJzS8J -->
+
+  </head>
+  <body role="document">
+
+    <div id="shark_old">
+        <div id="wrap">
+            <div id="header">
+                <div id="site-name"><a href="/shark/index.html">Shark machine learning library</a></div>
+                <ul id="nav">
+                    <li 
+                            class="active"
+                        >
+                        <a href="#">About Shark</a>
+                        <ul>
+                            <li class="first"><a href="rest_sources/about_shark/news.html">News!</a></li>
+                            <!-- <li><a href="rest_sources/about_shark/todo.html">Contribute</a></li> -->
+                            <li class="last"><a href="rest_sources/about_shark/copyright.html">Credits and copyright</a></li>
+                        </ul>
+                    </li>
+                    <li  class="first" >
+                        <a href="rest_sources/downloads/downloads.html">Downloads</a>
+                    </li>
+                    <li  class="first" >
+                        <a href="rest_sources/getting_started/installation.html">Getting Started</a>
+                        <ul>
+                            <li class="first"><a href="rest_sources/getting_started/installation.html">Installation</a></li>
+                            <li class="last"><a href="rest_sources/getting_started/using_the_documentation.html">Using the docs</a></li>
+                        </ul>
+                    </li>
+                    <li  class="first" >
+                        <a href="index/../../../../doxygen_pages/html/classes.html">Documentation</a>
+                        <ul>
+                            <li class="first"><a href="rest_sources/tutorials/tutorials.html">Tutorials</a></li>
+                            <li><a href="rest_sources/tutorials/algorithms/Benchmark.html">Benchmarks</a></li>
+                            <li><a href="rest_sources/quickref/quickref.html">Quick references</a></li>
+                            <li><a href="index/../../../../doxygen_pages/html/classes.html">Class list</a></li>
+                            <li class="last"><a href="index/../../../../doxygen_pages/html/group__shark__globals.html">Global functions</a></li>
+                        </ul>
+                    <li  class="first" >
+                        <a href="rest_sources/faq/faq.html">FAQ</a>
+                    <li  class="first" >
+                        <a href="rest_sources/showroom/showroom.html">Showroom</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="#">
+          <img class="logo" src="_static/SharkLogo.png" alt="Logo"/></a></p>
+	<div class="mt_ltocwrapper">
+		<ul>
+<li><a class="reference internal" href="#">Summary</a><ul>
+<li><a class="reference internal" href="#where-to-start">Where to start</a></li>
+<li><a class="reference internal" href="#why-shark">Why Shark?</a></li>
+<li><a class="reference internal" href="#selected-features">Selected features</a></li>
+</ul>
+</li>
+</ul>
+
+	</div>
+<div>
+  <a class="topless" href="rest_sources/downloads/downloads.html" title="next chapter">
+	  <img class="navicon" src="_static/icon_forward.png" alt="next"/> Downloads</a>
+</div> 
+<div id="searchbox" style="display: none">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="12" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+      <input class="mtsubmitbutton" type="submit" value="Find" />
+    </form>
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+<p class="mtshowsource">
+  <a href="_sources/index.rst.txt"
+           rel="nofollow"><img class="sourceicon" src="_static/icon_eject.png" alt="prev"/> Show page source</a>
+</p>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="section" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p><strong>SHARK is a fast, modular, feature-rich open-source C++ machine learning library</strong>.
+It provides methods for linear and nonlinear optimization, kernel-based learning
+algorithms, neural networks, and various other machine learning techniques (see the
+feature list <a class="reference internal" href="#label-for-feature-list"><span class="std std-ref">below</span></a>).
+It serves as a powerful toolbox for real world applications as well as research.
+Shark depends on <a class="reference external" href="http://www.boost.org">Boost</a> and <a class="reference external" href="http://www.cmake.org/">CMake</a>.
+It is compatible with Windows, Solaris, MacOS X, and Linux. Shark is licensed under
+the permissive
+<a class="reference external" href="http://www.gnu.org/copyleft/lesser.html">GNU Lesser General Public License</a>.</p>
+<p>For an overview over the previous major release of Shark (2.0) we
+refer to:</p>
+<div class="cibox docutils container">
+Christian Igel, Verena Heidrich-Meisner, and Tobias Glasmachers.
+<a class="reference external" href="http://jmlr.csail.mit.edu/papers/v9/igel08a.html">Shark</a>.
+Journal of Machine Learning Research 9, pp. 993-996, 2008.
+[<a class="reference internal" href="rest_sources/about_shark/copyright.html#label-for-citing-shark"><span class="std std-ref">Bibtex</span></a>]</div>
+<div class="section" id="where-to-start">
+<h2>Where to start<a class="headerlink" href="#where-to-start" title="Permalink to this headline">¶</a></h2>
+<p>In the menu above, click on &#8220;Getting started&#8221;, or use this direct link to the
+<a class="reference internal" href="rest_sources/getting_started/installation.html"><span class="doc">installation instructions</span></a>.
+After installation, there is a guide to the different documentation pages available
+<a class="reference internal" href="rest_sources/getting_started/using_the_documentation.html"><span class="doc">here</span></a>.</p>
+</div>
+<div class="section" id="why-shark">
+<h2>Why Shark?<a class="headerlink" href="#why-shark" title="Permalink to this headline">¶</a></h2>
+<p><strong>Speed and flexibility</strong></p>
+<p>Shark provides an excellent trade-off between flexibility and
+ease-of-use on the one hand, and computational efficiency on the other.</p>
+<p><strong>One for all</strong></p>
+<p>Shark offers numerous algorithms from various machine learning and
+computational intelligence domains in a way that they can be easily
+combined and extended.</p>
+<p><strong>Unique features</strong></p>
+<p>Shark comes with a lot of powerful algorithms that are to our best
+knowledge not implemented in any other library, for example in the
+domains of model selection and training of binary and multi-class SVMs,
+or evolutionary single- and multi-objective optimization.</p>
+</div>
+<div class="section" id="selected-features">
+<span id="label-for-feature-list"></span><h2>Selected features<a class="headerlink" href="#selected-features" title="Permalink to this headline">¶</a></h2>
+<p>Shark currently supports:</p>
+<ul class="simple">
+<li>Supervised learning<ul>
+<li>Linear discriminant analysis (LDA), Fisher&#8211;LDA</li>
+<li>Linear regression</li>
+<li>Support vector machines (SVMs) for one-class, binary and true
+multi-category classification as well as regression; includes fast variants for linear kernels.</li>
+<li>Feed-forward and recurrent multi-layer artificial neural networks</li>
+<li>Radial basis function networks</li>
+<li>Regularization networks as well as Gaussian processes for regression</li>
+<li>Iterative nearest neighbor classification and regression</li>
+<li>Decision trees and random forests</li>
+</ul>
+</li>
+<li>Unsupervised learning<ul>
+<li>Principal component analysis</li>
+<li>Restricted Boltzmann machines (including many state-of-the-art
+learning algorithms)</li>
+<li>Hierarchical clustering</li>
+<li>Data structures for efficient distance-based clustering</li>
+</ul>
+</li>
+<li>Evolutionary algorithms<ul>
+<li>Single-objective optimization (e.g., CMA&#8211;ES)</li>
+<li>Multi-objective optimization (in particular, highly efficient
+algorithms for computing as well as approximating the contributing hypervolume)</li>
+</ul>
+</li>
+<li>Basic linear algebra and optimization algorithms</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    <div class="footer">
+        <div class="footerlogos">
+            <a href="http://validator.w3.org/check/referer" title="Valid XHTML 1.0">
+                <img class="footerlogos" src="_static/xhtml_validation.png" alt="Valid XHTML 1.0" />
+            </a>
+            <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS3">
+                <img class="footerlogos" src="_static/css_validation.png" alt="Valid CSS3" />
+            </a>
+        </div>
+            &copy; The Shark developer team.
+           Created on 09/03/2017
+           using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.5.2
+    </div>
+  </body>
+</html>

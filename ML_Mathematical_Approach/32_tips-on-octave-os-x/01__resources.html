@@ -1,0 +1,175 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h3 level="3">
+  Try installing a later version of Octave than the one recommended on the course content (3.8.0).
+ </h3>
+ <p>
+  <a href="http://wiki.octave.org/Octave_for_MacOS_X">
+   http://wiki.octave.org/Octave_for_MacOS_X
+  </a>
+  . Under "Installing a Mac OS X Bundle," you can click on "download Octave 4.0.3 with Graphical User Interface."
+ </p>
+ <h3 level="3">
+  Error message "unknown or ambiguous terminal type"
+ </h3>
+ <p>
+  A) Try changing the terminal type with this command, for any of "qt", "x11", or "aqua":
+ </p>
+ <pre>setenv("GNUTERM","qt")
+</pre>
+ <p>
+  Alternatively you can install the AquaTerm backend from SourceForge:
+  <a href="http://sourceforge.net/projects/aquaterm/">
+   http://sourceforge.net/projects/aquaterm/
+  </a>
+ </p>
+ <p>
+  and then reinstalling GNUplot with Aqua terminal support:
+ </p>
+ <pre>brew uninstall gnuplot
+brew install gnuplot ----with-aquaterm
+</pre>
+ <p>
+  B) You may also try this:
+ </p>
+ <pre>brew uninstall fontconfig
+brew install fontconfig --universal
+brew uninstall gnuplot
+brew install gnuplot --with-qt
+</pre>
+ <p>
+  ... then add this to ~/.octaverc
+ </p>
+ <pre>setenv("GNUTERM","qt")
+</pre>
+ <h3 level="3">
+  The hist() or plot () function hangs
+ </h3>
+ <p>
+  It's not really hung - on some distributions of Octave, the first plotting function you call causes the font library to generated. This can take a minute or so the first time, then after that the plotting functions will work much faster.
+ </p>
+ <p>
+  Alternatively if Octave still does not respond after some time, you may have to change your fontconfig. I also installed gnuplot with-x11 and changed the file octaverc. These are the terminal commands:
+ </p>
+ <pre>brew install fltk
+brew install gnuplot --with-x11
+brew uninstall fontconfig
+brew install fontconfig --universal
+
+then edit /usr/local/share/octave/site/m/startup/octaverc , put this in the file
+</pre>
+ <p>
+  -------- (start copy) --------
+ </p>
+ <pre>setenv ("GNUTERM", "X11")
+gnuplot_binary("/usr/local/bin/gnuplot")
+graphics_toolkit('gnuplot')
+</pre>
+ <p>
+  -------- (end copy) --------
+ </p>
+ <p>
+  save the file and start octave
+ </p>
+ <p>
+  verify by running:
+ </p>
+ <pre>available_graphics_toolkits       % this will show the available graphics toolkits that can be loaded
+loaded_graphics_toolkits          % this will show the graphics toolkit that is currently loaded
+</pre>
+ <p>
+  other useful command examples:
+ </p>
+ <pre>register_graphics_toolkit("fltk") % this will add the fltk graphics toolkit to the available graphics toolkits list
+graphics_toolkit("qt")            % this will load the qt graphics toolkit
+</pre>
+ <h3 level="3">
+  Errors when editing ex1 "plotData.m"
+ </h3>
+ <p>
+  If you get an error like:
+ </p>
+ <pre>error: invalid character '�' (ASCII 226) near line 14, column 14
+</pre>
+ <p>
+  Then try to uncheck the TextEdit Preference - Smart quotes and Smart dashes; then use double quotes(") instead of single quotes(')
+ </p>
+ <h3 level="3">
+  Try Using Vagrant and Virtualbox
+ </h3>
+ <p>
+  If you are using OS X (and some brands of Linux), you can have a lot of trouble getting the visualizations to work natively. One solution is to turn to virtualization; you can find a vagrant file that gets an ubuntu machine configured in virtual box, along with scripts to make this feel like a native OS X app here:
+  <a href="http://deepneural.blogspot.fr/p/welcome.html">
+   http://deepneural.blogspot.fr/p/welcome.html
+  </a>
+  Another script can be found here, but this one is just the Vagrant file and does not have all the nice OS X scripts bundled with it.
+  <a href="https://gist.github.com/Starefossen/9353638">
+   https://gist.github.com/Starefossen/9353638
+  </a>
+ </p>
+ <p>
+  You'll additionally need virtualbox and vagrant to go down this route, which are thankfully both free.
+  <a href="https://www.virtualbox.org/">
+   https://www.virtualbox.org
+  </a>
+  <a href="https://www.vagrantup.com/">
+   https://www.vagrantup.com
+  </a>
+ </p>
+ <p>
+  You'll need an X server, which you almost certainly are using in Linux already, but does not come out of the box with OS X. OS X users can get it here:
+  <a href="http://www.xquartz.org/">
+   http://www.xquartz.org
+  </a>
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

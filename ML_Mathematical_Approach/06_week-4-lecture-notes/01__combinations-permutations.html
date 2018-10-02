@@ -1,0 +1,460 @@
+<!doctype html>
+<html><!-- #BeginTemplate "/Templates/Advanced.dwt" --><!-- DW6 -->
+<head>
+<!-- #BeginEditable "doctitle" -->
+<title>Combinations and Permutations</title>
+<script language="JavaScript" type="text/javascript">reSpell=[["flavors","flavours"]];</script>
+<!-- #EndEditable -->
+<meta name="keywords" content="math, maths, mathematics, school, homework, education" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="pics-label" content='(PICS-1.1 "http://www.classify.org/safesurf/" L gen true for "http://www.mathsisfun.com" r (SS~~000 1))' />
+<link rel="stylesheet" type="text/css" href="../style2.css" />
+<script src="../main.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="centerfull">
+<div id="adv">
+	<div id="midfull">
+		<div id="header" role="banner">
+
+			<div id="searchBox" role="search">
+				<form action="../sphider/search.php" method="get">
+					<input type="text" name="query" value="" id="searchFld" />
+					<input type="submit" value="Search" name="submit" id="searchBtn" />
+					<input type="hidden" name="search" value="1" />
+				</form>
+			</div>
+
+			<div id="linkto">
+				<script type="text/javascript">getAdRight2();</script>
+			</div>
+
+		</div>
+		<div id="menu" class="centerfull" role="navigation">
+			<script type="text/javascript">getMenuTop();</script>
+		</div>
+			<div id="adhid2">
+				<div id="showads1"><a href="javascript:showads()">Show Ads</a></div>
+				<div id="hideads1"><a href="javascript:hideads()">Hide Ads</a><br /><a href="../about-ads.html">About Ads</a></div>
+			</div>
+
+		<div id="topads" class="centerfull noprint"> 
+			<script type="text/javascript">getAdTop();</script>
+		</div>
+
+		<div id="content" role="main"> <!-- #BeginEditable "Body" -->
+			<h1 align="center">Combinations and Permutations</h1>
+			<h2>What's the Difference?</h2>
+			<p>In English we use the word &quot;combination&quot; loosely, without thinking if the <b>order</b> of things is important. In other words:</p>
+			<table width="100%" border="0">
+				<tr>
+					<td><img src="../images/style/two-speech.gif" width="49" height="40"  alt="in speech" /></td>
+					<td><b><i>&quot;My fruit salad is a combination of  apples, grapes and bananas&quot;</i></b> We don't care what order the fruits are in, they could also be &quot;bananas, grapes and apples&quot; or &quot;grapes, apples and bananas&quot;, its the same fruit salad.</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><img src="../images/style/two-speech.gif" width="49" height="40"  alt="in speech" /></td>
+					<td><b><i>&quot;The combination to the safe is 472&quot;</i></b>. Now we <b>do</b> care about the  order. &quot;724&quot; won't  work, nor will &quot;247&quot;. It has to be exactly <b>4-7-2</b>.</td>
+				</tr>
+			</table>
+			<p>So, in Mathematics we use more <i>precise</i> language:</p>
+			<table width="100%" border="0">
+				<tr>
+					<td width="14%" align="right"><img src="../images/style/dot-blue.gif" width="14" height="14"  alt="dot" /></td>
+					<td width="86%">When the order doesn't matter, it is a <b>Combination</b>.</td>
+				</tr>
+				<tr>
+					<td width="14%" align="right"><img src="../images/style/dot-blue.gif" width="14" height="14"  alt="dot" /></td>
+					<td width="86%">When the order <b>does</b> matter it is a <b>Permutation</b>.</td>
+				</tr>
+			</table>
+			<br />
+			<table width="100%" border="0">
+				<tr>
+					<td width="9%">&nbsp;</td>
+					<td width="18%"><img src="images/combination-lock.jpg" width="150" height="121"  alt="combination lock" /></td>
+					<td width="73%">So, we should really call this  a &quot;Permutation Lock&quot;!</td>
+				</tr>
+			</table>
+			<p>In other words:</p>
+			<p class="larger" align="center"> A Permutation is an <b>ordered</b> Combination.</p>
+			<br />
+			<div class="simple">
+				<table width="80%" border="0" align="center">
+					<tr>
+						<td width="8%"><img src="../images/style/thought-sm.gif" width="45" height="45"  alt="thought" /></td>
+						<td width="92%">To help you to remember, think &quot;<b>P</b>ermutation ... <b>P</b>osition&quot;</td>
+					</tr>
+				</table>
+			</div>
+			<h2>Permutations</h2>
+			<p>There are basically two types of permutation:</p>
+			<ol>
+				<li><b>Repetition is Allowed</b>: such as the lock above. It could be &quot;333&quot;.</li>
+				<li><b>No Repetition</b>: for example the first three people in a running race. You can't be first <i>and</i> second.</li>
+			</ol>
+			<p>&nbsp;</p>
+<h3>1. Permutations with Repetition</h3>
+			<p>These are the easiest  to calculate. </p>
+			<p>When a thing has  <i><b>n</b></i> different types ... we have <i><b>n</b></i> choices each time!</p>
+			<p>For example: choosing <i><b>3</b></i> of those things, the permutations are:</p>
+			<p align="center"><b>n &times; n &times; n<i> <br>
+			</i></b><i>(n multiplied 3 times)</i></p>
+			<p>More generally: choosing <i><b>r</b></i> of something that has <i><b>n</b></i> different types, the permutations are:</p>
+			<p align="center"><b>n &times; n &times; ...<i> (r times)</i></b></p>
+			<p>(In other words, there are <b>n</b> possibilities for the first choice, THEN there are <b>n</b> possibilites for the second choice, and so on, multplying each time.)</p>
+			<p>Which is easier to write down using an <a href="../exponent.html">exponent</a> of <b>r</b>:</p>
+			<p align="center"><b>n &times; n &times; ... (r times) = <span class="larger">n<sup>r</sup></span></b></p>
+			<div class="example">
+				<p>Example: in the lock above, there are 10 numbers to choose from (0,1,2,3,4,5,6,7,8,9) and we choose 3 of them:</p>
+				<p align="center"><b>10 &times; 10 &times; ... (3 times) = 10<sup>3</sup> = 1,000 permutations</b></p>
+			</div>
+			<p>So, the formula is simply:</p>
+			<div class="simple">
+				<table width="44%" border="0" align="center">
+					<tr>
+						<td width="58%" align="center" class="larger"><b>n<sup>r</sup></b></td>
+					</tr>
+					<tr>
+						<td width="58%" align="center">where <i><b>n</b></i> is the number of things to choose from, and we choose <i><b>r</b></i> of them<br />
+							(Repetition allowed, order  matters) </td>
+					</tr>
+				</table>
+			</div>
+			<p align="center">&nbsp;</p>
+			<h3>2. Permutations without Repetition</h3>
+			<p>In this case, we have to <b>reduce</b> the number of available choices each time.</p>
+			<p style="float:left; margin: 0 10px 5px 0;"><img src="images/pool-balls.jpg" width="300" height="80"  alt="pool balls" /></p>
+			<p>For example, what order could 16 pool balls be in?</p>
+			<p>After choosing, say, number &quot;14&quot; we can't choose it again.</p>
+			<p>So, our first choice has 16 possibilites, and our next choice has 15 possibilities, then 14, 13, etc. And the total permutations are:</p>
+			<p align="center"><b>16 &times; 15 &times; 14 &times; 13  &times; ... = 20,922,789,888,000</b></p>
+			<p>But maybe we don't want to choose them all, just 3 of them, so that is only:</p>
+			<p align="center"><b>16 &times; 15 &times; 14 = 3,360</b></p>
+			<p>In other words, there are 3,360 different ways that 3 pool balls could be arranged  out of 16 balls.</p>
+			<div class="def">
+				<p><b>Without repetition our choices get reduced each time.</b></p>
+			</div>
+			<p>But how do we write that mathematically? Answer: we use the &quot;<a href="../numbers/factorial.html">factorial function</a>&quot;</p>
+			<div class="beach">
+				<table width="81%" border="0" align="center">
+					<tr>
+						<td width="13%"><img src="../numbers/images/factorial.gif" width="67" height="125"  alt="exclamation mark means factorial" /></td>
+						<td width="87%"><p>The <b>factorial function</b> (symbol: <b><font size="+1">!</font></b>) just means to multiply a series of descending natural numbers. Examples:</p>
+							<ul>
+								<li>4! = 4 &times; 3 &times; 2 &times; 1 = 24</li>
+								<li>7! = 7 &times; 6 &times; 5 &times;  4 &times; 3 &times; 2 &times; 1 = 5,040</li>
+								<li>1! = 1</li>
+							</ul></td>
+					</tr>
+					<tr>
+						<td colspan="2">Note: it is generally agreed that <b>0! = 1</b>. It may seem funny that multiplying no numbers together gets us 1, but it  helps simplify a lot of equations.</td>
+					</tr>
+				</table>
+			</div>
+			<p>So, when we want to select <b>all</b> of the billiard balls the permutations are:</p>
+			<p align="center"><b>16! = 20,922,789,888,000</b></p>
+			<p>But when we want to select just 3 we don't want to  multiply after 14. How do we do that? There is a neat trick:  we divide by <b>13!</b></p>
+			<table border="0" align="center">
+				<tr>
+					<td><div align="right"><b>16 &times; 15 &times; 14 &times; 13 &times; 12 ... </b></div></td>
+					<td>&nbsp;</td>
+					<td rowspan="2"><b> = 16 &times; 15 &times; 14 = 3,360</b></td>
+				</tr>
+				<tr>
+					<td style="border-top: 1px solid black;"><div align="right"><b>13 &times; 12 ... </b></div></td>
+					<td>&nbsp;</td>
+					</tr>
+		</table>
+			<p>Do you see? <b>16! / 13! = 16 &times; 15 &times; 14</b></p>
+			<p>The formula is written:</p>
+			<div class="simple">
+				<table width="44%" border="0" align="center">
+					<tr>
+						<td width="58%" align="center">
+							<p class="center large"><span class="intbl"><em>n!</em><strong>(n &minus; r)!</strong></span></p></td>
+					</tr>
+					<tr>
+						<td width="58%" align="center">where <i><b>n</b></i> is the number of things to choose from, and we choose <i><b>r</b></i> of them<br />
+							(No repetition, order  matters) </td>
+					</tr>
+				</table>
+			</div>
+			<div class="example">
+				<h3>Example Our &quot;order of 3 out of 16 pool balls example&quot; is:</h3>
+				<table border="0" align="center">
+					<tr align="center">
+						<td><b>16!</b></td>
+						<td rowspan="2">&nbsp;=&nbsp;</td>
+						<td><b>16!</b></td>
+						<td rowspan="2">&nbsp;=&nbsp;</td>
+						<td><b>20,922,789,888,000</b></td>
+						<td rowspan="2"><b>&nbsp;= 3,360</b></td>
+						</tr>
+					<tr align="center">
+						<td style="border-top: 1px solid black;"><b>(16-3)!</b></td>
+						<td style="border-top: 1px solid black;"><b>13!</b></td>
+						<td style="border-top: 1px solid black;"><b>6,227,020,800</b></td>
+						</tr>
+			</table>
+				<p align="center">(which is just the same as:<b> 16 &times; 15 &times; 14 = 3,360</b>)</p>
+			</div>
+			<div class="example">
+				<h3>Example: How many ways can first and second place be awarded to 10 people?</h3>
+				<table border="0" align="center">
+					<tr align="center">
+						<td><b>10!</b></td>
+						<td rowspan="2">&nbsp;=&nbsp;</td>
+						<td><b>10!</b></td>
+						<td rowspan="2">&nbsp;=&nbsp;</td>
+						<td><b>3,628,800</b></td>
+						<td rowspan="2"><b>&nbsp;= 90</b></td>
+						</tr>
+					<tr align="center">
+						<td style="border-top: 1px solid black;"><b>(10-2)!</b></td>
+						<td style="border-top: 1px solid black;"><b>8!</b></td>
+						<td style="border-top: 1px solid black;"><b>40,320</b></td>
+						</tr>
+				</table>
+				<p align="center">(which is just the same as:<b> 10 &times; 9 = 90</b>)</p>
+			</div>
+			<h3>Notation</h3>
+			<p>Instead of writing the whole formula, people use different notations such as these:</p>
+			<p align="center"><img src="images/permutation-notation.png" width="262" height="48"  alt="permutation notation P(n,r) = nPr = n!/(n-r)!" /></p>
+			<div class="example">
+				<p>Example: <b><i>P</i>(10,2) = 90</b></p>
+			</div>
+			<h2>Combinations</h2>
+			<p>There are also two types of combinations (remember the order does <b>not</b> matter now):</p>
+			<ol>
+				<li><b>Repetition is Allowed</b>: such as coins in your pocket (5,5,5,10,10)</li>
+				<li><b>No Repetition</b>: such as lottery numbers (2,14,15,27,30,33)</li>
+			</ol>
+			<p>&nbsp;</p>
+<h3>1. Combinations with Repetition</h3>
+			<p>Actually, these are the hardest to explain, so we will come back to this later.</p>
+			<h3>2. Combinations without Repetition</h3>
+			<p>This is how <a href="../data/lottery.html">lotteries</a> work. The numbers are drawn one at a time, and if we have the lucky numbers (no matter what order) we win!</p>
+			<p>The easiest way to explain it is to:</p>
+			<ul>
+				<li>assume that the order does matter (ie permutations), </li>
+				<li>then  alter it so the order does <b>not</b> matter.</li>
+			</ul>
+			<p>Going back to our pool ball example, let's say we just want to know which  3 pool balls are chosen, not the order.</p>
+			<p>We already know that 3 out of 16 gave us 3,360 permutations.</p>
+			<p>But many of those are the same to us now, because we don't care what order!</p>
+			<p>For example, let us say balls 1, 2 and 3 are chosen. These are the possibilites:</p>
+			<table width="50%" border="0" align="center">
+				<tr align="center">
+					<td width="50%">Order does matter</td>
+					<td width="50%">Order doesn't matter</td>
+				</tr>
+				<tr align="center">
+					<td width="50%"> 1 2 3<br />
+						1 3 2<br />
+						2 1 3<br />
+						2 3 1<br />
+						3 1 2<br />
+						3 2 1</td>
+					<td width="50%">1 2 3</td>
+				</tr>
+			</table>
+			<p>So, the permutations will have 6 times as many possibilites.</p>
+			<p>In fact there is an easy way to work out how many ways &quot;1 2 3&quot; could be placed in order, and we have already talked about it. The answer is:</p>
+			<p align="center"><b>3!</b> <b>= 3 &times; 2 &times; 1 = 6</b></p>
+			<p>(Another example: 4 things can be placed in <b>4!</b> <b>= 4 &times; 3 &times; 2 &times; 1 = 24 </b>different ways, try it for yourself!)</p>
+			<p>So we adjust our permutations formula to <b>reduce it</b> by how many ways the objects could be in order (because we aren't interested in their order any more):</p>
+			<p align="center"><img src="images/combinations-no-repeat-a.png" width="223" height="48"  alt="combinations no repeat: n!/(n-r)! x (1/r!) = n!/r!(n-r)!" /></p>
+			<p>That formula is so important it is often just written in big parentheses like this:</p>
+			<div class="simple">
+				<table width="320" border="0" align="center">
+					<tr>
+						<td align="center"><img src="images/combinations-no-repeat.png" width="150" height="53"  alt="combinations no repeat: n!/r!(n-r)! = ( n r )" /></td>
+					</tr>
+					<tr>
+						<td align="center">where <i><b>n</b></i> is the number of things to choose from, and we choose <i><b>r</b></i> of them<br />
+							(No repetition, order doesn't matter)</td>
+					</tr>
+				</table></div>
+				<div class="words">
+					<p>It is often called &quot;n choose r&quot; (such as &quot;16 choose 3&quot;)</p>
+					<p>And is also known as the <a href="../data/binomial-distribution.html">Binomial Coefficient</a>.</p>
+				</div>
+				<h3>Notation</h3>
+				<p>As well as the &quot;big parentheses&quot;, people also use these notations:</p>
+				<p align="center"><img src="images/combination-notation.png" width="345" height="53"  alt="combination notation: C(n,r) = nCr = ( n r ) = n!/r!(n-r)!" /></p>
+				<p class="larger" align="center">&nbsp;</p>
+				<p class="larger" align="center"><font color="red">Just remember the formula:</font></p>
+				<p class="center large"><span class="intbl"><em>n!</em><strong>r!(n &minus; r)!</strong></span></p>
+				<h3>Example</h3>
+		
+			<p>So, our pool ball example (now without order) is:</p>
+			<table border="0" align="center">
+				<tr align="center">
+					<td><b>16!</b></td>
+					<td rowspan="2">&nbsp;=&nbsp;</td>
+					<td><b>16!</b></td>
+					<td rowspan="2">&nbsp;=&nbsp;</td>
+					<td><b>20,922,789,888,000</b></td>
+					<td rowspan="2"><b>&nbsp;= 560</b></td>
+				</tr>
+				<tr align="center">
+					<td style="border-top: 1px solid black;"><b>3!(16-3)!</b></td>
+					<td style="border-top: 1px solid black;"><b>3!&times;13!</b></td>
+					<td style="border-top: 1px solid black;"><b>6&times;6,227,020,800</b></td>
+					</tr>
+			</table>
+			<p>Or we could do it this way:</p>
+			<table border="0" align="center">
+				<tr align="center">
+					<td><b>16&times;15&times;14</b></td>
+					<td rowspan="2">&nbsp;=&nbsp;</td>
+					<td><b>3360</b></td>
+					<td rowspan="2"><b>&nbsp;= 560</b></td>
+				</tr>
+				<tr align="center">
+					<td style="border-top: 1px solid black;"><b>3&times;2&times;1</b></td>
+					<td style="border-top: 1px solid black;"><b>6</b></td>
+					</tr>
+			</table>
+			<br />
+			<p class="larger" align="center">&nbsp;</p>
+			<p>It is interesting to also note how this formula is nice and <b>symmetrical</b>:</p>
+			<p align="center"><img src="images/combinations-no-repeat-b.png" width="248" height="53"  alt="n!/r!(n-r)! = ( n r ) = ( n n-r )" /></p>
+			<p>In other words choosing 3 balls out of 16, or choosing 13 balls out of 16 have the same number of combinations.</p>
+			<table border="0" align="center">
+				<tr align="center">
+					<td><b>16!</b></td>
+					<td rowspan="2">&nbsp;=&nbsp;</td>
+					<td><b>16!</b></td>
+					<td rowspan="2">&nbsp;=&nbsp;</td>
+					<td><b>16!</b></td>
+					<td rowspan="2"><b>&nbsp;= 560</b></td>
+				</tr>
+				<tr align="center">
+					<td style="border-top: 1px solid black;"><b>3!(16-3)!</b></td>
+					<td style="border-top: 1px solid black;"><b>13!(16-13)!</b></td>
+					<td style="border-top: 1px solid black;"><b>3!&times;13!</b></td>
+					</tr>
+			</table>
+			<h3>Pascal's Triangle</h3>
+			<p>We can also use <a href="../pascals-triangle.html">Pascal's Triangle</a> to find the values. Go down to  row &quot;n&quot; (the top row is 0), and then along &quot;r&quot; places and the value there is our answer. Here is an extract  showing row 16:</p>
+			<center>
+				<pre class="largemono">1    14    91    364  ...<br />
+1    15    105   455   1365  ...<br />
+1    16   120   <b>560</b>   1820  4368  ...</pre>
+			</center>
+			<p>&nbsp;</p>
+			<h3>1. Combinations with Repetition</h3>
+			
+			<p>OK, now we can tackle this one ...</p>
+			<p style="float:left; margin: 0 10px 5px 0;"><img src="images/ice-cream.jpg" width="100" height="133"  alt="ice cream" /></p>
+			<p>Let us say there are five flavors of icecream: <b>banana, chocolate,  lemon, strawberry and vanilla</b>. </p>
+			<p>We can have three scoops. How many variations will there be?</p>
+			<p>Let's use letters for the  flavors:  {b, c, l, s, v}. Example selections include </p>
+			<ul>
+				<li>{c, c, c} (3 scoops of chocolate)</li>
+				<li>{b, l, v} (one each of banana, lemon and vanilla)</li>
+				<li>{b, v, v} (one of banana, two of vanilla)</li>
+			</ul>
+			
+			<p align="center">(And just to be clear: There are <b>n=5</b> things to choose from, and we choose <b>r=3</b> of them.<br />
+				Order does not matter, and we <b>can</b> repeat!)</p>
+			<p>Now, I can't describe directly to you how to calculate this, but I can show you a <b>special technique</b> that lets you  work it out.</p>
+			<p class="center80" style="float:left; margin: 0 10px 5px 0;"><img src="images/bclsv.gif" width="190" height="49"  alt="bclsv" /></p>
+			<p class="center80">Think about the ice cream being in boxes, we could say &quot;move past the first box, then take 3 scoops, then move  along 3 more boxes to the end&quot; and we will have 3 scoops of chocolate! </p>
+			<p>So it is like we are ordering a robot to get our ice cream, but it doesn't change anything, we still get what we want.</p>
+			<p>We can write this down as <img src="images/acccaaa.gif" width="125" height="17"  alt="acccaaa" /> (arrow means <b>move</b>, circle means <b>scoop</b>).</p>
+			<p>In fact the three examples above can be written like this:</p>
+			<table width="100%" border="0">
+				<tr>
+					<td width="57%">{c, c, c} (3 scoops of chocolate):</td>
+					<td width="43%"><img src="images/acccaaa.gif" width="127" height="17"  alt="acccaaa" /></td>
+				</tr>
+				<tr>
+					<td width="57%">{b, l, v} (one each of banana, lemon and vanilla):</td>
+					<td width="43%"><img src="images/caacaac.gif" width="128" height="17"  alt="caacaac" /></td>
+				</tr>
+				<tr>
+					<td width="57%">{b, v, v} (one of banana, two of vanilla):</td>
+					<td width="43%"><img src="images/caaaacc.gif" width="129" height="17"  alt="caaaacc" /></td>
+				</tr>
+			</table>
+			<p>OK, so instead of worrying about different flavors, we have a <i><b>simpler</b></i> question: &quot;how many different ways can we arrange arrows and circles?&quot;</p>
+			<p>Notice that there are always 3 circles (3 scoops of ice cream) and 4 arrows (we need to move 4 times to go from the 1st to 5th container). </p>
+			<p>So (being general here) there are <i><b>r + (n&minus;1)</b></i> positions, and we want to choose <i><b>r</b></i> of them to have circles. </p>
+			<p>This  is like saying &quot;we have <i><b>r + (n&minus;1)</b></i> pool balls and want to choose <i><b>r</b></i> of them&quot;. In other words it is now like the pool balls question, but with slightly changed numbers. And we can write it like this: </p>
+			<div class="simple">
+				<table width="320" border="0" align="center">
+					<tr>
+						<td align="center"><img src="images/combinations-repeat.gif" width="250" height="58"  alt="combinations repeat: ( r+n-1 r ) = (r+n-1)!/r!(n-r)!" /></td>
+					</tr>
+					<tr>
+						<td align="center">where <i><b>n</b></i> is the number of things to choose from, and we choose <i><b>r</b></i> of them<br />
+							(Repetition allowed, order  doesn't matter)</td>
+					</tr>
+				</table>
+			</div>
+			<p>Interestingly,  we can look at the arrows instead of the circles, and  say &quot;we have <i><b>r + (n&minus;1)</b></i> positions and want to choose <i><b>(n&minus;1)</b></i> of them to have arrows&quot;, and the answer is the same:</p>
+			<p align="center"><img src="images/combinations-repeat-a.gif" width="380" height="54"  alt="( r+n-1 r ) = ( r+n-1 n-1 ) = (r+n-1)!/r!(n-r)!" /></p>
+			<p>So, what about our example, what is the answer?</p>
+			<table border="0" align="center">
+				<tr align="center">
+					<td><b>(3+5&minus;1)!</b></td>
+					<td rowspan="2">&nbsp;=&nbsp;</td>
+					<td><b>7!</b></td>
+					<td rowspan="2">&nbsp;=&nbsp;</td>
+					<td><b>5040</b></td>
+					<td rowspan="2"><b>&nbsp;= 35</b></td>
+				</tr>
+				<tr align="center">
+					<td style="border-top: 1px solid black;"><b>3!(5&minus;1)!</b></td>
+					<td style="border-top: 1px solid black;"><b>3!&times;4!</b></td>
+					<td style="border-top: 1px solid black;"><b>6&times;24</b></td>
+					</tr>
+			</table>
+<p>There are 35 ways of having 3 scoops from five flavors of icecream.</p>
+			<h2>In Conclusion</h2>
+			<p>Phew, that was a lot to absorb, so maybe you could read it again to be sure!</p>
+			<p>But knowing <i>how</i> these formulas work is only half the battle. Figuring out how to interpret a real world situation can be quite hard.</p>
+			<p>But at least now you know how to calculate all 4 variations of &quot;Order does/does not matter&quot; and &quot;Repeats are/are not allowed&quot;.</p>
+			<p>&nbsp;</p>
+			<div class="questions"> 
+
+<script type="text/javascript">getQ(708, 1482, 709, 1483, 747, 1484, 748, 749, 1485, 750);</script>&nbsp;
+
+
+</div>
+			<div class="activity"> <a href="../activity/subsets.html">Activity: Subsets</a></div>
+		
+			<div class="related"> <a href="combinations-permutations-calculator.html">Combinations and Permutations Calculator</a> <a href="../pascals-triangle.html">Pascal's Triangle</a> <a href="../data/lottery.html">Lotteries</a></div>
+			<!-- #EndEditable --> 
+		<div id="adend" class="centerfull noprint"> 
+			<script type="text/javascript">getAdEnd();</script>
+		</div>
+		</div>
+		<div id="footer" class="centerfull noprint">
+			<div class="footFriend"><a href="javascript:tellAFriend();"></a></div>
+			<div class="footFave"><a href="javascript:addFavorites();"></a></div>
+			<div class="footLink"><a href="javascript:linkToUs();"></a></div>
+		</div>
+		<div id="foot-menu" class="centerfull"><a href="../sphider/search.php">Search</a> :: <a href="../links/index.html">Index</a> :: <a href="../aboutmathsisfun.html">About</a> :: <a href="../contact.php">Contact</a> :: <a href="javascript:Contribute()">Contribute</a> :: <a href="javascript:Citation()">Cite This Page</a> :: <a href="../Privacy.htm">Privacy</a> <br />
+			<br />
+			<span class="tiny">Copyright &copy; 2014 MathsIsFun.com</span> <br />
+		</div>
+	</div>
+</div>
+</div>
+<div class="left column zneg">
+	<div id="leftcol"></div>
+</div>
+<div class="right column zneg">
+	<div id="rightcol"></div>
+</div>
+<script type="text/javascript">getBodyEnd();</script>
+</body>
+<!-- #EndTemplate --></html>

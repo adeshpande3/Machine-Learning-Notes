@@ -1,0 +1,106 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Video Lecture Errata
+ </h1>
+ <p hasmath="true">
+  In the video ‘Motivation II: Visualization’, around 2:45, prof. Ng says $$ℝ^2$$, but writes ℝ. The latter is incorrect and should be $$ℝ^2$$.
+ </p>
+ <p hasmath="true">
+  In the video ‘Motivation II: Visualization’, the quiz at 5:00 has a typo where the reduced data set should be go up to $$z^{(n)}$$ rather than $$z^{(m)}$$.
+ </p>
+ <p hasmath="true">
+  In the video "Principal Component Analysis Algorithm", around 1:00 the slide should read "Replace each $$x_j^{(i)}$$ with $$x_j^{(i)}-\mu_j$$." (The second x is missing the superscript (i).)
+ </p>
+ <p>
+  In the video "Principal Component Analysis Algorithm", the formula shown at around 5:00 incorrectly shows summation from 1 to n. The correct summation (shown later in the video) is from 1 to m. In the matrix U shown at around 9:00 incorrectly shows superscript of last column-vector "u" as m, the correct superscript is n.
+ </p>
+ <p>
+  In the video "Reconstruction from Compressed Representation", the quiz refers to a formula which is defined in the next video, "Choosing the Number of Principal Components"
+ </p>
+ <p>
+  In the video "Choosing the number of principal components" at 8:45, the summation in the denominator should be from 1 to n (not 1 to m).
+ </p>
+ <p>
+  In the in-video quiz in "Data Compression" at 9:47 the correct answer contains k≤n but it should be k&lt;n.
+ </p>
+ <h1 level="1">
+  Programming Exercise Errata
+ </h1>
+ <p>
+  In the ex7.pdf file, Section 2.2 says “You task is to complete the code” but it should be “You
+  <strong>
+   r
+  </strong>
+  task”
+ </p>
+ <p>
+  In the ex7.pdf file, Section 2.4.1 should say that each column (not row) vector of U represents a principal component.
+ </p>
+ <p>
+  In the ex7.pdf file, Section 2.4.2 there is a typo: “predict the identit
+  <strong>
+   f
+  </strong>
+  y of the person” (the 'f' is unneeded).
+ </p>
+ <p>
+  In the ex7_pca.m file at line 126, the fprintf string says '(this mght take a minute or two ...)'. The 'mght' should be 'might'.
+ </p>
+ <p>
+  In the ex7 projectData.m file, update the Instructions to read:
+ </p>
+ <pre>%    projection_k = x' * U(:, k);
+</pre>
+ <p>
+  In the function script "pca.m", the 3rd line should read "[U, S] = pca(X)" not "[U, S, X] = pca(X)"
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

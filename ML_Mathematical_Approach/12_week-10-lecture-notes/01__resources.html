@@ -1,0 +1,200 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Learning with Large Datasets
+ </h1>
+ <p>
+  We mainly benefit from a very large dataset when our algorithm has high variance when m is small. Recall that if our algorithm has high bias, more data will not have any benefit.
+ </p>
+ <p>
+  Datasets can often approach such sizes as m = 100,000,000. In this case, our gradient descent step will have to make a summation over all one hundred million examples. We will want to try to avoid this -- the approaches for doing so are described below.
+ </p>
+ <h1 level="1">
+  Stochastic Gradient Descent
+ </h1>
+ <p>
+  Stochastic gradient descent is an alternative to classic (or batch) gradient descent and is more efficient and scalable to large data sets.
+ </p>
+ <p>
+  Stochastic gradient descent is written out in a different but similar way:
+ </p>
+ <p hasmath="true">
+  $$cost(\theta,(x^{(i)}, y^{(i)})) = \dfrac{1}{2}(h_{\theta}(x^{(i)}) - y^{(i)})^2$$
+ </p>
+ <p hasmath="true">
+  The only difference in the above cost function is the elimination of the m constant within $$\dfrac{1}{2}$$.
+ </p>
+ <p hasmath="true">
+  $$J_{train}(\theta) = \dfrac{1}{m} \displaystyle \sum_{i=1}^m cost(\theta, (x^{(i)}, y^{(i)}))$$
+ </p>
+ <p hasmath="true">
+  $$J_{train}$$ is now just the average of the cost applied to all of our training examples.
+ </p>
+ <p>
+  The algorithm is as follows
+ </p>
+ <ol bullettype="numbers">
+  <li>
+   <p>
+    Randomly 'shuffle' the dataset
+   </p>
+  </li>
+  <li>
+   <p hasmath="true">
+    For $$i = 1\dots m$$
+   </p>
+  </li>
+ </ol>
+ <p hasmath="true">
+  $$\Theta_j := \Theta_j - \alpha (h_{\Theta}(x^{(i)}) - y^{(i)}) \cdot x^{(i)}_j$$
+ </p>
+ <p>
+  This algorithm will only try to fit one training example at a time. This way we can make progress in gradient descent without having to scan all m training examples first. Stochastic gradient descent will be unlikely to converge at the global minimum and will instead wander around it randomly, but usually yields a result that is close enough. Stochastic gradient descent will usually take 1-10 passes through your data set to get near the global minimum.
+ </p>
+ <h2 level="2">
+  Mini-Batch Gradient Descent
+ </h2>
+ <p>
+  Mini-batch gradient descent can sometimes be even faster than stochastic gradient descent. Instead of using all m examples as in batch gradient descent, and instead of using only 1 example as in stochastic gradient descent, we will use some in-between number of examples b.
+ </p>
+ <p>
+  Typical values for b range from 2-100 or so.
+ </p>
+ <p>
+  For example, with b=10 and m=1000:
+ </p>
+ <p>
+  Repeat:
+ </p>
+ <p hasmath="true">
+  For $$i = 1,11,21,31,\dots,991$$
+ </p>
+ <p hasmath="true">
+  $$\theta_j := \theta_j - \alpha \dfrac{1}{10} \displaystyle \sum_{k=i}^{i+9} (h_\theta(x^{(k)}) - y^{(k)})x_j^{(k)}$$
+ </p>
+ <p>
+  We're simply summing over ten examples at a time. The advantage of computing more than one example at a time is that we can use vectorized implementations over the b examples.
+ </p>
+ <h1 level="1">
+  Stochastic Gradient Descent Convergence
+ </h1>
+ <p>
+  How do we choose the learning rate α for stochastic gradient descent? Also, how do we debug stochastic gradient descent to make sure it is getting as close as possible to the global optimum?
+ </p>
+ <p>
+  One strategy is to plot the average cost of the hypothesis applied to every 1000 or so training examples. We can compute and save these costs during the gradient descent iterations.
+ </p>
+ <p>
+  With a smaller learning rate, it is
+  <strong>
+   possible
+  </strong>
+  that you may get a slightly better solution with stochastic gradient descent. That is because stochastic gradient descent will oscillate and jump around the global minimum, and it will make smaller random jumps with a smaller learning rate.
+ </p>
+ <p>
+  If you increase the number of examples you average over to plot the performance of your algorithm, the plot's line will become smoother.
+ </p>
+ <p>
+  With a very small number of examples for the average, the line will be too noisy and it will be difficult to find the trend.
+ </p>
+ <p hasmath="true">
+  One strategy for trying to actually converge at the global minimum is to
+  <strong>
+   slowly decrease α over time
+  </strong>
+  . For example $$\alpha = \dfrac{const1}{iterationNumber + const2}$$
+ </p>
+ <p>
+  However, this is not often done because people don't want to have to fiddle with even more parameters.
+ </p>
+ <h1 level="1">
+  Online Learning
+ </h1>
+ <p>
+  With a continuous stream of users to a website, we can run an endless loop that gets (x,y), where we collect some user actions for the features in x to predict some behavior y.
+ </p>
+ <p>
+  You can update θ for each individual (x,y) pair as you collect them. This way, you can adapt to new pools of users, since you are continuously updating theta.
+ </p>
+ <h1 level="1">
+  Map Reduce and Data Parallelism
+ </h1>
+ <p>
+  We can divide up batch gradient descent and dispatch the cost function for a subset of the data to many different machines so that we can train our algorithm in parallel.
+ </p>
+ <p hasmath="true">
+  You can split your training set into z subsets corresponding to the number of machines you have. On each of those machines calculate $$\displaystyle \sum_{i=p}^{q}(h_{\theta}(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)}$$, where we've split the data starting at p and ending at q.
+ </p>
+ <p>
+  MapReduce will take all these dispatched (or 'mapped') jobs and 'reduce' them by calculating:
+ </p>
+ <p hasmath="true">
+  $$\Theta_j := \Theta_j - \alpha \dfrac{1}{z}(temp_j^{(1)} + temp_j^{(2)} + \cdots + temp_j^{(z)})$$
+ </p>
+ <p hasmath="true">
+  For all $$j = 0, \dots, n$$.
+ </p>
+ <p>
+  This is simply taking the computed cost from all the machines, calculating their average, multiplying by the learning rate, and updating theta.
+ </p>
+ <p>
+  Your learning algorithm is MapReduceable if it can be
+  <em>
+   expressed as computing sums of functions over the training set
+  </em>
+  . Linear regression and logistic regression are easily parallelizable.
+ </p>
+ <p>
+  For neural networks, you can compute forward propagation and back propagation on subsets of your data on many machines. Those machines can report their derivatives back to a 'master' server that will combine them.
+ </p>
+ <p>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

@@ -1,0 +1,140 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  ML:Programming Exercise 3:Multi-class Classification and Neural Networks
+ </h1>
+ <h3 level="3">
+  Debugging Tip
+ </h3>
+ <p>
+  The submit script, for all the programming assignments, does not report the line number and location of the error when it crashes. The follow method can be used to make it do so which makes debugging easier.
+ </p>
+ <p>
+  Open ex3/lib/submitWithConfiguration.m and replace line:
+ </p>
+ <pre> fprintf('!! Please try again later.\n');
+</pre>
+ <p>
+  (around 28) with:
+ </p>
+ <pre>fprintf('Error from file:%s\nFunction:%s\nOn line:%d\n', e.stack(1,1).file,e.stack(1,1).name, e.stack(1,1).line );
+</pre>
+ <p>
+  That top line says '!! Please try again later' on crash, instead of that, the bottom line will give the location and line number of the error. This change can be applied to all the programming assignments.
+ </p>
+ <h3 level="3">
+  1.4.1 One-vs-all Prediction
+ </h3>
+ <p>
+  The pdf says you should get 94.9% training accuracy. This might not be correct depending on how you implement your code.
+ </p>
+ <p>
+  <em>
+   "The result you will get may differ a little bit based on how you implement your code. Sometimes, although mathematically two expressions are the same, Matlab may compute them differently. For example, expressions X'*(sigmoid(X*theta)-y) and sum((sigmoid(X*theta)-y)*ones(1,size(X,2)).*X) are the same mathematically; however, Matlab does not compute them the same numerically. I tried to use the same input for these two expressions and Matlab gave me a difference about 2*10^(-10) in 1 norm. Therefore, when you use different expressions to compute the gradient and then use fmincg to learn the parameters, your result may be a little different. Actually, when I used the first expression, I got the accruacy 95.14% and when I used the second one, I got 94.94%. They should be both correct in this sense."
+  </em>
+  <strong>
+   -Posted by guoxian (Student)
+  </strong>
+ </p>
+ <p>
+  Use the submit feature to find out if you are correct even if you get a different answer for training accuracy.
+ </p>
+ <h3 level="3">
+  <strong>
+   2.2 Feedforward Propagation and Prediction (Neural network)
+  </strong>
+ </h3>
+ <p hasmath="true">
+  It wasn't clear to me weather when computing the hidden layer you only need to compute $$g(z^1)$$, or should you transform it to binary values (set the value to 1 for g&gt;0.5 and to 0 for g&lt;0.5), like we learned in logistic regression. Both solutions give almost the same results in the final predictions. From the "submit" feature it is clear that you shouldn't transform the values to binary values.
+  <strong>
+   -Posted by inna (Student)
+  </strong>
+ </p>
+ <h3 level="3">
+  <strong>
+   Prediction of an image outside the dataset (Neural Network)
+  </strong>
+ </h3>
+ <p>
+  To test the prediction with images outside the dataset, below is a code that I wrote to import the image and use the prediction.
+ </p>
+ <pre>function p = predictImg(Theta1, Theta2, Img)
+X = imread(Img);% reads the image .bmp (24 bits) (20x20)
+
+X = double(X);% converts it to double
+temp = X;% creates a copy for later use
+
+X = (X.-128)./255;%normalize the features
+X = X .* (temp &gt; 0);%return the original 0 values to the X
+X = reshape(X, [], numel(X));%converts the 20x20 matrix into a 1x400 vector
+
+displayData(X);%display the image imported
+
+p = predict(Theta1, Theta2, X);% calls the neural network prediction method
+</pre>
+ <p>
+  Usage:
+ </p>
+ <pre>p = predictImg(Theta1, Theta2, '1.bmp');
+</pre>
+ <p>
+  Obs: Because this function will use the Theta1, and Theta2 created my
+  <strong>
+   ex3_nn
+  </strong>
+  , call it before the first use of this function.
+ </p>
+ <p>
+  <strong>
+   -Posted by Vítor Albiero (Student)
+  </strong>
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

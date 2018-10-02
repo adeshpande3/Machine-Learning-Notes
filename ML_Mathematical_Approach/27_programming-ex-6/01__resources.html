@@ -1,0 +1,216 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  ML:Programming Exercise 6:Support Vector Machines
+ </h1>
+ <p>
+  Keep in mind that all the programming exercise solutions should handle any number of features in the training examples. Passing the test case in the PDF file is not sufficient to be sure of passing the submit grader's test case.
+ </p>
+ <h3 level="3">
+  Debugging Tip
+ </h3>
+ <p>
+  The submit script, for all the programming assignments, does not report the line number and location of the error when it crashes. The follow method can be used to make it do so which makes debugging easier.
+ </p>
+ <p>
+  Open ex6/lib/submitWithConfiguration.m and replace line:
+ </p>
+ <pre> fprintf('!! Please try again later.\n');
+</pre>
+ <p>
+  (around 28) with:
+ </p>
+ <pre>fprintf('Error from file:%s\nFunction:%s\nOn line:%d\n', e.stack(1,1).file,e.stack(1,1).name, e.stack(1,1).line );
+</pre>
+ <p>
+  That top line says '!! Please try again later' on crash, instead of that, the bottom line will give the location and line number of the error. This change can be applied to all the programming assignments.
+ </p>
+ <h2 level="2">
+  Update to ex6.m
+ </h2>
+ <p>
+  At line 69/70, change "sigma = 0.5" to "sigma = %0.5f", and change the list of output variables from "sim" to "sigma, sim". This lets the screen output display the actual value of sigma, rather than an (incorrect) constant value.
+ </p>
+ <h2 level="2">
+  Trouble with the contour plot (visualizeBoundary.m)
+ </h2>
+ <h3 level="3">
+  Octave 3.8.x and higher
+ </h3>
+ <p>
+  If you have Octave 3.8.x, the ex6 script will not plot decision boundary, and prints 'Unknown hggroup property Color' with stack trace.
+ </p>
+ <p>
+  One fix is to modify line 21 in visualizeBoundary.m with this code:
+ </p>
+ <pre>contour(X1, X2, vals, [1 1], 'linecolor', 'blue');
+</pre>
+ <p>
+  (Note: I tried this and although the error went away, I still don't see any contour line drawn; sokolov 3/22/2015)
+ </p>
+ <p>
+  I had the same problem with the line not displaying until i changed the [0 0] to [1 1] - tmcarthur 7/1/2016
+ </p>
+ <p>
+  OR
+ </p>
+ <p>
+  If you change line 21 to following, it will show two lines and will work with &gt;= 3.8.x .
+ </p>
+ <pre>contour(X1, X2, vals);
+</pre>
+ <p>
+  For more information see
+ </p>
+ <p>
+  <a href="http://lists.gnu.org/archive/html/octave-bug-tracker/2014-01/msg00226.html">
+   http://lists.gnu.org/archive/html/octave-bug-tracker/2014-01/msg00226.html
+  </a>
+ </p>
+ <h3 level="3">
+  Matlab
+ </h3>
+ <p>
+  In Matlab R2014b and R2015b, simply changing the [0 0] parameter on line 21 in visualizeBoundary.m to [1 1] plots the boundary.
+ </p>
+ <h2 level="2">
+  processEmail no loop possible
+ </h2>
+ <p>
+  Can use find() or ismember() for the word vocabulary cell array
+ </p>
+ <h2 level="2">
+  Understanding SMO and the svmTrain() and svmPredict() methods
+ </h2>
+ <p>
+  The
+  <strong>
+   svmTrain.m
+  </strong>
+  file is provided with this exercise and it contains an implementation of the Sequential Minimal Optimization (SMO) algorithm to minimize an SVM. You don't need to understand how it works in order to complete the exercise. There are comments in the code that reference numbered equations, but the code doesn't say what document those numbers reference. It turns out to be a section of the course materials from CS 229 at Stanford covering SMO, which can be found here:
+ </p>
+ <p>
+  <a href="http://cs229.stanford.edu/materials/smo.pdf">
+   http://cs229.stanford.edu/materials/smo.pdf
+  </a>
+ </p>
+ <h2 level="2">
+  More SVM explanations
+ </h2>
+ <p>
+  "An Idiot's Guide to Support Vector Machines"
+ </p>
+ <p>
+  <a href="http://web.mit.edu/6.034/wwwbob/svm-notes-long-08.pdf">
+   http://web.mit.edu/6.034/wwwbob/svm-notes-long-08.pdf
+  </a>
+ </p>
+ <h2 level="2">
+  Information on SVMLIB
+ </h2>
+ <p>
+  This exercise uses the SVMLIB package to solve an exercise similar to ex6 (also by Prof Ng).
+ </p>
+ <p>
+  <a href="http://openclassroom.stanford.edu/MainFolder/DocumentPage.php?course=MachineLearning&amp;doc=exercises/ex7/ex7.html">
+   http://openclassroom.stanford.edu/MainFolder/DocumentPage.php?course=MachineLearning&amp;doc=exercises/ex7/ex7.html
+  </a>
+ </p>
+ <h2 level="2">
+  Using LIBSVM in MATLAB/Octave
+ </h2>
+ <p>
+  In the optional section of this exercise, Prof Ng recommended that we use LIBSVM to solve the problem.
+ </p>
+ <p>
+  <a href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/">
+   http://www.csie.ntu.edu.tw/~cjlin/libsvm/
+  </a>
+ </p>
+ <p>
+  Installing LIBSVM on MATLAB/Octave is very easy.
+ </p>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    After downloading and unzipping the LIBSVM package, open MATLAB/Octave.
+   </p>
+  </li>
+  <li>
+   <p>
+    Go to the directory of the MATLAB/Octave version, e.g. "E:/CourseraML/machine-learning-ex6/ex6/libsvm-3.21/matlab"
+   </p>
+  </li>
+  <li>
+   <p>
+    Enter "make" in the command window.
+   </p>
+  </li>
+  <li>
+   <p>
+    That's it! You're done! Now read the README file in the MATLAB directory, and learn how to use svmtrain and svmpredict function.
+   </p>
+  </li>
+  <li>
+   <p>
+    In short, the syntax of these two functions are:model =
+    <strong>
+     svmtrain
+    </strong>
+    ( trainingLabelVector, trainingInstanceMatrix [, 'libsvmOptions'])[predictedLabel, accuracy, decisionValues/probEstimates] =
+    <strong>
+     svmpredict
+    </strong>
+    ( testingLabelVector, testingInstanceMatrix, model [, 'libsvmOptions']);
+   </p>
+  </li>
+ </ul>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

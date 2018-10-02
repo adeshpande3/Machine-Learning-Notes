@@ -1,0 +1,121 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h3 level="3">
+  <strong>
+   Errata in the Graded Quizzes
+  </strong>
+ </h3>
+ <p>
+  Quiz questions in Week 6 should refer to linear regression, not logistic regression (typo only).
+ </p>
+ <h3 level="3">
+  <strong>
+   Errata in the Video Lectures
+  </strong>
+ </h3>
+ <p>
+  In the "Regularization and Bias/Variance" video
+ </p>
+ <p hasmath="true">
+  The slide "Linear Regression with Regularization" has an error in the formula for J(θ): the regularization term should go from j=1 up to n (and not m), that is $$\frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2$$. The quiz in the video "Regularization and Bias/Variance" has regularization terms for $$J_{train}$$ and $$J_{CV}$$, while the rest of the video stresses that these should not be there. Also, the quiz says "Consider regularized logistic regression," but exhibits cost functions for regularized linear regression.
+ </p>
+ <p>
+  At around 5:58, Prof. Ng says, "picking theta-5, the fifth order polynomial". Instead, he should have said the fifth value of λ (0.08), because in this example, the polynomial degree is fixed at d = 4 and we are varying λ.
+ </p>
+ <p>
+  In the "Advice for applying ML" set of videos
+ </p>
+ <p hasmath="true">
+  Often (if not always)
+  <strong>
+   the sums corresponding to the regularization terms in J(θ)
+  </strong>
+  are (erroneously) written with j running from 1 to m. In fact,
+  <strong>
+   j should run from 1 to n
+  </strong>
+  , that is, the regularization term should be $$\lambda \sum_{j=1}^n \theta_j^2$$. The variable m is the number of (x,y) pairs in the set used to calculate the cost, while n is the largest index of j in the θj parameters or in the elements $$x_j$$ of the vector of features.
+ </p>
+ <p>
+  In the "Advice for Applying Machine Learning" section, the figure that illustrates the relationship between lambda and the hypothesis. used to detect high variance or high bias, is incorrect. Jtrain is low when lambda is small (indicating a high variance problem) and high when lambda is high (indicating a high bias problem).
+ </p>
+ <p>
+  Video (10-2: Advice for Applying Machine Learning -- hypothesis testing)
+ </p>
+ <p>
+  The slide that introduces
+  <strong>
+   Training/Testing procedure for logistic regression
+  </strong>
+  , (around 04:50) the cost function is incorrect. It should be:
+ </p>
+ <p hasmath="true">
+  $$J_{\mathrm{test}}(\theta)=-\frac{1}{m_{\mathrm{test}}}\sum_{i=1}^{m_{\mathrm{test}}}\left(y_{\mathrm{test}}^{(i)}\cdot \log(h_{\theta}(x_{\mathrm{test}}^{(i)})) + (1-y_{\mathrm{test}}^{(i)})\cdot \log(1-h_{\theta}(x_{\mathrm{test}}^{(i)}))\right)$$
+ </p>
+ <p>
+  Video Regularization and Bias/Variance (00:48)
+ </p>
+ <p hasmath="true">
+  Regularization term is wrong. Should be $$\frac{\lambda}{2m}\sum_{j=1}^{n}\theta_j^2$$ and not sum over m.
+ </p>
+ <p>
+  Videos 10-4 and 10-5: current subtitles are mistimed
+ </p>
+ <p>
+  Looks like the videos were updated in Sept 2014, but the subtitles were not updated accordingly. (10-3 was also updated in Aug 2014, but the subtitles were updated)
+ </p>
+ <h3 level="3">
+  Errata in the ex5 programming exercise
+ </h3>
+ <p>
+  In ex5.m at line 104, the reference to "slide 8 in ML-advice.pdf" should be "Figure 3 in ex5.pdf".
+ </p>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

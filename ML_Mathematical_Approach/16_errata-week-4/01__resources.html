@@ -1,0 +1,101 @@
+<meta charset="utf-8"/>
+<co-content>
+ <h1 level="1">
+  Errata in the video lectures
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p>
+    In the videos "Model Representation I" and "Model Representation II:, the diagram of the NN does not show the added bias units in the input and hidden layers. The bias units are represented in the equations as the variable x0.
+   </p>
+  </li>
+  <li>
+   <p>
+    In the video "Model representation I", in the in-video quiz, the figure is incorrect in that it does not show the added bias units. The bias units must be included when you calculate the size of a Theta matrix.
+   </p>
+  </li>
+  <li>
+   <p>
+    In the video "Model Representation II" at 2:42, Prof Ng mistakenly says that z(2) is a 3-dimensional vector. What he means is that the vector z(2) has three features - i.e it is size (3 x 1).
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Errata in the programming exercise
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    In ex3.pdf at Section 1.3.2 "Vectorizing the gradient", there is a typo in the series of entries demonstrating how to compute the partial derivatives for all $$θ_j$$ where $$h_\theta(x) - y$$ is defined. The last row in the array has $$h_\theta(x^{(1)}) - y^{(m)}$$ but it should be $$h_\theta(x^{(m)}) - y^{(m)}$$
+   </p>
+  </li>
+  <li>
+   <p>
+    Clarification: The instructions in ex3.pdf ask you to first write the unregularized portions of cost function (in Section 1.3.1 for cost and 1.3.2 for the gradients), then to add the regularized portions of the cost function (in Section 1.3.3).
+   </p>
+  </li>
+  <li>
+   <p>
+    Note: The test case for lrCostFunction() in ex3.m includes regularization, so you should first complete through Section 1.3.3.
+   </p>
+  </li>
+ </ul>
+ <h1 level="1">
+  Errata in the quiz
+ </h1>
+ <ul bullettype="bullets">
+  <li>
+   <p hasmath="true">
+    In question 4 of the Neural Networks: Representation quiz, one potential answer may include the variable Theta2, even though this variable is undefined (the question only defines Theta1). When answering the question, treat Theta2 as Theta with a superscript "(2)", or $$\Theta^{(2)}$$, from lecture.
+   </p>
+  </li>
+ </ul>
+</co-content>
+<style>
+ body {
+    padding: 50px 85px 50px 85px;
+}
+
+table th, table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 20px;
+    text-align: left;
+}
+input {
+    margin: 10px;
+}
+}
+th {
+    font-weight: bold;
+}
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+img {
+    height: auto;
+    max-width: 100%;
+}
+pre {
+    display: block;
+    margin: 20px;
+    background: #424242;
+    color: #fff;
+    font-size: 13px;
+    white-space: pre-wrap;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    border: 1px solid #ccc;
+}
+</style>
+<script async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$$','$$'], ['$','$'] ],
+      displayMath: [ ["\\[","\\]"] ],
+      processEscapes: true
+    }
+  });
+</script>

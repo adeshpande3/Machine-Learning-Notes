@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1 release (February 19th, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The Backpropagation Algorithm</TITLE>
+<META NAME="description" CONTENT="The Backpropagation Algorithm">
+<META NAME="keywords" CONTENT="html">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<LINK REL="STYLESHEET" HREF="html.css">
+<LINK REL="next" HREF="node38.html">
+<LINK REL="previous" HREF="node36.html">
+<LINK REL="up" HREF="node30.html">
+<LINK REL="next" HREF="node38.html">
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-5293377674620483";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script><p>
+
+</HEAD>
+<BODY bgcolor=white >
+<!--Navigation Panel-->
+<A NAME="tex2html431"
+ HREF="node38.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html429"
+ HREF="node30.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html423"
+ HREF="node36.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html432"
+ HREF="node38.html">Issues in ANN Learning</A>
+<B> Up:</B> <A NAME="tex2html430"
+ HREF="node30.html">Artificial Neural Nets</A>
+<B> Previous:</B> <A NAME="tex2html424"
+ HREF="node36.html">Multilayer Nets, Sigmoid Units</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00097000000000000000">
+The Backpropagation Algorithm</A>
+</H2>
+<DL COMPACT>
+<DT>1.
+<DD>Propagates inputs forward in the usual way, i.e.
+<UL>
+<LI>All outputs are computed using sigmoid thresholding of the inner
+	product of the corresponding weight and input vectors.
+<LI>All outputs at stage <I>n</I> are connected to all the inputs at
+	stage <I>n</I>+1</UL>
+<DT>2.
+<DD>Propagates the errors backwards by apportioning them to each
+unit according to the amount of this error the unit is responsible for.
+</DL>
+We now derive the stochastic Backpropagation algorithm for the general
+case.  The derivation is simple, but unfortunately the book-keeping is
+a little messy.
+<UL>
+<LI>
+<!-- MATH: $\vec{x_j} =$ -->
+<IMG
+ WIDTH="46" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img319.gif"
+ ALT="$\vec{x_j} = $">
+input vector for unit <I>j</I> (<I>x</I><SUB><I>ji</I></SUB> =
+	<I>i</I>th input to the <I>j</I>th unit)
+<LI>
+<!-- MATH: $\vec{w_j} =$ -->
+<IMG
+ WIDTH="49" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img320.gif"
+ ALT="$\vec{w_j} =$">
+weight vector for unit <I>j</I> (<I>w</I><SUB><I>ji</I></SUB> = weight on
+	<I>x</I><SUB><I>ji</I></SUB>)
+<LI>
+<!-- MATH: $z_j = \vec{w_j}\cdot \vec{x_j}$ -->
+<IMG
+ WIDTH="107" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img321.gif"
+ ALT="$z_j = \vec{w_j}\cdot \vec{x_j}$">,
+the weighted sum of inputs
+      for unit <I>j</I>
+<LI><I>o</I><SUB><I>j</I></SUB> = output of unit <I>j</I> (
+<!-- MATH: $o_j = \sigma(z_j)$ -->
+<IMG
+ WIDTH="96" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img322.gif"
+ ALT="$o_j = \sigma(z_j)$">)
+<LI><I>t</I><SUB><I>j</I></SUB> = target for unit <I>j</I>
+<LI>
+<!-- MATH: $Downstream(j) =$ -->
+<I>Downstream</I>(<I>j</I>) = set of units whose immediate inputs include
+	the output of <I>j</I>
+<LI><I>Outputs</I> = set of output units in the final layer
+</UL>
+Since we update after each training example, we can simplify
+the notation somewhat by imagining that the training set consists of
+exactly one example and so the error can simply be denoted by <I>E</I>.
+
+<P>
+We want to calculate 
+<!-- MATH: $\frac{\partial E}{\partial w_{ji}}$ -->
+<IMG
+ WIDTH="40" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img323.gif"
+ ALT="$\frac{\partial E}{\partial w_{ji}}$">
+for each input weight
+<I>w</I><SUB><I>ji</I></SUB> for each output unit <I>j</I>.  Note first that since <I>z</I><SUB><I>j</I></SUB> is a
+function of <I>w</I><SUB><I>ji</I></SUB> regardless of where in the network unit <I>j</I> is
+located,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="182" HEIGHT="123"
+ SRC="img324.gif"
+ ALT="\begin{eqnarray*}\frac{\partial E}{\partial w_{ji}} &=& \frac{\partial E}{\parti...
+...rtial w_{ji}} \\
+&=& \frac{\partial E}{\partial z_j} x_{ji}\\
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+Furthermore, 
+<!-- MATH: $\frac{\partial E}{\partial z_j}$ -->
+<IMG
+ WIDTH="32" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img325.gif"
+ ALT="$\frac{\partial E}{\partial z_j}$">
+is the same regardless of which input
+weight of unit <I>j</I> we are trying to update.  So we denote this
+quantity by <IMG
+ WIDTH="22" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img326.gif"
+ ALT="$\delta_j$">.
+
+<P>
+Consider the case when 
+<!-- MATH: $j \in Outputs$ -->
+<IMG
+ WIDTH="115" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img327.gif"
+ ALT="$j \in Outputs$">.
+We know 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH: \begin{displaymath}
+E = \frac{1}{2}\sum_{k \in Outputs} (t_k - \sigma(z_k))^2
+\end{displaymath} -->
+
+
+<IMG
+ WIDTH="245" HEIGHT="65"
+ SRC="img328.gif"
+ ALT="\begin{displaymath}E = \frac{1}{2}\sum_{k \in Outputs} (t_k - \sigma(z_k))^2
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Since the outputs of all units <IMG
+ WIDTH="54" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img329.gif"
+ ALT="$k \ne j$">
+are independent of <I>w</I><SUB><I>ji</I></SUB>,
+we can drop the summation and consider just the contribution to <I>E</I> by
+<I>j</I>.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="360" HEIGHT="252"
+ SRC="img330.gif"
+ ALT="\begin{eqnarray*}\delta_j = \frac{\partial E}{\partial z_j} &=& \frac{\partial }...
+...o_j)(1-\sigma(z_j))\sigma(z_j)\\
+&=& -(t_j - o_j)(1-o_j)o_j\\
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+Thus
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+\Delta w_{ji} = -\eta \frac{\partial E}{\partial w_ij} = \eta \delta_j x_{ji}
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:backprop-out">&#160;</A><IMG
+ WIDTH="224" HEIGHT="55"
+ SRC="img331.gif"
+ ALT="\begin{displaymath}
+\Delta w_{ji} = -\eta \frac{\partial E}{\partial w_ij} = \eta \delta_j x_{ji}
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(17)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+
+<P>
+Now consider the case when <I>j</I> is a hidden unit.  Like before, we make the
+following two important observations.
+<DL COMPACT>
+<DT>1.
+<DD>For each unit <I>k</I> downstream from <I>j</I>, <I>z</I><SUB><I>k</I></SUB> is a function of <I>z</I><SUB><I>j</I></SUB>
+<DT>2.
+<DD>The contribution to error by all units <IMG
+ WIDTH="49" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img332.gif"
+ ALT="$l \ne j$">
+in the same
+layer as <I>j</I> is independent of <I>w</I><SUB><I>ji</I></SUB></DL>
+We want to calculate 
+<!-- MATH: $\frac{\partial E}{\partial w_{ji}}$ -->
+<IMG
+ WIDTH="40" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img323.gif"
+ ALT="$\frac{\partial E}{\partial w_{ji}}$">
+for each input weight
+<I>w</I><SUB><I>ji</I></SUB> for each hidden unit <I>j</I>.  Note that <I>w</I><SUB><I>ji</I></SUB> influences just
+<I>z</I><SUB><I>j</I></SUB> which influences <I>o</I><SUB><I>j</I></SUB> which influences 
+<!-- MATH: $z_k \forall k \in
+Downstream(j)$ -->
+<IMG
+ WIDTH="218" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img333.gif"
+ ALT="$z_k \forall k \in
+Downstream(j)$">
+each of which influence <I>E</I>.  So we can write
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="410" HEIGHT="141"
+ SRC="img334.gif"
+ ALT="\begin{eqnarray*}\frac{\partial E}{\partial w_{ji}} &=& \sum_{k \in Downstream(j...
+...al o_j} \cdot
+\frac{\partial o_j}{\partial z_j} \cdot x_{ji}\\
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+
+<P>
+Again note that all the terms except <I>x</I><SUB><I>ji</I></SUB> in the above product are
+the same regardless of which input weight of unit <I>j</I> we are trying to
+update.  Like before, we denote this common quantity by <IMG
+ WIDTH="22" HEIGHT="38" ALIGN="MIDDLE" BORDER="0"
+ SRC="img326.gif"
+ ALT="$\delta_j$">.
+Also note that 
+<!-- MATH: $\frac{\partial E}{\partial z_k} = \delta_k$ -->
+<IMG
+ WIDTH="79" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img335.gif"
+ ALT="$\frac{\partial E}{\partial z_k} = \delta_k$">,
+
+<!-- MATH: $\frac{\partial z_k}{\partial o_j} =
+w_{kj}$ -->
+<IMG
+ WIDTH="91" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img336.gif"
+ ALT="$\frac{\partial z_k}{\partial o_j} =
+w_{kj}$">
+and 
+<!-- MATH: $\frac{\partial o_j}{\partial z_j} = o_j (1-o_j)$ -->
+<IMG
+ WIDTH="146" HEIGHT="50" ALIGN="MIDDLE" BORDER="0"
+ SRC="img337.gif"
+ ALT="$\frac{\partial o_j}{\partial z_j} = o_j (1-o_j)$">.
+Substituting,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="327" HEIGHT="134"
+ SRC="img338.gif"
+ ALT="\begin{eqnarray*}\delta_j &=& \sum_{k \in Downstream(j)}
+\frac{\partial E}{\par...
+...
+&=& \sum_{k \in Downstream(j)} \delta_k w_{kj} o_j (1-o_j)\\
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL">
+Thus,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+\delta_k =  o_j (1-o_j) \sum_{k \in Downstream(j)} \delta_k w_{kj}
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eqn:backprop-hid">&#160;</A><IMG
+ WIDTH="310" HEIGHT="62"
+ SRC="img339.gif"
+ ALT="\begin{displaymath}
+\delta_k = o_j (1-o_j) \sum_{k \in Downstream(j)} \delta_k w_{kj}
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(18)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+We are now in a position to state the Backpropagation algorithm
+formally.
+
+<P>
+<B>Formal statement of the algorithm:</B>
+
+<P>
+
+<P>
+Stochastic Backpropagation(training examples, <IMG
+ WIDTH="16" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\eta$">,
+<I>n</I><SUB><I>i</I></SUB>, <I>n</I><SUB><I>h</I></SUB>, <I>n</I><SUB><I>o</I></SUB>)
+
+<P>
+Each training example is of the form 
+<!-- MATH: $\langle \vec{x}, \vec{t}
+\rangle$ -->
+<IMG
+ WIDTH="50" HEIGHT="47" ALIGN="MIDDLE" BORDER="0"
+ SRC="img340.gif"
+ ALT="$\langle \vec{x}, \vec{t}
+\rangle$">
+where <IMG
+ WIDTH="17" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img299.gif"
+ ALT="$\vec{x}$">
+is the input vector and <IMG
+ WIDTH="15" HEIGHT="27" ALIGN="BOTTOM" BORDER="0"
+ SRC="img341.gif"
+ ALT="$\vec{t}$">
+is the
+target vector.  <IMG
+ WIDTH="16" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img295.gif"
+ ALT="$\eta$">
+is the learning rate (e.g., .05). <I>n</I><SUB><I>i</I></SUB>, <I>n</I><SUB><I>h</I></SUB>
+and <I>n</I><SUB><I>o</I></SUB> are the number of input, hidden and output nodes
+respectively.  Input from unit <I>i</I> to unit <I>j</I> is denoted <I>x</I><SUB><I>ji</I></SUB> and
+its weight is denoted by <I>w</I><SUB><I>ji</I></SUB>.
+
+<P>
+<UL>
+<LI>Create a feed-forward network with <I>n</I><SUB><I>i</I></SUB> inputs, <I>n</I><SUB><I>h</I></SUB> hidden
+      units, and <I>n</I><SUB><I>o</I></SUB> output units.
+<LI>Initialize all the weights to small random values (e.g., between
+      -.05 and  .05)
+<LI>Until termination condition is met, Do
+  <UL>
+<LI>For each training example 
+<!-- MATH: $\langle \vec{x}, \vec{t} \rangle$ -->
+<IMG
+ WIDTH="50" HEIGHT="47" ALIGN="MIDDLE" BORDER="0"
+ SRC="img340.gif"
+ ALT="$\langle \vec{x}, \vec{t}
+\rangle$">,
+Do
+    <DL COMPACT>
+<DT>1.
+<DD>Input the instance <IMG
+ WIDTH="17" HEIGHT="19" ALIGN="BOTTOM" BORDER="0"
+ SRC="img299.gif"
+ ALT="$\vec{x}$">
+and compute the output <I>o</I><SUB><I>u</I></SUB>
+of every unit.
+    <DT>2.
+<DD>For each output unit <I>k</I>, calculate
+	  <BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH: \begin{displaymath}
+\delta_k = o_k(1-o_k)(t_k - o_k)
+\end{displaymath} -->
+
+
+<IMG
+ WIDTH="210" HEIGHT="37"
+ SRC="img342.gif"
+ ALT="\begin{displaymath}\delta_k = o_k(1-o_k)(t_k - o_k)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+    <DT>3.
+<DD>For each hidden unit <I>h</I>, calculate
+          <BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH: \begin{displaymath}
+\delta_h = o_h(1-o_h)\sum_{k \in Downstream(h)} w_{kh}\delta_k
+\end{displaymath} -->
+
+
+<IMG
+ WIDTH="317" HEIGHT="62"
+ SRC="img343.gif"
+ ALT="\begin{displaymath}\delta_h = o_h(1-o_h)\sum_{k \in Downstream(h)} w_{kh}\delta_k
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+    <DT>4.
+<DD>Update each network weight <I>w</I><SUB><I>ji</I></SUB> as follows:
+	  <BR><P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="269" HEIGHT="92"
+ SRC="img344.gif"
+ ALT="\begin{eqnarray*}w_{ji} &\leftarrow& w_{ji} + \Delta w_{ji}\\
+{\rm where} \quad \Delta w_{ji} &=& \eta \delta_j x_ji\\
+\end{eqnarray*}">
+</DIV><P></P>
+<BR CLEAR="ALL"></DL></UL></UL>
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html431"
+ HREF="node38.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next_motif.gif"></A> 
+<A NAME="tex2html429"
+ HREF="node30.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up_motif.gif"></A> 
+<A NAME="tex2html423"
+ HREF="node36.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="previous_motif.gif"></A>   
+<BR>
+<B> Next:</B> <A NAME="tex2html432"
+ HREF="node38.html">Issues in ANN Learning</A>
+<B> Up:</B> <A NAME="tex2html430"
+ HREF="node30.html">Artificial Neural Nets</A>
+<B> Previous:</B> <A NAME="tex2html424"
+ HREF="node36.html">Multilayer Nets, Sigmoid Units</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Anand Venkataraman</I>
+<BR><I>1999-09-16</I>
+</ADDRESS>
+</BODY>
+</HTML>
